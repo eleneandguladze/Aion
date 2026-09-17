@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Enzi - Wellness & Supplements</title>
     <style>
-        /* ზოგადი სტილები */
         * {
             box-sizing: border-box;
             margin: 0;
@@ -19,7 +18,6 @@
             line-height: 1.6;
         }
 
-        /* ჰედერი */
         header {
             background: #ffffff;
             box-shadow: 0 2px 5px rgba(0,0,0,0.05);
@@ -58,11 +56,6 @@
             transition: color 0.3s;
         }
 
-        .nav-links a:hover {
-            color: #27ae60;
-        }
-
-        /* ჰამბურგერ ღილაკი მობილურისთვის */
         .mobile-menu-toggle {
             display: none;
             background: none;
@@ -72,30 +65,26 @@
             color: #333;
         }
 
-        /* მთავარი კონტეინერი */
         .main-container {
             max-width: 1200px;
             margin: 20px auto;
-            padding: 0 20px;
+            padding: 0 15px;
         }
 
-        /* ფილტრები და ძებნა */
         .filters-wrapper {
-            display: flex;
-            justify-content: space-between;
             margin-bottom: 20px;
-            gap: 15px;
         }
 
         .search-bar {
-            flex: 1;
-            padding: 10px 15px;
+            width: 100%;
+            padding: 12px 15px;
             border: 1px solid #ddd;
             border-radius: 8px;
             font-size: 16px;
+            outline: none;
         }
 
-        /* პროდუქტების ბადე */
+        /* პროდუქტების ბადე კომპიუტერისთვის */
         .products-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -105,58 +94,48 @@
         .product-card {
             background: #ffffff;
             border-radius: 10px;
-            padding: 15px;
+            padding: 12px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.05);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            transition: transform 0.2s;
-        }
-
-        .product-card:hover {
-            transform: translateY(-3px);
         }
 
         .product-card img {
             width: 100%;
-            height: 180px;
+            height: 160px;
             object-fit: cover;
             border-radius: 8px;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
         }
 
         .product-title {
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 600;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             color: #2c3e50;
         }
 
         .product-price {
-            font-size: 16px;
+            font-size: 15px;
             font-weight: bold;
             color: #27ae60;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
         }
 
         .btn {
             background-color: #27ae60;
             color: white;
             border: none;
-            padding: 10px 15px;
+            padding: 10px;
             border-radius: 6px;
             cursor: pointer;
             font-weight: 600;
             width: 100%;
             text-align: center;
-            transition: background 0.3s;
         }
 
-        .btn:hover {
-            background-color: #219653;
-        }
-
-        /* რესპონსივობა (მობილურზე ადაპტაცია) */
+        /* მობილური ვერსია - მკაცრად 2 სვეტი, გასწორებული ზომები */
         @media screen and (max-width: 768px) {
             .mobile-menu-toggle {
                 display: block;
@@ -166,7 +145,7 @@
                 display: none;
                 flex-direction: column;
                 position: absolute;
-                top: 65px;
+                top: 60px;
                 left: 0;
                 width: 100%;
                 background-color: #ffffff;
@@ -180,34 +159,43 @@
                 display: flex;
             }
 
-            .filters-wrapper {
-                flex-direction: column;
-            }
-
             .products-grid {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: repeat(2, 1fr); /* ზუსტად 2 სვეტი */
                 gap: 10px;
             }
 
+            .product-card {
+                padding: 10px;
+            }
+
             .product-card img {
-                height: 140px;
+                height: 120px;
+            }
+
+            .product-title {
+                font-size: 14px;
+            }
+
+            .product-price {
+                font-size: 14px;
+            }
+
+            .btn {
+                padding: 8px;
+                font-size: 13px;
             }
         }
 
-        @media screen and (max-width: 480px) {
+        /* ძალიან პატარა ეკრანები (მაგ: ძველი სმარტფონები) */
+        @media screen and (max-width: 380px) {
             .products-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .header-container {
-                padding: 10px 15px;
+                grid-template-columns: 1fr; /* 1 სვეტი მხოლოდ ძალიან პატარა ეკრანზე */
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- ჰედერი -->
     <header>
         <div class="header-container">
             <a href="#" class="logo">Enzi</a>
@@ -221,14 +209,11 @@
         </div>
     </header>
 
-    <!-- მთავარი კონტენტი -->
     <div class="main-container">
-        <!-- ფილტრები და ძებნა -->
         <div class="filters-wrapper">
             <input type="text" class="search-bar" placeholder="ძებნა პროდუქტებში..." onkeyup="filterProducts(this.value)">
         </div>
 
-        <!-- პროდუქტების სია -->
         <div class="products-grid" id="productsGrid">
             <div class="product-card">
                 <img src="https://via.placeholder.com/300x180" alt="Collagen">
@@ -236,7 +221,7 @@
                     <div class="product-title">კოლაგენი პეპტიდები</div>
                     <div class="product-price">45.00 ლარი</div>
                 </div>
-                <button class="btn" onclick="addToCart('კოლაგენი პეპტიდები')">კალათაში დამატება</button>
+                <button class="btn" onclick="addToCart('კოლაგენი პეპტიდები')">კალათაში</button>
             </div>
 
             <div class="product-card">
@@ -245,7 +230,7 @@
                     <div class="product-title">ვიტამინი D3</div>
                     <div class="product-price">25.00 ლარი</div>
                 </div>
-                <button class="btn" onclick="addToCart('ვიტამინი D3')">კალათაში დამატება</button>
+                <button class="btn" onclick="addToCart('ვიტამინი D3')">კალათაში</button>
             </div>
 
             <div class="product-card">
@@ -254,25 +239,21 @@
                     <div class="product-title">ომეგა 3 კაფსულები</div>
                     <div class="product-price">35.00 ლარი</div>
                 </div>
-                <button class="btn" onclick="addToCart('ომეგა 3 კაფსულები')">კალათაში დამატება</button>
+                <button class="btn" onclick="addToCart('ომეგა 3 კაფსულები')">კალათაში</button>
             </div>
         </div>
     </div>
 
-    <!-- ჯავასკრიპტი -->
     <script>
-        // მობილური მენიუს გახსნა/დახურვა
         function toggleMobileMenu() {
             const navLinks = document.querySelector('.nav-links');
             navLinks.classList.toggle('active');
         }
 
-        // კალათაში დამატების იმიტაცია
         function addToCart(productName) {
             alert(productName + ' წარმატებით დაემატა კალათაში!');
         }
 
-        // პროდუქტების ძებნის ფუნქცია
         function filterProducts(query) {
             const cards = document.querySelectorAll('.product-card');
             query = query.toLowerCase();
