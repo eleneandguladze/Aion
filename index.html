@@ -32,7 +32,6 @@
 
     .icon-btn { background: #E9EFE9; color: #1B4D2E; border: none; padding: 8px 12px; border-radius: 20px; font-weight: 600; font-size: 12px; cursor: pointer; display: flex; align-items: center; gap: 5px; position: relative; }
     .cart-btn { background: #1B4D2E; color: white; border: none; padding: 8px 12px; border-radius: 20px; font-weight: 600; font-size: 12px; cursor: pointer; display: flex; align-items: center; gap: 5px; }
-    .admin-btn { background: #856404; color: white; border: none; padding: 8px 12px; border-radius: 20px; font-weight: 600; font-size: 12px; cursor: pointer; }
     
     .badge { background: #E63946; color: white; border-radius: 50%; padding: 2px 6px; font-size: 10px; }
     .cart-count { background: #71B340; color: white; border-radius: 50%; padding: 2px 6px; font-size: 10px; }
@@ -149,7 +148,7 @@
     .footer-col li { font-size: 11px; margin-bottom: 6px; opacity: 0.8; }
     .footer-bottom { text-align: center; font-size: 10px; opacity: 0.6; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.1); }
 
-    /* Modals & Admin Panel */
+    /* Modals */
     .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); justify-content: center; align-items: center; z-index: 1000; padding: 15px; overflow-y: auto; }
     .modal.active { display: flex; }
 
@@ -159,15 +158,6 @@
     .form-group { margin-bottom: 12px; text-align: left; }
     .form-group label { display: block; font-size: 11px; font-weight: 700; color: #1B4D2E; margin-bottom: 4px; }
     .form-control { width: 100%; padding: 10px; border: 1px solid #D0DDD0; border-radius: 10px; font-size: 12px; outline: none; background: #F8F6F0; }
-
-    .admin-tabs { display: flex; gap: 10px; margin-bottom: 15px; border-bottom: 1px solid #eee; padding-bottom: 10px; }
-    .admin-tab-btn { background: #f4f6f4; border: none; padding: 6px 12px; border-radius: 8px; font-size: 11px; font-weight: bold; cursor: pointer; color: #1B4D2E; }
-    .admin-tab-btn.active { background: #1B4D2E; color: white; }
-    .admin-section { display: none; }
-    .admin-section.active { display: block; }
-    
-    .admin-item-row { display: flex; justify-content: space-between; align-items: center; background: #f9f9f9; padding: 8px 12px; border-radius: 8px; margin-bottom: 6px; font-size: 11px; }
-    .btn-danger { background: #E63946; color: white; border: none; padding: 5px 8px; border-radius: 6px; cursor: pointer; font-size: 10px; }
 
     @media screen and (max-width: 768px) {
       header { padding: 10px 12px; }
@@ -184,7 +174,6 @@
     <div class="header-right">
       <input type="text" id="searchInput" class="search-input" placeholder="Search..." oninput="filterProducts()">
       <button class="icon-btn" onclick="openWishlistModal()">🤍 <span id="wishlistBadge" class="badge">0</span></button>
-      <button class="admin-btn" onclick="openAdminLoginModal()">⚙️ Admin</button>
       <button class="lang-btn" onclick="toggleLanguage()">🌐 <span id="langText">EN</span></button>
       <button class="cart-btn" onclick="toggleCart()">🛒 <span id="cartBadge" class="cart-count">0</span></button>
     </div>
@@ -306,67 +295,6 @@
 
   <div id="toast"></div>
 
-  <!-- Admin Login Modal -->
-  <div id="adminLoginModal" class="modal" onclick="if(event.target.id==='adminLoginModal') closeAdminLogin()">
-    <div class="detail-card" style="max-width:320px; text-align:center;">
-      <button class="detail-close-btn" onclick="closeAdminLogin()">✕</button>
-      <h3 style="color:#1B4D2E; margin-bottom:15px;">Admin Login</h3>
-      <div class="form-group">
-        <input type="password" id="adminPassInput" class="form-control" placeholder="შეიყვანეთ პაროლი (admin123)">
-      </div>
-      <button class="btn-main" style="width:100%;" onclick="checkAdminLogin()">შესვლა</button>
-    </div>
-  </div>
-
-  <!-- Admin Dashboard Modal -->
-  <div id="adminDashboardModal" class="modal" onclick="if(event.target.id==='adminDashboardModal') closeAdminDashboard()">
-    <div class="detail-card" style="max-width:550px;">
-      <button class="detail-close-btn" onclick="closeAdminDashboard()">✕</button>
-      <h3 style="color:#1B4D2E; margin-bottom:12px;">⚙️ ადმინ პანელი</h3>
-      
-      <div class="admin-tabs">
-        <button class="admin-tab-btn active" onclick="switchAdminTab('productsTab')">პროდუქტები</button>
-        <button class="admin-tab-btn" onclick="switchAdminTab('blogsTab')">ბლოგები</button>
-        <button class="admin-tab-btn" onclick="switchAdminTab('ordersTab')">შეკვეთები (<span id="ordersCountBadge">0</span>)</button>
-      </div>
-
-      <!-- PRODUCTS ADMIN TAB -->
-      <div id="productsTab" class="admin-section active">
-        <h4 style="font-size:12px; margin-bottom:8px; color:#1B4D2E;">ახალი პროდუქტის დამატება</h4>
-        <div class="form-group"><input type="text" id="newProdName" class="form-control" placeholder="პროდუქტის დასახელება"></div>
-        <div class="form-group"><input type="number" id="newProdPrice" class="form-control" placeholder="ფასი (₾)"></div>
-        <div class="form-group">
-          <select id="newProdCategory" class="form-control">
-            <option value="vitamins">ვიტამინები (Vitamins)</option>
-            <option value="collagen">კოლაგენი (Collagen)</option>
-            <option value="probiotics">პრობიოტიკები (Probiotics)</option>
-            <option value="oral">ორალური მოვლა (Oral Care)</option>
-          </select>
-        </div>
-        <div class="form-group"><input type="text" id="newProdImg" class="form-control" placeholder="სურათის URL (ლინკი)"></div>
-        <button class="btn-main" style="width:100%; margin-bottom:15px;" onclick="adminAddProduct()">დამატება</button>
-        <div id="adminProductsList" style="max-height:180px; overflow-y:auto;"></div>
-      </div>
-
-      <!-- BLOGS ADMIN TAB -->
-      <div id="blogsTab" class="admin-section">
-        <h4 style="font-size:12px; margin-bottom:8px; color:#1B4D2E;">ახალი ბლოგის დამატება</h4>
-        <div class="form-group"><input type="text" id="newBlogTitle" class="form-control" placeholder="ბლოგის სათაური"></div>
-        <div class="form-group"><input type="text" id="newBlogTag" class="form-control" placeholder="თემა / ტეგი"></div>
-        <div class="form-group"><textarea id="newBlogSnippet" class="form-control" placeholder="მოკლე აღწერა..." style="height:50px;"></textarea></div>
-        <div class="form-group"><input type="text" id="newBlogImg" class="form-control" placeholder="სურათის URL (ლინკი)"></div>
-        <button class="btn-main" style="width:100%; margin-bottom:15px;" onclick="adminAddBlog()">გამოქვეყნება</button>
-        <div id="adminBlogsList" style="max-height:150px; overflow-y:auto;"></div>
-      </div>
-
-      <!-- ORDERS ADMIN TAB -->
-      <div id="ordersTab" class="admin-section">
-        <div id="adminOrdersList" style="max-height:250px; overflow-y:auto;"></div>
-      </div>
-
-    </div>
-  </div>
-
   <!-- Cart Modal -->
   <div id="cartModal" class="modal" onclick="if(event.target.id==='cartModal') toggleCart(false)">
     <div class="detail-card" style="margin-left:auto; height:100%; max-width:320px; display:flex; flex-direction:column; justify-content:space-between;">
@@ -428,7 +356,7 @@
       { id: 'oral', name: { GE: 'ორალური მოვლა', EN: 'Oral Care' } }
     ];
 
-    let blogPosts = JSON.parse(localStorage.getItem('aion_blogs')) || [
+    let blogPosts = [
       {
         id: 1,
         tag: { GE: 'კოლაგენი & კანის მოვლა', EN: 'Collagen & Skincare' },
@@ -452,13 +380,13 @@
       }
     ];
 
-    let popularProducts = JSON.parse(localStorage.getItem('aion_products')) || [
+    let popularProducts = [
       { id: 1, category: 'collagen', name: 'CollagenUP Peptides', price: 85, img: 'https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=300&q=80' },
       { id: 2, category: 'vitamins', name: 'Vitamin D3 5000 IU', price: 35, img: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=300&q=80' },
       { id: 3, category: 'probiotics', name: 'LactoBif Probiotics', price: 65, img: 'https://images.unsplash.com/photo-1576602976047-174e57a47881?auto=format&fit=crop&w=300&q=80' }
     ];
 
-    let orders = JSON.parse(localStorage.getItem('aion_orders')) || [];
+    let orders = [];
     let cart = [];
     let wishlist = [];
 
@@ -616,105 +544,10 @@
         date: new Date().toLocaleString()
       };
       orders.unshift(newOrder);
-      localStorage.setItem('aion_orders', JSON.stringify(orders));
       alert('შეკვეთა წარმატებით გაფორმდა!');
       cart = [];
       updateCart();
       closeCheckoutModal();
-    }
-
-    /* ADMIN PANEL */
-    function openAdminLoginModal() { document.getElementById('adminLoginModal').classList.add('active'); }
-    function closeAdminLogin() { document.getElementById('adminLoginModal').classList.remove('active'); }
-    
-    function checkAdminLogin() {
-      if(document.getElementById('adminPassInput').value === 'admin123') {
-        closeAdminLogin();
-        document.getElementById('adminPassInput').value = '';
-        openAdminDashboard();
-      } else { alert('არასწორი პაროლი!'); }
-    }
-
-    function openAdminDashboard() {
-      renderAdminProducts();
-      renderAdminBlogs();
-      renderAdminOrders();
-      document.getElementById('adminDashboardModal').classList.add('active');
-    }
-    function closeAdminDashboard() { document.getElementById('adminDashboardModal').classList.remove('active'); }
-
-    function switchAdminTab(tabId) {
-      document.querySelectorAll('.admin-section').forEach(s => s.classList.remove('active'));
-      document.querySelectorAll('.admin-tab-btn').forEach(b => b.classList.remove('active'));
-      document.getElementById(tabId).classList.add('active');
-      event.target.classList.add('active');
-    }
-
-    function adminAddProduct() {
-      const name = document.getElementById('newProdName').value;
-      const price = parseFloat(document.getElementById('newProdPrice').value);
-      const category = document.getElementById('newProdCategory').value;
-      const img = document.getElementById('newProdImg').value || 'https://via.placeholder.com/300';
-      if(!name || isNaN(price)) return alert('შეავსეთ სწორად!');
-      popularProducts.push({ id: Date.now(), name, price, category, img });
-      localStorage.setItem('aion_products', JSON.stringify(popularProducts));
-      renderAdminProducts();
-      renderAllCarousels();
-      alert('დაემატა!');
-    }
-
-    function renderAdminProducts() {
-      const list = document.getElementById('adminProductsList');
-      list.innerHTML = '';
-      popularProducts.forEach(p => {
-        list.innerHTML += `<div class="admin-item-row"><span><b>${p.name}</b> - ${p.price} ₾</span><button class="btn-danger" onclick="adminDeleteProduct(${p.id})">წაშლა</button></div>`;
-      });
-    }
-
-    function adminDeleteProduct(id) {
-      popularProducts = popularProducts.filter(p => p.id !== id);
-      localStorage.setItem('aion_products', JSON.stringify(popularProducts));
-      renderAdminProducts();
-      renderAllCarousels();
-    }
-
-    function adminAddBlog() {
-      const title = document.getElementById('newBlogTitle').value;
-      const tag = document.getElementById('newBlogTag').value;
-      const snippet = document.getElementById('newBlogSnippet').value;
-      const img = document.getElementById('newBlogImg').value || 'https://via.placeholder.com/500';
-      if(!title) return alert('შეავსეთ სათაური!');
-      blogPosts.unshift({ id: Date.now(), title, tag, snippet, img });
-      localStorage.setItem('aion_blogs', JSON.stringify(blogPosts));
-      renderAdminBlogs();
-      renderBlogCarousel();
-      alert('გამოქვეყნდა!');
-    }
-
-    function renderAdminBlogs() {
-      const list = document.getElementById('adminBlogsList');
-      list.innerHTML = '';
-      blogPosts.forEach(b => {
-        const t = typeof b.title === 'object' ? b.title.GE : b.title;
-        list.innerHTML += `<div class="admin-item-row"><span><b>${t}</b></span><button class="btn-danger" onclick="adminDeleteBlog(${b.id})">წაშლა</button></div>`;
-      });
-    }
-
-    function adminDeleteBlog(id) {
-      blogPosts = blogPosts.filter(b => b.id !== id);
-      localStorage.setItem('aion_blogs', JSON.stringify(blogPosts));
-      renderAdminBlogs();
-      renderBlogCarousel();
-    }
-
-    function renderAdminOrders() {
-      const list = document.getElementById('adminOrdersList');
-      document.getElementById('ordersCountBadge').innerText = orders.length;
-      list.innerHTML = orders.length === 0 ? '<p style="font-size:11px; color:#888;">შეკვეთები არ არის</p>' : '';
-      orders.forEach(o => {
-        let itemsStr = o.items.map(i => `${i.name} (x${i.quantity})`).join(', ');
-        list.innerHTML += `<div style="background:#f9f9f9; padding:10px; border-radius:8px; margin-bottom:8px; font-size:11px;"><div><b>${o.name}</b> (${o.phone})</div><div>${o.address}</div><div>${itemsStr}</div><div style="color:#27ae60; font-weight:bold;">სულ: ${o.total.toFixed(2)} ₾</div></div>`;
-      });
     }
 
     // Init
