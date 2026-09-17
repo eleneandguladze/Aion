@@ -560,7 +560,7 @@
       const newOrder = {
         name: document.getElementById('custName').value,
         phone: document.getElementById('custPhone').value,
-        address: document.getElementById('custAddress' ).value,
+        address: document.getElementById('custAddress').value,
         items: [...cart],
         total: cart.reduce((sum, i) => sum + (i.price * i.quantity), 0),
         date: new Date().toLocaleString()
