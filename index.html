@@ -1,1337 +1,291 @@
 <!DOCTYPE html>
 <html lang="ka">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Aion Food Supplements</title>
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: system-ui, -apple-system, sans-serif; }
-    body { background-color: #F8F6F0; color: #2C3E35; padding: 0 15px 15px 15px; }
-    
-    /* Sticky Header */
-    header { 
-      position: sticky; 
-      top: 0; 
-      z-index: 100; 
-      display: flex; 
-      justify-content: space-between; 
-      align-items: center; 
-      background: rgba(255, 255, 255, 0.95); 
-      backdrop-filter: blur(8px);
-      padding: 12px 20px; 
-      border-radius: 0 0 15px 15px; 
-      margin-bottom: 20px; 
-      box-shadow: 0 4px 15px rgba(0,0,0,0.05); 
-    }
-    .logo-box { font-size: 22px; font-weight: 800; color: #1B4D2E; letter-spacing: -0.5px; }
-    .logo-box span { font-size: 8px; display: block; color: #8F9E8B; letter-spacing: 2px; font-weight: 600; }
-    
-    .header-right { display: flex; align-items: center; gap: 8px; }
-    .search-input { padding: 8px 12px; border-radius: 20px; border: 1px solid #E0E0E0; background: #F8F6F0; outline: none; width: 100px; font-size: 12px; }
-    
-    /* Header Social Icons */
-    .header-socials { display: flex; align-items: center; gap: 6px; margin-right: 4px; }
-    .header-social-link { color: #1B4D2E; display: flex; align-items: center; justify-content: center; text-decoration: none; opacity: 0.8; transition: 0.2s; }
-    .header-social-link:hover { opacity: 1; transform: scale(1.1); }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enzi - Wellness & Supplements</title>
+    <style>
+        /* ზოგადი სტილები */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
 
-    /* Language Switcher */
-    .lang-btn {
-      background: #E9EFE9;
-      color: #1B4D2E;
-      border: 1px solid #D0DDD0;
-      padding: 6px 10px;
-      border-radius: 16px;
-      font-size: 11px;
-      font-weight: 700;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      transition: 0.2s;
-    }
-    .lang-btn:hover { background: #1B4D2E; color: white; }
+        body {
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
 
-    .icon-btn { background: #E9EFE9; color: #1B4D2E; border: none; padding: 8px 12px; border-radius: 20px; font-weight: 600; font-size: 12px; cursor: pointer; display: flex; align-items: center; gap: 5px; position: relative; }
-    .cart-btn { background: #1B4D2E; color: white; border: none; padding: 8px 12px; border-radius: 20px; font-weight: 600; font-size: 12px; cursor: pointer; display: flex; align-items: center; gap: 5px; }
-    .badge { background: #E63946; color: white; border-radius: 50%; padding: 2px 6px; font-size: 10px; }
-    .cart-count { background: #71B340; color: white; border-radius: 50%; padding: 2px 6px; font-size: 10px; }
+        /* ჰედერი */
+        header {
+            background: #ffffff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
 
-    /* Category Filter Tabs */
-    .categories-bar {
-      display: flex;
-      gap: 8px;
-      overflow-x: auto;
-      padding-bottom: 10px;
-      margin-bottom: 20px;
-      scrollbar-width: none;
-    }
-    .categories-bar::-webkit-scrollbar { display: none; }
-    .cat-chip {
-      background: white;
-      border: 1px solid #D0DDD0;
-      padding: 6px 14px;
-      border-radius: 20px;
-      font-size: 12px;
-      font-weight: 600;
-      color: #1B4D2E;
-      cursor: pointer;
-      white-space: nowrap;
-      transition: 0.2s;
-    }
-    .cat-chip.active, .cat-chip:hover {
-      background: #1B4D2E;
-      color: white;
-      border-color: #1B4D2E;
-    }
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
 
-    /* Hero Banner */
-    .hero { background: #E9EFE9; padding: 25px 20px; border-radius: 20px; margin-bottom: 25px; text-align: left; }
-    .hero h1 { color: #1B4D2E; font-size: 22px; margin-bottom: 8px; font-weight: 700; line-height: 1.2; }
-    .hero p { font-size: 12px; color: #5A6E63; margin-bottom: 15px; }
-    .btn-main { background: #1B4D2E; color: white; border: none; padding: 10px 20px; border-radius: 20px; font-weight: 600; font-size: 12px; cursor: pointer; }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2c3e50;
+            text-decoration: none;
+        }
 
-    /* Flash Sale Section */
-    .sale-section {
-      background: linear-gradient(135deg, #1B4D2E 0%, #0F2D1B 100%);
-      color: white;
-      border-radius: 20px;
-      padding: 20px;
-      margin-bottom: 30px;
-      position: relative;
-      overflow: hidden;
-      box-shadow: 0 8px 20px rgba(27, 77, 46, 0.2);
-    }
-    .sale-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 15px;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-    .sale-title-box { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
-    .sale-badge { 
-      background: #E63946; 
-      color: white; 
-      font-size: 11px; 
-      font-weight: 800; 
-      padding: 4px 10px; 
-      border-radius: 12px; 
-      text-transform: uppercase; 
-      letter-spacing: 0.5px;
-      animation: pulse 1.8s infinite;
-    }
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-      100% { transform: scale(1); }
-    }
-    .timer-box {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      background: rgba(255,255,255,0.12);
-      padding: 6px 12px;
-      border-radius: 12px;
-      font-size: 12px;
-      font-weight: 700;
-    }
-    .timer-num { background: #E63946; padding: 2px 6px; border-radius: 6px; color: white; }
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            list-style: none;
+            align-items: center;
+        }
 
-    .arrow-btn-light {
-      background: rgba(255, 255, 255, 0.2);
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
-      font-weight: bold; color: white; cursor: pointer; font-size: 14px; user-select: none; transition: 0.2s;
-    }
-    .arrow-btn-light:hover { background: white; color: #1B4D2E; }
+        .nav-links a {
+            text-decoration: none;
+            color: #555;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
 
-    /* Carousel Elements */
-    .section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
-    .section-title { font-size: 18px; font-weight: 700; color: #1B4D2E; }
-    .carousel-arrows { display: flex; gap: 6px; }
-    .arrow-btn { background: white; border: 1px solid #E0E0E0; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; color: #1B4D2E; cursor: pointer; font-size: 14px; user-select: none; }
-    .arrow-btn:hover { background: #1B4D2E; color: white; border-color: #1B4D2E; }
+        .nav-links a:hover {
+            color: #27ae60;
+        }
 
-    .carousel-container { margin-bottom: 30px; position: relative; }
-    .carousel-track { 
-      display: flex; gap: 15px; overflow-x: auto; scroll-behavior: smooth; scroll-snap-type: x mandatory; padding-bottom: 10px; scrollbar-width: none; 
-    }
-    .carousel-track::-webkit-scrollbar { display: none; }
+        /* ჰამბურგერ ღილაკი მობილურისთვის */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #333;
+        }
 
-    /* Cards */
-    .card { 
-      flex: 0 0 160px; 
-      scroll-snap-align: start; 
-      background: white; 
-      padding: 12px; 
-      border-radius: 16px; 
-      display: flex; 
-      flex-direction: column; 
-      justify-content: space-between; 
-      box-shadow: 0 2px 8px rgba(0,0,0,0.02); 
-      position: relative;
-    }
-    .card-clickable { cursor: pointer; }
-    .card-img-holder { height: 120px; background: #F4F6F4; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 10px; padding: 10px; position: relative; }
-    .card-img-holder img { max-height: 100%; max-width: 100%; object-fit: contain; border-radius: 8px; }
-    
-    .wishlist-btn {
-      position: absolute;
-      top: 8px; right: 8px; background: rgba(255, 255, 255, 0.9); border: none; width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 13px; z-index: 5; box-shadow: 0 2px 5px rgba(0,0,0,0.1); transition: 0.2s;
-    }
-    .wishlist-btn.active { color: #E63946; }
+        /* მთავარი კონტეინერი */
+        .main-container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
 
-    .discount-tag { position: absolute; top: 8px; left: 8px; background: #E63946; color: white; font-size: 10px; font-weight: 800; padding: 3px 7px; border-radius: 8px; z-index: 2; }
+        /* ფილტრები და ძებნა */
+        .filters-wrapper {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            gap: 15px;
+        }
 
-    .card-title { font-weight: 700; font-size: 13px; color: #1B4D2E; margin-bottom: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .card-stars { color: #5B8C00; font-size: 10px; margin-bottom: 6px; }
-    
-    .price-box { display: flex; align-items: center; gap: 6px; margin-bottom: 10px; }
-    .card-price { font-weight: 800; font-size: 14px; color: #1B4D2E; }
-    .card-price.sale-price { color: #E63946; }
-    .old-price { font-size: 11px; color: #999; text-decoration: line-through; font-weight: 500; }
+        .search-bar {
+            flex: 1;
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+        }
 
-    .btn-add { background: #1B4D2E; color: white; border: none; padding: 8px; border-radius: 12px; font-size: 11px; font-weight: 600; width: 100%; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 5px; }
+        /* პროდუქტების ბადე */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
 
-    /* Blog Card Styles */
-    .blog-card {
-      flex: 0 0 240px;
-      scroll-snap-align: start;
-      background: white;
-      border-radius: 16px;
-      overflow: hidden;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
-      cursor: pointer;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-    .blog-img { height: 110px; width: 100%; object-fit: cover; }
-    .blog-content { padding: 12px; }
-    .blog-tag { font-size: 9px; font-weight: 700; color: #71B340; text-transform: uppercase; margin-bottom: 4px; }
-    .blog-title { font-size: 13px; font-weight: 700; color: #1B4D2E; margin-bottom: 6px; line-height: 1.3; }
-    .blog-snippet { font-size: 10px; color: #666; line-height: 1.4; margin-bottom: 10px; }
-    .blog-footer { font-size: 9px; color: #888; display: flex; justify-content: space-between; font-weight: 600; }
+        .product-card {
+            background: #ffffff;
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.2s;
+        }
 
-    /* Toast Notification */
-    #toast {
-      position: fixed; bottom: 20px; right: 20px; background: #1B4D2E; color: white; padding: 12px 20px; border-radius: 12px; font-size: 12px; font-weight: 600; box-shadow: 0 5px 15px rgba(0,0,0,0.2); transform: translateY(100px); opacity: 0; transition: all 0.3s ease; z-index: 2000;
-    }
-    #toast.show { transform: translateY(0); opacity: 1; }
+        .product-card:hover {
+            transform: translateY(-3px);
+        }
 
-    /* Features Section */
-    .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 15px; margin-bottom: 30px; }
-    .feature-item { background: white; padding: 15px; border-radius: 12px; text-align: center; }
-    .feature-icon { font-size: 24px; margin-bottom: 8px; }
-    .feature-title { font-size: 12px; font-weight: 700; color: #1B4D2E; margin-bottom: 4px; }
-    .feature-desc { font-size: 10px; color: #666; }
+        .product-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 12px;
+        }
 
-    /* Footer Social Icons */
-    .footer-socials { display: flex; gap: 10px; margin-top: 12px; }
-    .footer-social-link {
-      width: 30px; height: 30px; border-radius: 50%; background: rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; color: white; text-decoration: none; transition: 0.2s;
-    }
-    .footer-social-link:hover { background: #A3D991; color: #1B4D2E; }
+        .product-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #2c3e50;
+        }
 
-    /* Footer */
-    footer { background: #1B4D2E; color: white; padding: 30px 20px; border-radius: 20px; margin-top: 20px; }
-    .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 20px; margin-bottom: 20px; }
-    .footer-col h4 { font-size: 14px; margin-bottom: 10px; color: #A3D991; }
-    .footer-col ul { list-style: none; }
-    .footer-col li { font-size: 11px; margin-bottom: 6px; opacity: 0.8; }
-    .footer-bottom { text-align: center; font-size: 10px; opacity: 0.6; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.1); }
+        .product-price {
+            font-size: 16px;
+            font-weight: bold;
+            color: #27ae60;
+            margin-bottom: 12px;
+        }
 
-    /* Modals */
-    .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); justify-content: center; align-items: center; z-index: 1000; padding: 15px; }
-    .modal.active { display: flex; }
+        .btn {
+            background-color: #27ae60;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            width: 100%;
+            text-align: center;
+            transition: background 0.3s;
+        }
 
-    .cart-modal { justify-content: flex-end; padding: 0; }
-    .cart-modal-content { background: white; width: 100%; max-width: 320px; height: 100%; padding: 20px; display: flex; flex-direction: column; justify-content: space-between; transform: translateX(100%); transition: transform 0.3s ease-in-out; }
-    .cart-modal.active .cart-modal-content { transform: translateX(0); }
-    .cart-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #eee; font-size: 12px; }
-    .qty-btn { width: 24px; height: 24px; border: 1px solid #ccc; background: white; border-radius: 50%; font-weight: bold; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; }
+        .btn:hover {
+            background-color: #219653;
+        }
 
-    /* Form Styles in Checkout */
-    .form-group { margin-bottom: 12px; text-align: left; }
-    .form-group label { display: block; font-size: 11px; font-weight: 700; color: #1B4D2E; margin-bottom: 4px; }
-    .form-control { width: 100%; padding: 10px; border: 1px solid #D0DDD0; border-radius: 10px; font-size: 12px; outline: none; background: #F8F6F0; }
+        /* რესპონსივობა (მობილურზე ადაპტაცია) */
+        @media screen and (max-width: 768px) {
+            .mobile-menu-toggle {
+                display: block;
+            }
 
-    /* Detail Cards */
-    .detail-card { background: white; border-radius: 20px; width: 100%; max-width: 480px; padding: 20px; position: relative; max-height: 90vh; overflow-y: auto; }
-    .detail-close-btn { position: absolute; top: 15px; right: 15px; background: #F4F6F4; border: none; width: 30px; height: 30px; border-radius: 50%; font-size: 16px; cursor: pointer; color: #1B4D2E; font-weight: bold; }
-    .detail-img-box { background: #F4F6F4; border-radius: 16px; padding: 20px; text-align: center; margin-bottom: 15px; height: 180px; display: flex; align-items: center; justify-content: center; position: relative; }
-    .detail-img-box img { max-height: 100%; max-width: 100%; object-fit: contain; }
-    .detail-title { font-size: 18px; font-weight: 800; color: #1B4D2E; margin-bottom: 5px; }
-    .detail-price { font-size: 18px; font-weight: 800; color: #71B340; margin-bottom: 12px; }
-    .detail-desc { font-size: 12px; color: #5A6E63; line-height: 1.5; margin-bottom: 15px; }
-    .detail-meta { background: #F8F6F0; padding: 10px 12px; border-radius: 12px; font-size: 11px; color: #1B4D2E; margin-bottom: 15px; }
-    
-    .stock-tag { display: inline-block; padding: 3px 8px; border-radius: 8px; font-size: 11px; font-weight: 700; margin-bottom: 10px; }
-    .stock-in { background: #E9EFE9; color: #1B4D2E; }
-    .stock-low { background: #FFF3CD; color: #856404; }
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 65px;
+                left: 0;
+                width: 100%;
+                background-color: #ffffff;
+                box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+                padding: 20px;
+                gap: 15px;
+                text-align: center;
+            }
 
-    .detail-actions { display: flex; gap: 10px; align-items: center; margin-bottom: 20px; }
-    .detail-qty-control { display: flex; align-items: center; gap: 8px; background: #F4F6F4; padding: 5px 10px; border-radius: 12px; }
+            .nav-links.active {
+                display: flex;
+            }
 
-    /* Reviews Section in Modal */
-    .reviews-section { border-top: 1px solid #EAEAEA; padding-top: 15px; margin-top: 15px; }
-    .reviews-title { font-size: 14px; font-weight: 700; color: #1B4D2E; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; }
-    .review-item { background: #F9FAF9; border-radius: 12px; padding: 10px 12px; margin-bottom: 8px; font-size: 11px; }
-    .review-header { display: flex; justify-content: space-between; margin-bottom: 4px; font-weight: 700; color: #1B4D2E; }
-    .review-stars { color: #5B8C00; }
-    .review-comment { color: #5A6E63; line-height: 1.4; }
+            .filters-wrapper {
+                flex-direction: column;
+            }
 
-    .add-review-box { background: #F4F6F4; padding: 12px; border-radius: 12px; margin-top: 12px; }
-    .add-review-box h5 { font-size: 12px; color: #1B4D2E; margin-bottom: 8px; font-weight: 700; }
-    .review-input, .review-select, .review-textarea { width: 100%; padding: 8px; border: 1px solid #D0DDD0; border-radius: 8px; font-size: 11px; outline: none; margin-bottom: 8px; background: white; }
-    .review-textarea { resize: vertical; height: 50px; }
-    .btn-submit-review { background: #1B4D2E; color: white; border: none; padding: 8px 12px; border-radius: 8px; font-size: 11px; font-weight: 700; cursor: pointer; width: 100%; }
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
 
-    /* Full Article View inside Blog Modal */
-    .btn-read-full {
-      background: none;
-      border: 1px solid #1B4D2E;
-      color: #1B4D2E;
-      padding: 8px 14px;
-      border-radius: 12px;
-      font-size: 11px;
-      font-weight: 700;
-      cursor: pointer;
-      width: 100%;
-      margin-top: 10px;
-      margin-bottom: 15px;
-      transition: 0.2s;
-    }
-    .btn-read-full:hover { background: #1B4D2E; color: white; }
-    .btn-back-blog {
-      background: #F4F6F4;
-      border: none;
-      color: #1B4D2E;
-      padding: 6px 12px;
-      border-radius: 10px;
-      font-size: 11px;
-      font-weight: 700;
-      cursor: pointer;
-      margin-bottom: 12px;
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-    }
-  </style>
+            .product-card img {
+                height: 140px;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .header-container {
+                padding: 10px 15px;
+            }
+        }
+    </style>
 </head>
 <body>
 
-  <header>
-    <div class="logo-box">Aion 🌿<span>FOOD SUPPLEMENTS</span></div>
-    <div class="header-right">
-      <div class="header-socials">
-        <a href="https://facebook.com" target="_blank" class="header-social-link" title="Facebook">
-          <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-        </a>
-        <a href="https://instagram.com" target="_blank" class="header-social-link" title="Instagram">
-          <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-        </a>
-        <a href="https://tiktok.com" target="_blank" class="header-social-link" title="TikTok">
-          <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.82.56-1.31 1.52-1.35 2.51-.04.99.39 1.99 1.13 2.64.8.71 1.95.96 2.97.66 1.05-.29 1.93-1.13 2.19-2.18.11-.53.11-1.07.11-1.61V.02z"/></svg>
-        </a>
-      </div>
-      <input type="text" id="searchInput" class="search-input" placeholder="Search..." oninput="filterProducts()">
-      <button class="icon-btn" onclick="openWishlistModal()">🤍 <span id="wishlistBadge" class="badge">0</span></button>
-      <button class="lang-btn" onclick="toggleLanguage()">🌐 <span id="langText">EN</span></button>
-      <button class="cart-btn" onclick="toggleCart()">🛒 <span id="cartBadge" class="cart-count">0</span></button>
-    </div>
-  </header>
-
-  <main>
-    <!-- Categories Filter Tabs -->
-    <div class="categories-bar" id="categoriesBar"></div>
-
-    <section class="hero">
-      <h1 id="heroTitle">PURE BOTANICAL & SUPPLEMENTS</h1>
-      <p id="heroDesc">Discover natural beauty, crafted with care.</p>
-      <button class="btn-main" id="heroBtn">SHOP NOW</button>
-    </section>
-
-    <!-- Flash Sale Section -->
-    <section class="sale-section">
-      <div class="sale-header">
-        <div class="sale-title-box">
-          <span class="sale-badge">FLASH SALE ⚡</span>
-          <h2 style="font-size:16px; font-weight:800;" id="saleTitle">სპეციალური ფასდაკლება</h2>
-          <div class="timer-box">
-            ⏱️ <span id="timerPrefix">სრულდება:</span> 
-            <span class="timer-num" id="hrs">08</span>:<span class="timer-num" id="mins">42</span>:<span class="timer-num" id="secs">19</span>
-          </div>
+    <!-- ჰედერი -->
+    <header>
+        <div class="header-container">
+            <a href="#" class="logo">Enzi</a>
+            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰</button>
+            <ul class="nav-links">
+                <li><a href="#">მთავარი</a></li>
+                <li><a href="#">პროდუქტები</a></li>
+                <li><a href="#">კატეგორიები</a></li>
+                <li><a href="#">კონტაქტი</a></li>
+            </ul>
         </div>
-        <div class="carousel-arrows">
-          <button class="arrow-btn-light" onclick="scrollCarousel('saleTrack', -180)">❮</button>
-          <button class="arrow-btn-light" onclick="scrollCarousel('saleTrack', 180)">❯</button>
-        </div>
-      </div>
+    </header>
 
-      <div class="carousel-track" id="saleTrack"></div>
-    </section>
-
-    <!-- Popular Products Carousel -->
-    <div class="carousel-container">
-      <div class="section-header">
-        <h2 class="section-title" id="popTitle">Popular Products 🔥</h2>
-        <div class="carousel-arrows">
-          <button class="arrow-btn" onclick="scrollCarousel('popularTrack', -180)">❮</button>
-          <button class="arrow-btn" onclick="scrollCarousel('popularTrack', 180)">❯</button>
-        </div>
-      </div>
-      <div class="carousel-track" id="popularTrack"></div>
-    </div>
-
-    <!-- New Arrivals Carousel -->
-    <div class="carousel-container">
-      <div class="section-header">
-        <h2 class="section-title" id="newTitle">New Arrivals ✨</h2>
-        <div class="carousel-arrows">
-          <button class="arrow-btn" onclick="scrollCarousel('newTrack', -180)">❮</button>
-          <button class="arrow-btn" onclick="scrollCarousel('newTrack', 180)">❯</button>
-        </div>
-      </div>
-      <div class="carousel-track" id="newTrack"></div>
-    </div>
-
-    <!-- Features Section -->
-    <section class="features">
-      <div class="feature-item">
-        <div class="feature-icon">🚚</div>
-        <div class="feature-title" id="f1Title">უფასო მიწოდება</div>
-        <div class="feature-desc" id="f1Desc">50 ₾-ზე ზევით შეკვეთაზე</div>
-      </div>
-      <div class="feature-item">
-        <div class="feature-icon">🌿</div>
-        <div class="feature-title" id="f2Title">100% ნატურალური</div>
-        <div class="feature-desc" id="f2Desc">სერტიფიცირებული პროდუქცია</div>
-      </div>
-      <div class="feature-item">
-        <div class="feature-icon">🔒</div>
-        <div class="feature-title" id="f3Title">უსაფრთხო გადახდა</div>
-        <div class="feature-desc" id="f3Desc">დაცული ტრანზაქციები</div>
-      </div>
-    </section>
-
-    <!-- Blog / Health Hub Section -->
-    <div class="carousel-container" style="margin-top: 10px;">
-      <div class="section-header">
-        <h2 class="section-title" id="blogTitle">ჯანმრთელობის ბლოგი 📖</h2>
-        <div class="carousel-arrows">
-          <button class="arrow-btn" onclick="scrollCarousel('blogTrack', -240)">❮</button>
-          <button class="arrow-btn" onclick="scrollCarousel('blogTrack', 240)">❯</button>
-        </div>
-      </div>
-      <div class="carousel-track" id="blogTrack"></div>
-    </div>
-  </main>
-
-  <!-- Footer -->
-  <footer>
-    <div class="footer-grid">
-      <div class="footer-col">
-        <h4>Aion Supplements</h4>
-        <p style="font-size: 11px; opacity: 0.8; line-height: 1.4;" id="footerDesc">თქვენი ჯანმრთელობისა და სილამაზის სანდო პარტნიორი.</p>
-        <div class="footer-socials">
-          <a href="https://facebook.com" target="_blank" class="footer-social-link" title="Facebook">
-            <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-          </a>
-          <a href="https://instagram.com" target="_blank" class="footer-social-link" title="Instagram">
-            <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-          </a>
-          <a href="https://tiktok.com" target="_blank" class="footer-social-link" title="TikTok">
-            <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.82.56-1.31 1.52-1.35 2.51-.04.99.39 1.99 1.13 2.64.8.71 1.95.96 2.97.66 1.05-.29 1.93-1.13 2.19-2.18.11-.53.11-1.07.11-1.61V.02z"/></svg>
-          </a>
-        </div>
-      </div>
-      <div class="footer-col">
-        <h4 id="fNavTitle">ნავიგაცია</h4>
-        <ul>
-          <li id="fn1">მთავარი</li>
-          <li id="fn2">პროდუქცია</li>
-          <li id="fn3">ჩვენ შესახებ</li>
-          <li id="fn4">კონტაქტი</li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4 id="fContactTitle">კონტაქტი</h4>
-        <ul>
-          <li>📧 info@aion.ge</li>
-          <li>📞 +995 32 2 00 00 00</li>
-          <li id="fAddress">📍 თბილისი, საქართველო</li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom" id="footerCopy">
-      &copy; 2026 Aion. ყველა უფლება დაცულია.
-    </div>
-  </footer>
-
-  <!-- Toast Notification -->
-  <div id="toast"></div>
-
-  <!-- Blog Detail Modal -->
-  <div id="blogDetailModal" class="modal" onclick="closeBlogDetailOnOutsideClick(event)">
-    <div class="detail-card">
-      <button class="detail-close-btn" onclick="closeBlogDetail()">✕</button>
-
-      <!-- Preview View -->
-      <div id="blogPreviewView">
-        <div style="height:180px; border-radius:16px; overflow:hidden; margin-bottom:15px;">
-          <img id="blogModalImg" src="" alt="" style="width:100%; height:100%; object-fit:cover;">
-        </div>
-        <div id="blogModalTag" class="blog-tag"></div>
-        <h3 class="detail-title" id="blogModalTitle" style="font-size:16px; margin-bottom:8px;"></h3>
-        <div style="font-size:10px; color:#888; margin-bottom:12px;" id="blogModalMeta"></div>
-        <div class="detail-desc" id="blogModalSnippet" style="font-size:12px; line-height:1.5; color:#5A6E63; margin-bottom:10px;"></div>
-        
-        <button class="btn-read-full" id="btnReadFullArticle" onclick="showFullBlogView()">სრულად წაკითხვა ➔</button>
-
-        <div style="background:#F4F6F4; padding:12px; border-radius:12px; display:flex; justify-content:space-between; align-items:center;">
-          <div>
-            <div style="font-size:10px; color:#666;" id="blogRecLabel">რეკომენდებული პროდუქტი:</div>
-            <div style="font-size:12px; font-weight:700; color:#1B4D2E;" id="blogRecName"></div>
-          </div>
-          <button class="btn-main" style="padding:8px 12px; font-size:11px;" onclick="addRecProductToCart()">კალათაში დამატება 🛒</button>
-        </div>
-      </div>
-
-      <!-- Full Article View -->
-      <div id="blogFullView" style="display:none;">
-        <button class="btn-back-blog" onclick="showBlogPreviewView()">← <span id="lblBackBtn">უკან</span></button>
-        <div style="height:200px; border-radius:16px; overflow:hidden; margin-bottom:15px;">
-          <img id="blogFullImg" src="" alt="" style="width:100%; height:100%; object-fit:cover;">
-        </div>
-        <div id="blogFullTag" class="blog-tag"></div>
-        <h2 class="detail-title" id="blogFullTitle" style="font-size:18px; margin-bottom:8px;"></h2>
-        <div style="font-size:10px; color:#888; margin-bottom:15px;" id="blogFullMeta"></div>
-        <div class="detail-desc" id="blogFullBody" style="font-size:12px; line-height:1.7; color:#2C3E35; margin-bottom:20px; white-space:pre-line;"></div>
-        
-        <div style="background:#F4F6F4; padding:12px; border-radius:12px; display:flex; justify-content:space-between; align-items:center;">
-          <div>
-            <div style="font-size:10px; color:#666;" id="blogRecLabelFull">რეკომენდებული პროდუქტი:</div>
-            <div style="font-size:12px; font-weight:700; color:#1B4D2E;" id="blogRecNameFull"></div>
-          </div>
-          <button class="btn-main" style="padding:8px 12px; font-size:11px;" onclick="addRecProductToCart()">კალათაში დამატება 🛒</button>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- Product Detail Modal -->
-  <div id="productDetailModal" class="modal" onclick="closeDetailOnOutsideClick(event)">
-    <div class="detail-card">
-      <button class="detail-close-btn" onclick="closeProductDetail()">✕</button>
-      <div class="detail-img-box">
-        <span id="modalDiscountTag" class="discount-tag" style="display:none;"></span>
-        <img id="modalImg" src="" alt="">
-      </div>
-      <h3 class="detail-title" id="modalTitle"></h3>
-      <div id="modalStockStatus"></div>
-      <div class="card-stars" style="font-size:12px; margin-bottom:8px;" id="modalRatingAvg">★★★★★ (4.9 / 5.0)</div>
-      <div class="price-box" style="margin-bottom:12px;">
-        <div class="detail-price" id="modalPrice" style="margin:0;"></div>
-        <span class="old-price" id="modalOldPrice" style="font-size:13px; display:none;"></span>
-      </div>
-      <p class="detail-desc" id="modalDesc"></p>
-      <div class="detail-meta">
-        <strong id="modalDosageLabel">💡 მიღების წესი:</strong> <span id="modalDosage"></span>
-      </div>
-      <div class="detail-actions">
-        <div class="detail-qty-control">
-          <button class="qty-btn" onclick="updateModalQty(-1)">-</button>
-          <span id="modalQtyVal" style="font-size:13px; font-weight:bold;">1</span>
-          <button class="qty-btn" onclick="updateModalQty(1)">+</button>
-        </div>
-        <button class="btn-main" style="flex:1; padding: 12px;" id="modalAddBtn" onclick="addModalProductToCart()">კალათაში დამატება 🛒</button>
-      </div>
-
-      <!-- Reviews Section -->
-      <div class="reviews-section">
-        <div class="reviews-title">
-          <span id="reviewsHeaderTitle">შეფასებები 💬</span>
-          <span id="reviewCountBadge" style="font-size:11px; color:#8F9E8B;">(0)</span>
-        </div>
-        
-        <div id="reviewsList"></div>
-
-        <div class="add-review-box">
-          <h5 id="addReviewHeading">დაწერე რევიუ</h5>
-          <input type="text" id="revName" class="review-input" placeholder="თქვენი სახელი">
-          <select id="revStars" class="review-select">
-            <option value="5">★★★★★ (5/5)</option>
-            <option value="4">★★★★☆ (4/5)</option>
-            <option value="3">★★★☆☆ (3/5)</option>
-            <option value="2">★★☆☆☆ (2/5)</option>
-            <option value="1">★☆☆☆☆ (1/5)</option>
-          </select>
-          <textarea id="revComment" class="review-textarea" placeholder="თქვენი კომენტარი..."></textarea>
-          <button class="btn-submit-review" id="btnSubmitRev" onclick="submitReview()">გაგზავნა</button>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- Cart Modal -->
-  <div id="cartModal" class="modal cart-modal" onclick="closeCartOnOutsideClick(event)">
-    <div class="cart-modal-content">
-      <div>
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 20px;">
-          <h3 style="color:#1B4D2E;" id="cartModalTitle">თქვენი კალათა</h3>
-          <button onclick="toggleCart(false)" style="background:none; border:none; font-size:18px; cursor:pointer;">✕</button>
-        </div>
-        <div id="cartItems"></div>
-      </div>
-      <div>
-        <hr style="margin-bottom: 10px; border:none; border-top:1px solid #eee;">
-        <div style="display:flex; justify-content:space-between; font-weight:bold; margin-bottom: 15px; font-size:14px;">
-          <span id="cartTotalLabel">სულ ჯამი:</span>
-          <span id="cartTotal">0.00 ₾</span>
-        </div>
-        <button onclick="openCheckoutModal()" class="btn-main" style="width:100%;" id="checkoutBtn">შეკვეთის გაფორმება</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Checkout Modal -->
-  <div id="checkoutModal" class="modal" onclick="closeCheckoutOnOutsideClick(event)">
-    <div class="detail-card" style="max-width:400px;">
-      <button class="detail-close-btn" onclick="closeCheckoutModal()">✕</button>
-      <h3 style="color:#1B4D2E; margin-bottom:15px; font-size:16px;" id="checkoutTitle">შეკვეთის გაფორმება</h3>
-      
-      <form onsubmit="handleCheckoutSubmit(event)">
-        <div class="form-group">
-          <label id="lblFullName">სახელი და გვარი</label>
-          <input type="text" class="form-control" id="custName" required placeholder="მაგ. სახელი გვარი">
-        </div>
-        <div class="form-group">
-          <label id="lblPhone">ტელეფონის ნომერი</label>
-          <input type="tel" class="form-control" id="custPhone" required placeholder="5XX XXX XXX">
-        </div>
-        <div class="form-group">
-          <label id="lblCity">ქალაქი / რეგიონი</label>
-          <select class="form-control" id="custCity">
-            <option value="tbilisi">თბილისი</option>
-            <option value="batumi">ბათუმი</option>
-            <option value="kutaisi">ქუთაისი</option>
-            <option value="other">სხვა რეგიონი</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label id="lblAddress">ზუსტი მისამართი</label>
-          <input type="text" class="form-control" id="custAddress" required placeholder="ქუჩა, ბინა, სართული">
-        </div>
-        <div class="form-group">
-          <label id="lblPayment">გადახდის მეთოდი</label>
-          <select class="form-control" id="custPayment">
-            <option value="card">💳 საბანკო ბარათით</option>
-            <option value="cash">💵 კურიერთან ნაღდი ანგარიშსწორება</option>
-          </select>
+    <!-- მთავარი კონტენტი -->
+    <div class="main-container">
+        <!-- ფილტრები და ძებნა -->
+        <div class="filters-wrapper">
+            <input type="text" class="search-bar" placeholder="ძებნა პროდუქტებში..." onkeyup="filterProducts(this.value)">
         </div>
 
-        <div style="background:#F4F6F4; padding:10px; border-radius:10px; margin: 15px 0; font-size:12px; display:flex; justify-content:space-between; font-weight:bold;">
-          <span id="lblPayTotal">გადასახდელი თანხა:</span>
-          <span id="checkoutTotalAmount">0.00 ₾</span>
-        </div>
-
-        <button type="submit" class="btn-main" style="width:100%; padding:12px;" id="btnConfirmOrder">შეკვეთის დადასტურება 🚀</button>
-      </form>
-    </div>
-  </div>
-
-  <!-- Wishlist Modal -->
-  <div id="wishlistModal" class="modal" onclick="closeWishlistOnOutsideClick(event)">
-    <div class="detail-card" style="max-width:400px;">
-      <button class="detail-close-btn" onclick="closeWishlistModal()">✕</button>
-      <h3 style="color:#1B4D2E; margin-bottom:15px; font-size:16px;" id="wishlistTitle">შენახული პროდუქტები ❤️</h3>
-      <div id="wishlistItems"></div>
-    </div>
-  </div>
-
-  <script>
-    let currentLang = 'GE';
-    let activeCategory = 'all';
-
-    const categories = [
-      { id: 'all', name: { GE: 'ყველა', EN: 'All' } },
-      { id: 'vitamins', name: { GE: 'ვიტამინები', EN: 'Vitamins' } },
-      { id: 'collagen', name: { GE: 'კოლაგენი', EN: 'Collagen' } },
-      { id: 'probiotics', name: { GE: 'პრობიოტიკები', EN: 'Probiotics' } },
-      { id: 'oral', name: { GE: 'ორალური მოვლა', EN: 'Oral Care' } }
-    ];
-
-    const blogPosts = [
-      {
-        id: 1,
-        tag: { GE: 'კოლაგენი & კანის მოვლა', EN: 'Collagen & Skincare' },
-        title: { GE: 'რატომ არის საზღვაო კოლაგენი საუკეთესო არჩევანი?', EN: 'Why Marine Collagen is the Best Choice for Skin?' },
-        snippet: { GE: 'გაიგეთ, როგორ ეხმარება ჰიდროლიზებული კოლაგენის პეპტიდები კანის ელასტიურობას...', EN: 'Discover how hydrolyzed collagen peptides boost skin elasticity and hydration...' },
-        body: { 
-          GE: 'საზღვაო კოლაგენი ცნობილია თავისი მაღალი ბიოშეღწევადობით. მისი მოლეკულური სტრუქტურა ადვილად ათვისებადია ორგანიზმის მიერ, რაც ხელს უწყობს კანის ელასტიურობას, თმისა და ფრჩხილების სიმტკიცეს.\n\nრატომ არის საზღვაო კოლაგენი გამორჩეული?\n1. Type I კოლაგენის მაღალი შემცველობა - სწორედ ეს ტიპია პასუხისმგებელი კანის ახალგაზრდობაზე.\n2. სწრაფი შეთვისება - მცირე მოლეკულური ზომის გამო სისხლში აღწევს 1.5-ჯერ უფრო სწრაფად, ვიდრე მსხვილფეხა რქოსანი პირუტყვის კოლაგენი.\n3. ვიტამინ C-სთან კომბინაცია - აძლიერებს საკუთარი კოლაგენის სინთეზს.', 
-          EN: 'Marine collagen is renowned for its high bioavailability. Its smaller peptide molecules allow rapid absorption, effectively restoring skin firmness, hair strength, and joint health.\n\nKey Benefits of Marine Collagen:\n1. Rich in Type I Collagen - The exact collagen type essential for skin hydration & elasticity.\n2. Superior Absorption - Absorbed up to 1.5 times more efficiently than bovine collagen.\n3. Synergistic Effect with Vitamin C - Enhances natural collagen production in body tissues.' 
-        },
-        readTime: { GE: '3 წთ წაკითხვა', EN: '3 min read' },
-        recProduct: { name: 'CollagenUP Peptides', price: 85 },
-        img: 'https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=500&q=80'
-      },
-      {
-        id: 2,
-        tag: { GE: 'იმუნიტეტი & ჯანმრთელობა', EN: 'Immunity & Health' },
-        title: { GE: 'D3 ვიტამინის მნიშვნელობა შემოდგომა-ზამთრის სეზონზე', EN: 'The Importance of Vitamin D3 in Autumn & Winter' },
-        snippet: { GE: 'მზის ნაკლებობა და ვიტამინ D3-ის დეფიციტი — როგორ ავირიდოთ თავიდან დაღლილობა...', EN: 'Lack of sunlight can lead to fatigue. Learn how Vitamin D3 keeps your immune system strong...' },
-        body: { 
-          GE: 'ვიტამინი D3 მნიშვნელოვან როლს ასრულებს იმუნური სისტემის გაძლიერებასა და ძვლოვანი ქსოვილის სიმტკიცეში. მზის სხივების ნაკლებობის დროს მისი დამატებითი მიღება კრიტიკულად მნიშვნელოვანია.\n\nD3 ვიტამინის ნაკლებობის ნიშნები:\n• ქრონიკული დაღლილობა და ენერგიის ნაკლებობა\n• იმუნიტეტის დაქვეითება და ხშირი გაციება\n• გუნება-განწყობის ცვლილება', 
-          EN: 'Vitamin D3 is vital for maintaining a robust immune system and strong bones. During low-sunlight months, supplementation is essential for energy and well-being.\n\nSigns of Vitamin D Deficiency:\n• Chronic fatigue & low energy levels\n• Weakened immune response\n• Seasonal mood fluctuations' 
-        },
-        readTime: { GE: '4 წთ წაკითხვა', EN: '4 min read' },
-        recProduct: { name: 'Vitamin D3 5000 IU', price: 35 },
-        img: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=500&q=80'
-      },
-      {
-        id: 3,
-        tag: { GE: 'ორალური ჰიგიენა', EN: 'Oral Health' },
-        title: { GE: 'ქსილიტოლი — ბუნებრივი დამცველი კარიესისგან', EN: 'Xylitol — Natural Protection Against Cavities' },
-        snippet: { GE: 'როგორ ამცირებს ქსილიტოლის შემცველი საღეჭი რეზინი ბაქტერიების დონეს პირის ღრუში...', EN: 'How xylitol chewing gum effectively reduces harmful oral bacteria and freshens breath...' },
-        body: { 
-          GE: 'ქსილიტოლი არის ნატურალური ტკბილი ნივთიერება, რომელიც არ კვებავს კარიესის გამომწვევ ბაქტერიებს. ჭამის შემდეგ ქსილიტოლის საღეჭი რეზინის გამოყენება უზრუნველყოფს პირის ღრუს ჯანსაღ PH ბალანსს.\n\nრატომ უნდა აირჩიოთ ქსილიტოლი?\n- აფერხებს ნადების წარმოქმნას\n- ასტიმულირებს ნერწყვის გამოყოფას', 
-          EN: 'Xylitol is a natural sweetener that starves cavity-causing bacteria. Chewing xylitol gum after meals neutralizes acids and promotes overall dental hygiene.\n\nWhy Choose Xylitol?\n- Prevents plaque buildup\n- Stimulates natural saliva production' 
-        },
-        readTime: { GE: '2 წთ წაკითხვა', EN: '2 min read' },
-        recProduct: { name: 'Miradent Xylitol Gum', price: 10 },
-        img: 'https://images.unsplash.com/photo-1598256989800-fe5f95da9787?auto=format&fit=crop&w=500&q=80'
-      }
-    ];
-
-    const translations = {
-      GE: {
-        searchPlaceholder: 'ძებნა...',
-        heroTitle: 'სუფთა ბოტანიკა & დანამატები',
-        heroDesc: 'აღმოაჩინეთ ბუნებრივი სილამაზე, შექმნილი ზრუნვით.',
-        heroBtn: 'ყიდვა',
-        saleTitle: 'სპეციალური ფასდაკლება',
-        timerPrefix: 'სრულდება:',
-        popTitle: 'პოპულარული პროდუქტები 🔥',
-        newTitle: 'ახალი მიღებული ✨',
-        blogTitle: 'ჯანმრთელობის ბლოგი 📖',
-        f1Title: 'უფასო მიწოდება',
-        f1Desc: '50 ₾-ზე ზევით შეკვეთაზე',
-        f2Title: '100% ნატურალური',
-        f2Desc: 'სერტიფიცირებული პროდუქცია',
-        f3Title: 'უსაფრთხო გადახდა',
-        f3Desc: 'დაცული ტრანზაქციები',
-        footerDesc: 'თქვენი ჯანმრთელობისა და სილამაზის სანდო პარტნიორი.',
-        fNavTitle: 'ნავიგაცია',
-        fn1: 'მთავარი', fn2: 'პროდუქცია', fn3: 'ჩვენ შესახებ', fn4: 'კონტაქტი',
-        fContactTitle: 'კონტაქტი',
-        fAddress: '📍 თბილისი, საქართველო',
-        footerCopy: '© 2026 Aion. ყველა უფლება დაცულია.',
-        addBtn: 'დამატება 🛒',
-        modalDosageLabel: '💡 მიღების წესი:',
-        modalAddBtn: 'კალათაში დამატება 🛒',
-        reviewsHeaderTitle: 'შეფასებები 💬',
-        addReviewHeading: 'დაწერე რევიუ',
-        inputNamePlaceholder: 'თქვენი სახელი',
-        inputCommentPlaceholder: 'თქვენი კომენტარი...',
-        btnSubmitRev: 'გაგზავნა',
-        noReviewsYet: 'ჯერჯერობით შეფასებები არ არის. იყავი პირველი!',
-        fillAllFields: 'გთხოვთ შეავსოთ ყველა ველი!',
-        cartModalTitle: 'თქვენი კალათა',
-        cartEmpty: 'კალათა ცარიელია',
-        cartTotalLabel: 'სულ ჯამი:',
-        checkoutBtn: 'შეკვეთის გაფორმება',
-        checkoutTitle: 'შეკვეთის გაფორმება',
-        lblFullName: 'სახელი და გვარი',
-        lblPhone: 'ტელეფონის ნომერი',
-        lblCity: 'ქალაქი / რეგიონი',
-        lblAddress: 'ზუსტი მისამართი',
-        lblPayment: 'გადახდის მეთოდი',
-        lblPayTotal: 'გადასახდელი თანხა:',
-        btnConfirmOrder: 'შეკვეთის დადასტურება 🚀',
-        wishlistTitle: 'შენახული პროდუქტები ❤️',
-        wishlistEmpty: 'შენახული პროდუქტები არ არის',
-        inStock: 'მარაგშია ✅',
-        lowStock: 'დარჩენილია მხოლოდ 3 ცალი ⚡',
-        addedToCartToast: 'პროდუქტი დაემატა კალათაში 🛒',
-        addedToWishlistToast: 'დაემატა ფავორიტებში ❤️',
-        removedFromWishlistToast: 'ამოიღეს ფავორიტებიდან 🤍',
-        orderSuccessAlert: 'გმადლობთ! თქვენი შეკვეთა წარმატებით გაფორმდა. კურიერი მალე დაგიკავშირდებათ!',
-        blogRecLabel: 'რეკომენდებული პროდუქტი:',
-        btnReadFullArticle: 'სრულად წაკითხვა ➔',
-        lblBackBtn: 'უკან',
-        namePlaceholder: 'მაგ. სახელი გვარი'
-      },
-      EN: {
-        searchPlaceholder: 'Search...',
-        heroTitle: 'PURE BOTANICAL & SUPPLEMENTS',
-        heroDesc: 'Discover natural beauty, crafted with care.',
-        heroBtn: 'SHOP NOW',
-        saleTitle: 'Special Discount',
-        timerPrefix: 'Ends in:',
-        popTitle: 'Popular Products 🔥',
-        newTitle: 'New Arrivals ✨',
-        blogTitle: 'Health Journal & Hub 📖',
-        f1Title: 'Free Delivery',
-        f1Desc: 'On orders over 50 ₾',
-        f2Title: '100% Natural',
-        f2Desc: 'Certified Quality',
-        f3Title: 'Secure Payment',
-        f3Desc: 'Protected Transactions',
-        footerDesc: 'Your trusted partner in health and beauty.',
-        fNavTitle: 'Navigation',
-        fn1: 'Home', fn2: 'Products', fn3: 'About Us', fn4: 'Contact',
-        fContactTitle: 'Contact',
-        fAddress: '📍 Tbilisi, Georgia',
-        footerCopy: '© 2026 Aion. All rights reserved.',
-        addBtn: 'ADD TO CART 🛒',
-        modalDosageLabel: '💡 Dosage / Usage:',
-        modalAddBtn: 'Add to Cart 🛒',
-        reviewsHeaderTitle: 'Reviews 💬',
-        addReviewHeading: 'Write a Review',
-        inputNamePlaceholder: 'Your Name',
-        inputCommentPlaceholder: 'Your review...',
-        btnSubmitRev: 'Submit Review',
-        noReviewsYet: 'No reviews yet. Be the first!',
-        fillAllFields: 'Please fill in all fields!',
-        cartModalTitle: 'Your Cart',
-        cartEmpty: 'Cart is empty',
-        cartTotalLabel: 'Total:',
-        checkoutBtn: 'Checkout',
-        checkoutTitle: 'Checkout Order',
-        lblFullName: 'Full Name',
-        lblPhone: 'Phone Number',
-        lblCity: 'City / Region',
-        lblAddress: 'Exact Address',
-        lblPayment: 'Payment Method',
-        lblPayTotal: 'Total to Pay:',
-        btnConfirmOrder: 'Confirm Order 🚀',
-        wishlistTitle: 'Saved Products ❤️',
-        wishlistEmpty: 'No saved products yet',
-        inStock: 'In Stock ✅',
-        lowStock: 'Only 3 left in stock ⚡',
-        addedToCartToast: 'Added to Cart 🛒',
-        addedToWishlistToast: 'Added to Wishlist ❤️',
-        removedFromWishlistToast: 'Removed from Wishlist 🤍',
-        orderSuccessAlert: 'Thank you! Your order has been placed successfully.',
-        blogRecLabel: 'Recommended Product:',
-        btnReadFullArticle: 'Read Full Article ➔',
-        lblBackBtn: 'Back',
-        namePlaceholder: 'e.g. John Doe'
-      }
-    };
-
-    function createImgUrl(text) {
-      return `https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=300&q=80`;
-    }
-
-    const productReviews = {
-      101: [{ name: 'გიორგი', stars: 5, comment: 'ძალიან კარგი ენერგიის მომცემია, კმაყოფილი ვარ.' }],
-      102: [
-        { name: 'ანა', stars: 5, comment: 'კანს ძალიან უხდება, უკვე მეორე ქილას ვსვამ!' },
-        { name: 'Salome', stars: 5, comment: 'Tastes great and works amazingly well.' }
-      ]
-    };
-
-    const saleProducts = [
-      { id: 101, category: 'vitamins', name: 'Alpha Lipoic Acid', price: 42, oldPrice: 60, discount: '-30%', stock: 'in', img: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=300&q=80', desc: { GE: 'ძლიერი ანტიოქსიდანტი, რომელიც ხელს უწყობს გლუკოზის მეტაბოლიზმს.', EN: 'Powerful antioxidant supporting glucose metabolism.' }, dosage: { GE: '1 კაფსულა დღეში ჭამის დროს.', EN: '1 capsule daily with a meal.' } },
-      { id: 102, category: 'collagen', name: 'CollagenUP Peptides', price: 68, oldPrice: 85, discount: '-20%', stock: 'low', img: 'https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=300&q=80', desc: { GE: 'ჰიდროლიზებული კოლაგენი ჰიალურონის მჟავასთან და ვიტამინ C-სთან ერთად.', EN: 'Hydrolyzed collagen with hyaluronic acid and vitamin C.' }, dosage: { GE: '1 კოვზი გახსენით 200მლ წყალში.', EN: 'Mix 1 scoop in 200ml water daily.' } },
-      { id: 103, category: 'oral', name: 'Miradent Xylitol Gum (6x)', price: 10, oldPrice: 15, discount: '-33%', stock: 'in', img: 'https://images.unsplash.com/photo-1598256989800-fe5f95da9787?auto=format&fit=crop&w=300&q=80', desc: { GE: '100% ქსილიტოლით დატკბობილი საღეჭი რეზინის ეკონომიური შეკვრა.', EN: 'Economy pack of 100% xylitol sweetened chewing gum.' }, dosage: { GE: 'გამოიყენეთ ჭამის შემდეგ.', EN: 'Chew after meals.' } },
-      { id: 104, category: 'probiotics', name: 'LactoBif Probiotics (Sale)', price: 49, oldPrice: 65, discount: '-25%', stock: 'low', img: 'https://images.unsplash.com/photo-1576602976047-174e57a47881?auto=format&fit=crop&w=300&q=80', desc: { GE: '30 მილიარდი აქტიური პრობიოტიკული კულტურა.', EN: '30 Billion CFU active probiotic cultures.' }, dosage: { GE: '1 კაფსულა დღეში ჭამის წინ.', EN: '1 capsule daily before meals.' } }
-    ];
-
-    const popularProducts = [
-      { id: 1, category: 'collagen', name: 'CollagenUP Peptides', price: 85, stock: 'in', img: 'https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=300&q=80', desc: { GE: 'მაღალი ხარისხის ჰიდროლიზებული კოლაგენი.', EN: 'Premium quality hydrolyzed marine collagen.' }, dosage: { GE: '1 კოვზი გახსენით 200მლ წყალში.', EN: '1 scoop daily in water.' } },
-      { id: 2, category: 'vitamins', name: 'Vitamin D3 5000 IU', price: 35, stock: 'in', img: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=300&q=80', desc: { GE: 'აუცილებელია იმუნური სისტემისა და ძვლების სიმტკიცისთვის.', EN: 'Essential for immune support and bone health.' }, dosage: { GE: '1 კაფსულა დღეში.', EN: '1 capsule daily after meal.' } },
-      { id: 3, category: 'probiotics', name: 'LactoBif Probiotics', price: 65, stock: 'in', img: 'https://images.unsplash.com/photo-1576602976047-174e57a47881?auto=format&fit=crop&w=300&q=80', desc: { GE: '30 მილიარდი აქტიური პრობიოტიკული კულტურა.', EN: '30 Billion CFU active probiotic cultures.' }, dosage: { GE: '1 კაფსულა დღეში.', EN: '1 capsule daily.' } },
-      { id: 4, category: 'vitamins', name: 'Magnesium Complex', price: 48, stock: 'low', img: 'https://images.unsplash.com/photo-1550572017-edd951b55104?auto=format&fit=crop&w=300&q=80', desc: { GE: 'ხელს უწყობს კუნთების მოდუნებასა და მშვიდ ძილს.', EN: 'Promotes muscle relaxation and restful sleep.' }, dosage: { GE: '2 კაფსულა ძილის წინ.', EN: '2 capsules before bedtime.' } }
-    ];
-
-    const newArrivals = [
-      { id: 6, category: 'vitamins', name: 'Omega-3 Fish Oil', price: 55, stock: 'in', img: 'https://images.unsplash.com/photo-1584017911766-d451b3d0e843?auto=format&fit=crop&w=300&q=80', desc: { GE: 'მაღალი კონცენტრაციის ეგზოგენური ცხიმოვანი მჟავები.', EN: 'High concentration essential fatty acids for heart and brain.' }, dosage: { GE: '1-2 კაფსულა დღეში.', EN: '1-2 capsules daily.' } },
-      { id: 7, category: 'vitamins', name: 'Zinc Picolinate', price: 28, stock: 'in', img: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=300&q=80', desc: { GE: 'ადვილად ათვისებადი თუთია იმუნიტეტისთვის.', EN: 'Highly bioavailable zinc for immune health.' }, dosage: { GE: '1 ტაბლეტი დღეში.', EN: '1 tablet daily.' } },
-      { id: 8, category: 'vitamins', name: 'Ashwagandha Extract', price: 42, stock: 'in', img: 'https://images.unsplash.com/photo-1615485290382-441e4d049cb5?auto=format&fit=crop&w=300&q=80', desc: { GE: 'ძლიერი ადაპტოგენი სტრესის დასაძლევად.', EN: 'Powerful adaptogen to manage daily stress.' }, dosage: { GE: '1 კაფსულა 2-ჯერ დღეში.', EN: '1 capsule twice daily.' } }
-    ];
-
-    let cart = [];
-    let wishlist = [];
-    let currentSelectedProduct = null;
-    let currentSelectedBlog = null;
-    let currentModalQty = 1;
-
-    function allProducts() {
-      return [...saleProducts, ...popularProducts, ...newArrivals];
-    }
-
-    function showToast(message) {
-      const toast = document.getElementById('toast');
-      toast.innerText = message;
-      toast.classList.add('show');
-      setTimeout(() => { toast.classList.remove('show'); }, 2500);
-    }
-
-    function toggleLanguage() {
-      currentLang = currentLang === 'GE' ? 'EN' : 'GE';
-      document.getElementById('langText').innerText = currentLang === 'GE' ? 'EN' : 'GE';
-      applyTranslations();
-      renderCategories();
-      renderAllCarousels();
-      renderBlogCarousel();
-      updateCart();
-      if (currentSelectedProduct) {
-        renderModalReviews(currentSelectedProduct.id);
-      }
-    }
-
-    function applyTranslations() {
-      const t = translations[currentLang];
-      document.getElementById('searchInput').placeholder = t.searchPlaceholder;
-      document.getElementById('heroTitle').innerText = t.heroTitle;
-      document.getElementById('heroDesc').innerText = t.heroDesc;
-      document.getElementById('heroBtn').innerText = t.heroBtn;
-      document.getElementById('saleTitle').innerText = t.saleTitle;
-      document.getElementById('timerPrefix').innerText = t.timerPrefix;
-      document.getElementById('popTitle').innerText = t.popTitle;
-      document.getElementById('newTitle').innerText = t.newTitle;
-      document.getElementById('blogTitle').innerText = t.blogTitle;
-      document.getElementById('f1Title').innerText = t.f1Title;
-      document.getElementById('f1Desc').innerText = t.f1Desc;
-      document.getElementById('f2Title').innerText = t.f2Title;
-      document.getElementById('f2Desc').innerText = t.f2Desc;
-      document.getElementById('f3Title').innerText = t.f3Title;
-      document.getElementById('f3Desc').innerText = t.f3Desc;
-      document.getElementById('footerDesc').innerText = t.footerDesc;
-      document.getElementById('fNavTitle').innerText = t.fNavTitle;
-      document.getElementById('fn1').innerText = t.fn1;
-      document.getElementById('fn2').innerText = t.fn2;
-      document.getElementById('fn3').innerText = t.fn3;
-      document.getElementById('fn4').innerText = t.fn4;
-      document.getElementById('fContactTitle').innerText = t.fContactTitle;
-      document.getElementById('fAddress').innerText = t.fAddress;
-      document.getElementById('footerCopy').innerText = t.footerCopy;
-      document.getElementById('modalDosageLabel').innerText = t.modalDosageLabel;
-      document.getElementById('modalAddBtn').innerText = t.modalAddBtn;
-      document.getElementById('reviewsHeaderTitle').innerText = t.reviewsHeaderTitle;
-      document.getElementById('addReviewHeading').innerText = t.addReviewHeading;
-      document.getElementById('revName').placeholder = t.inputNamePlaceholder;
-      document.getElementById('revComment').placeholder = t.inputCommentPlaceholder;
-      document.getElementById('btnSubmitRev').innerText = t.btnSubmitRev;
-      document.getElementById('cartModalTitle').innerText = t.cartModalTitle;
-      document.getElementById('cartTotalLabel').innerText = t.cartTotalLabel;
-      document.getElementById('checkoutBtn').innerText = t.checkoutBtn;
-      document.getElementById('checkoutTitle').innerText = t.checkoutTitle;
-      document.getElementById('lblFullName').innerText = t.lblFullName;
-      document.getElementById('custName').placeholder = t.namePlaceholder;
-      document.getElementById('lblPhone').innerText = t.lblPhone;
-      document.getElementById('lblCity').innerText = t.lblCity;
-      document.getElementById('lblAddress').innerText = t.lblAddress;
-      document.getElementById('lblPayment').innerText = t.lblPayment;
-      document.getElementById('lblPayTotal').innerText = t.lblPayTotal;
-      document.getElementById('btnConfirmOrder').innerText = t.btnConfirmOrder;
-      document.getElementById('wishlistTitle').innerText = t.wishlistTitle;
-      document.getElementById('blogRecLabel').innerText = t.blogRecLabel;
-      document.getElementById('blogRecLabelFull').innerText = t.blogRecLabel;
-      document.getElementById('btnReadFullArticle').innerText = t.btnReadFullArticle;
-      document.getElementById('lblBackBtn').innerText = t.lblBackBtn;
-    }
-
-    /* Category Filter Logic */
-    function renderCategories() {
-      const bar = document.getElementById('categoriesBar');
-      bar.innerHTML = '';
-      categories.forEach(cat => {
-        bar.innerHTML += `
-          <div class="cat-chip ${activeCategory === cat.id ? 'active' : ''}" onclick="filterCategory('${cat.id}')">
-            ${cat.name[currentLang]}
-          </div>
-        `;
-      });
-    }
-
-    function filterCategory(catId) {
-      activeCategory = catId;
-      renderCategories();
-      renderAllCarousels();
-    }
-
-    function renderCarousel(trackId, items) {
-      const track = document.getElementById(trackId);
-      track.innerHTML = '';
-
-      let filtered = items;
-      if (activeCategory !== 'all') {
-        filtered = items.filter(p => p.category === activeCategory);
-      }
-
-      const query = document.getElementById('searchInput').value.toLowerCase();
-      if (query) {
-        filtered = filtered.filter(p => p.name.toLowerCase().includes(query));
-      }
-
-      filtered.forEach(p => {
-        const isSale = p.oldPrice ? true : false;
-        const isWish = wishlist.includes(p.id);
-        
-        track.innerHTML += `
-          <div class="card">
-            <button class="wishlist-btn ${isWish ? 'active' : ''}" onclick="toggleWishlist(${p.id}, event)">${isWish ? '❤️' : '🤍'}</button>
-            <div class="card-clickable" onclick="openProductDetail(${p.id})">
-              <div class="card-img-holder">
-                ${isSale ? `<span class="discount-tag">${p.discount}</span>` : ''}
-                <img src="${p.img}" alt="${p.name}">
-              </div>
-              <div class="card-title" title="${p.name}">${p.name}</div>
-              <div class="card-stars">★★★★★</div>
-              <div class="price-box">
-                <div class="card-price ${isSale ? 'sale-price' : ''}">${p.price.toFixed(2)} ₾</div>
-                ${isSale ? `<div class="old-price">${p.oldPrice.toFixed(2)} ₾</div>` : ''}
-              </div>
+        <!-- პროდუქტების სია -->
+        <div class="products-grid" id="productsGrid">
+            <div class="product-card">
+                <img src="https://via.placeholder.com/300x180" alt="Collagen">
+                <div>
+                    <div class="product-title">კოლაგენი პეპტიდები</div>
+                    <div class="product-price">45.00 ლარი</div>
+                </div>
+                <button class="btn" onclick="addToCart('კოლაგენი პეპტიდები')">კალათაში დამატება</button>
             </div>
-            <button class="btn-add" onclick="addToCart('${p.name}', ${p.price})">${translations[currentLang].addBtn}</button>
-          </div>
-        `;
-      });
-    }
 
-    function renderBlogCarousel() {
-      const track = document.getElementById('blogTrack');
-      track.innerHTML = '';
-
-      blogPosts.forEach(post => {
-        track.innerHTML += `
-          <div class="blog-card" onclick="openBlogDetail(${post.id})">
-            <div>
-              <img src="${post.img}" class="blog-img" alt="${post.title[currentLang]}">
-              <div class="blog-content">
-                <div class="blog-tag">${post.tag[currentLang]}</div>
-                <div class="blog-title">${post.title[currentLang]}</div>
-                <div class="blog-snippet">${post.snippet[currentLang]}</div>
-              </div>
+            <div class="product-card">
+                <img src="https://via.placeholder.com/300x180" alt="Vitamin D3">
+                <div>
+                    <div class="product-title">ვიტამინი D3</div>
+                    <div class="product-price">25.00 ლარი</div>
+                </div>
+                <button class="btn" onclick="addToCart('ვიტამინი D3')">კალათაში დამატება</button>
             </div>
-            <div class="blog-content" style="padding-top:0;">
-              <div class="blog-footer">
-                <span>Aion Health</span>
-                <span>⏱️ ${post.readTime[currentLang]}</span>
-              </div>
+
+            <div class="product-card">
+                <img src="https://via.placeholder.com/300x180" alt="Omega 3">
+                <div>
+                    <div class="product-title">ომეგა 3 კაფსულები</div>
+                    <div class="product-price">35.00 ლარი</div>
+                </div>
+                <button class="btn" onclick="addToCart('ომეგა 3 კაფსულები')">კალათაში დამატება</button>
             </div>
-          </div>
-        `;
-      });
-    }
+        </div>
+    </div>
 
-    function openBlogDetail(id) {
-      const post = blogPosts.find(b => b.id === id);
-      if (!post) return;
+    <!-- ჯავასკრიპტი -->
+    <script>
+        // მობილური მენიუს გახსნა/დახურვა
+        function toggleMobileMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('active');
+        }
 
-      currentSelectedBlog = post;
-      showBlogPreviewView();
+        // კალათაში დამატების იმიტაცია
+        function addToCart(productName) {
+            alert(productName + ' წარმატებით დაემატა კალათაში!');
+        }
 
-      document.getElementById('blogModalImg').src = post.img;
-      document.getElementById('blogModalTag').innerText = post.tag[currentLang];
-      document.getElementById('blogModalTitle').innerText = post.title[currentLang];
-      document.getElementById('blogModalMeta').innerText = `Aion Journal • ⏱️ ${post.readTime[currentLang]}`;
-      document.getElementById('blogModalSnippet').innerText = post.snippet[currentLang];
-      document.getElementById('blogRecName').innerText = `${post.recProduct.name} - ${post.recProduct.price.toFixed(2)} ₾`;
+        // პროდუქტების ძებნის ფუნქცია
+        function filterProducts(query) {
+            const cards = document.querySelectorAll('.product-card');
+            query = query.toLowerCase();
 
-      document.getElementById('blogDetailModal').classList.add('active');
-    }
-
-    function showFullBlogView() {
-      if (!currentSelectedBlog) return;
-      const post = currentSelectedBlog;
-
-      document.getElementById('blogPreviewView').style.display = 'none';
-      document.getElementById('blogFullView').style.display = 'block';
-
-      document.getElementById('blogFullImg').src = post.img;
-      document.getElementById('blogFullTag').innerText = post.tag[currentLang];
-      document.getElementById('blogFullTitle').innerText = post.title[currentLang];
-      document.getElementById('blogFullMeta').innerText = `Aion Journal • ⏱️ ${post.readTime[currentLang]}`;
-      document.getElementById('blogFullBody').innerText = post.body[currentLang];
-      document.getElementById('blogRecNameFull').innerText = `${post.recProduct.name} - ${post.recProduct.price.toFixed(2)} ₾`;
-    }
-
-    function showBlogPreviewView() {
-      document.getElementById('blogFullView').style.display = 'none';
-      document.getElementById('blogPreviewView').style.display = 'block';
-    }
-
-    function closeBlogDetail() { document.getElementById('blogDetailModal').classList.remove('active'); }
-    function closeBlogDetailOnOutsideClick(e) { if (e.target.id === 'blogDetailModal') closeBlogDetail(); }
-
-    function addRecProductToCart() {
-      if (currentSelectedBlog) {
-        addToCart(currentSelectedBlog.recProduct.name, currentSelectedBlog.recProduct.price);
-        closeBlogDetail();
-      }
-    }
-
-    function renderAllCarousels() {
-      renderCarousel('saleTrack', saleProducts);
-      renderCarousel('popularTrack', popularProducts);
-      renderCarousel('newTrack', newArrivals);
-    }
-
-    function scrollCarousel(trackId, distance) {
-      document.getElementById(trackId).scrollBy({ left: distance, behavior: 'smooth' });
-    }
-
-    /* Wishlist Logic */
-    function toggleWishlist(id, event) {
-      if (event) event.stopPropagation();
-      const index = wishlist.indexOf(id);
-      if (index > -1) {
-        wishlist.splice(index, 1);
-        showToast(translations[currentLang].removedFromWishlistToast);
-      } else {
-        wishlist.push(id);
-        showToast(translations[currentLang].addedToWishlistToast);
-      }
-      document.getElementById('wishlistBadge').innerText = wishlist.length;
-      renderAllCarousels();
-    }
-
-    function openWishlistModal() {
-      const container = document.getElementById('wishlistItems');
-      container.innerHTML = '';
-      if (wishlist.length === 0) {
-        container.innerHTML = `<p style="text-align:center; color:#888; font-size:12px; margin:20px 0;">${translations[currentLang].wishlistEmpty}</p>`;
-      } else {
-        const items = allProducts().filter(p => wishlist.includes(p.id));
-        items.forEach(p => {
-          container.innerHTML += `
-            <div class="cart-item">
-              <div>
-                <div style="font-weight:bold; color:#1B4D2E;">${p.name}</div>
-                <div style="color:#666;">${p.price.toFixed(2)} ₾</div>
-              </div>
-              <button class="btn-main" style="padding:6px 10px;" onclick="addToCart('${p.name}', ${p.price})">🛒</button>
-            </div>
-          `;
-        });
-      }
-      document.getElementById('wishlistModal').classList.add('active');
-    }
-
-    function closeWishlistModal() { document.getElementById('wishlistModal').classList.remove('active'); }
-    function closeWishlistOnOutsideClick(e) { if (e.target.id === 'wishlistModal') closeWishlistModal(); }
-
-    /* Detail Modal */
-    function openProductDetail(id) {
-      const product = allProducts().find(p => p.id === id);
-      if (!product) return;
-
-      currentSelectedProduct = product;
-      currentModalQty = 1;
-
-      document.getElementById('modalImg').src = product.img;
-      document.getElementById('modalTitle').innerText = product.name;
-      document.getElementById('modalPrice').innerText = `${product.price.toFixed(2)} ₾`;
-      document.getElementById('modalDesc').innerText = product.desc[currentLang];
-      document.getElementById('modalDosage').innerText = product.dosage[currentLang];
-      document.getElementById('modalQtyVal').innerText = currentModalQty;
-
-      const stockEl = document.getElementById('modalStockStatus');
-      if (product.stock === 'low') {
-        stockEl.innerHTML = `<span class="stock-tag stock-low">${translations[currentLang].lowStock}</span>`;
-      } else {
-        stockEl.innerHTML = `<span class="stock-tag stock-in">${translations[currentLang].inStock}</span>`;
-      }
-
-      const tagEl = document.getElementById('modalDiscountTag');
-      const oldPriceEl = document.getElementById('modalOldPrice');
-
-      if (product.oldPrice) {
-        tagEl.style.display = 'block';
-        tagEl.innerText = product.discount;
-        oldPriceEl.style.display = 'inline';
-        oldPriceEl.innerText = `${product.oldPrice.toFixed(2)} ₾`;
-      } else {
-        tagEl.style.display = 'none';
-        oldPriceEl.style.display = 'none';
-      }
-
-      renderModalReviews(id);
-      document.getElementById('productDetailModal').classList.add('active');
-    }
-
-    function renderModalReviews(productId) {
-      const listEl = document.getElementById('reviewsList');
-      const countBadge = document.getElementById('reviewCountBadge');
-      const reviews = productReviews[productId] || [];
-
-      countBadge.innerText = `(${reviews.length})`;
-      listEl.innerHTML = '';
-
-      if (reviews.length === 0) {
-        listEl.innerHTML = `<p style="font-size:11px; color:#888; text-align:center; margin:10px 0;">${translations[currentLang].noReviewsYet}</p>`;
-        return;
-      }
-
-      reviews.forEach(r => {
-        const starsStr = '★'.repeat(r.stars) + '☆'.repeat(5 - r.stars);
-        listEl.innerHTML += `
-          <div class="review-item">
-            <div class="review-header">
-              <span>${r.name}</span>
-              <span class="review-stars">${starsStr}</span>
-            </div>
-            <div class="review-comment">${r.comment}</div>
-          </div>
-        `;
-      });
-    }
-
-    function submitReview() {
-      if (!currentSelectedProduct) return;
-      const name = document.getElementById('revName').value.trim();
-      const stars = parseInt(document.getElementById('revStars').value);
-      const comment = document.getElementById('revComment').value.trim();
-
-      if (!name || !comment) {
-        alert(translations[currentLang].fillAllFields);
-        return;
-      }
-
-      if (!productReviews[currentSelectedProduct.id]) productReviews[currentSelectedProduct.id] = [];
-      productReviews[currentSelectedProduct.id].unshift({ name, stars, comment });
-
-      document.getElementById('revName').value = '';
-      document.getElementById('revComment').value = '';
-
-      renderModalReviews(currentSelectedProduct.id);
-    }
-
-    function closeProductDetail() { document.getElementById('productDetailModal').classList.remove('active'); }
-    function updateModalQty(delta) {
-      currentModalQty += delta;
-      if (currentModalQty < 1) currentModalQty = 1;
-      document.getElementById('modalQtyVal').innerText = currentModalQty;
-    }
-
-    function addModalProductToCart() {
-      if (currentSelectedProduct) {
-        addToCart(currentSelectedProduct.name, currentSelectedProduct.price, currentModalQty);
-        closeProductDetail();
-      }
-    }
-
-    function closeDetailOnOutsideClick(e) { if (e.target.id === 'productDetailModal') closeProductDetail(); }
-
-    /* Cart Logic */
-    function addToCart(name, price, qty = 1) {
-      const existing = cart.find(item => item.name === name);
-      if (existing) {
-        existing.quantity += qty;
-      } else {
-        cart.push({ name, price, quantity: qty });
-      }
-      updateCart();
-      showToast(translations[currentLang].addedToCartToast);
-    }
-
-    function changeQty(name, delta) {
-      const item = cart.find(i => i.name === name);
-      if (item) {
-        item.quantity += delta;
-        if (item.quantity <= 0) cart = cart.filter(i => i.name !== name);
-      }
-      updateCart();
-    }
-
-    function updateCart() {
-      const itemsContainer = document.getElementById('cartItems');
-      const badge = document.getElementById('cartBadge');
-      const totalDisplay = document.getElementById('cartTotal');
-
-      itemsContainer.innerHTML = '';
-      let total = 0;
-      let count = 0;
-
-      if (cart.length === 0) {
-        itemsContainer.innerHTML = `<p style="text-align:center; color:#888; font-size:12px; margin-top:20px;">${translations[currentLang].cartEmpty}</p>`;
-      } else {
-        cart.forEach(item => {
-          total += item.price * item.quantity;
-          count += item.quantity;
-          itemsContainer.innerHTML += `
-            <div class="cart-item">
-              <div>
-                <div style="font-weight:bold; color:#1B4D2E;">${item.name}</div>
-                <div style="color:#666;">${item.price.toFixed(2)} ₾</div>
-              </div>
-              <div>
-                <button class="qty-btn" onclick="changeQty('${item.name}', -1)">-</button>
-                <span style="margin: 0 5px; font-weight:bold;">${item.quantity}</span>
-                <button class="qty-btn" onclick="changeQty('${item.name}', 1)">+</button>
-              </div>
-            </div>
-          `;
-        });
-      }
-
-      badge.innerText = count;
-      totalDisplay.innerText = `${total.toFixed(2)} ₾`;
-      document.getElementById('checkoutTotalAmount').innerText = `${total.toFixed(2)} ₾`;
-    }
-
-    function toggleCart(forceState = null) {
-      const modal = document.getElementById('cartModal');
-      if (forceState === true) modal.classList.add('active');
-      else if (forceState === false) modal.classList.remove('active');
-      else modal.classList.toggle('active');
-    }
-
-    function closeCartOnOutsideClick(e) { if (e.target.id === 'cartModal') toggleCart(false); }
-
-    /* Checkout Modal Logic */
-    function openCheckoutModal() {
-      if (cart.length === 0) {
-        alert(translations[currentLang].cartEmpty);
-        return;
-      }
-      toggleCart(false);
-      document.getElementById('checkoutModal').classList.add('active');
-    }
-
-    function closeCheckoutModal() { document.getElementById('checkoutModal').classList.remove('active'); }
-    function closeCheckoutOnOutsideClick(e) { if (e.target.id === 'checkoutModal') closeCheckoutModal(); }
-
-    function handleCheckoutSubmit(e) {
-      e.preventDefault();
-      alert(translations[currentLang].orderSuccessAlert);
-      cart = [];
-      updateCart();
-      closeCheckoutModal();
-    }
-
-    function filterProducts() { renderAllCarousels(); }
-
-    /* Countdown Timer */
-    function startTimer() {
-      let totalSeconds = 8 * 3600 + 42 * 60 + 19;
-      setInterval(() => {
-        if (totalSeconds <= 0) return;
-        totalSeconds--;
-        let h = Math.floor(totalSeconds / 3600);
-        let m = Math.floor((totalSeconds % 3600) / 60);
-        let s = totalSeconds % 60;
-        document.getElementById('hrs').innerText = String(h).padStart(2, '0');
-        document.getElementById('mins').innerText = String(m).padStart(2, '0');
-        document.getElementById('secs').innerText = String(s).padStart(2, '0');
-      }, 1000);
-    }
-
-    // Init
-    applyTranslations();
-    renderCategories();
-    renderAllCarousels();
-    renderBlogCarousel();
-    startTimer();
-  </script>
-
+            cards.forEach(card => {
+                const title = card.querySelector('.product-title').textContent.toLowerCase();
+                if (title.includes(query)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+    </script>
 </body>
 </html>
