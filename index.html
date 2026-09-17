@@ -6,7 +6,7 @@
   <title>Aion Food Supplements</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: system-ui, -apple-system, sans-serif; }
-    body { background-color: #F8F6F0; color: #2C3E35; padding: 0 15px 15px 15px; overflow-x: hidden; }
+    body { background-color: #F8F6F0; color: #2C3E35; padding: 0 15px 15px 15px; }
     
     /* Sticky Header */
     header { 
@@ -23,10 +23,6 @@
     .search-input { padding: 8px 12px; border-radius: 20px; border: 1px solid #E0E0E0; background: #F8F6F0; outline: none; width: 100px; font-size: 12px; transition: width 0.3s; }
     .search-input:focus { width: 130px; }
     
-    .header-socials { display: flex; align-items: center; gap: 6px; margin-right: 4px; }
-    .header-social-link { color: #1B4D2E; display: flex; align-items: center; justify-content: center; text-decoration: none; opacity: 0.8; transition: 0.2s; }
-    .header-social-link:hover { opacity: 1; transform: scale(1.1); }
-
     .lang-btn {
       background: #E9EFE9; color: #1B4D2E; border: 1px solid #D0DDD0;
       padding: 6px 10px; border-radius: 16px; font-size: 11px; font-weight: 700;
@@ -41,28 +37,25 @@
     .badge { background: #E63946; color: white; border-radius: 50%; padding: 2px 6px; font-size: 10px; }
     .cart-count { background: #71B340; color: white; border-radius: 50%; padding: 2px 6px; font-size: 10px; }
 
-    /* Category Filter Tabs Carousel for Mobile & Desktop */
+    /* Category Filter Tabs Carousel (Fixed) */
     .categories-container {
       width: 100%;
-      overflow: hidden;
+      overflow-x: auto;
       margin-bottom: 20px;
+      scrollbar-width: none;
     }
+    .categories-container::-webkit-scrollbar { display: none; }
+    
     .categories-bar {
-      display: flex; 
+      display: inline-flex; 
       gap: 8px; 
-      overflow-x: auto; 
+      padding-bottom: 5px; 
       white-space: nowrap;
-      padding-bottom: 8px; 
-      scroll-behavior: smooth;
-      scrollbar-width: none; 
-      -webkit-overflow-scrolling: touch;
-      max-width: 100%;
     }
-    .categories-bar::-webkit-scrollbar { display: none; }
     .cat-chip {
       background: white; border: 1px solid #D0DDD0; padding: 6px 14px; border-radius: 20px;
       font-size: 12px; font-weight: 600; color: #1B4D2E; cursor: pointer; white-space: nowrap; transition: 0.2s;
-      flex: 0 0 auto;
+      flex-shrink: 0;
     }
     .cat-chip.active, .cat-chip:hover { background: #1B4D2E; color: white; border-color: #1B4D2E; }
 
@@ -118,15 +111,12 @@
       position: absolute; top: 8px; right: 8px; background: rgba(255, 255, 255, 0.9); border: none; width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 13px; z-index: 5; box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
     .wishlist-btn.active { color: #E63946; }
-    .discount-tag { position: absolute; top: 8px; left: 8px; background: #E63946; color: white; font-size: 10px; font-weight: 800; padding: 3px 7px; border-radius: 8px; z-index: 2; }
 
     .card-title { font-weight: 700; font-size: 13px; color: #1B4D2E; margin-bottom: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .card-stars { color: #5B8C00; font-size: 10px; margin-bottom: 6px; }
     
     .price-box { display: flex; align-items: center; gap: 6px; margin-bottom: 10px; }
     .card-price { font-weight: 800; font-size: 14px; color: #1B4D2E; }
-    .card-price.sale-price { color: #E63946; }
-    .old-price { font-size: 11px; color: #999; text-decoration: line-through; font-weight: 500; }
 
     .btn-add { background: #1B4D2E; color: white; border: none; padding: 8px; border-radius: 12px; font-size: 11px; font-weight: 600; width: 100%; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 5px; }
 
@@ -170,7 +160,6 @@
     .form-group label { display: block; font-size: 11px; font-weight: 700; color: #1B4D2E; margin-bottom: 4px; }
     .form-control { width: 100%; padding: 10px; border: 1px solid #D0DDD0; border-radius: 10px; font-size: 12px; outline: none; background: #F8F6F0; }
 
-    /* Admin Panel Specifics */
     .admin-tabs { display: flex; gap: 10px; margin-bottom: 15px; border-bottom: 1px solid #eee; padding-bottom: 10px; }
     .admin-tab-btn { background: #f4f6f4; border: none; padding: 6px 12px; border-radius: 8px; font-size: 11px; font-weight: bold; cursor: pointer; color: #1B4D2E; }
     .admin-tab-btn.active { background: #1B4D2E; color: white; }
@@ -218,10 +207,10 @@
       <div class="sale-header">
         <div class="sale-title-box">
           <span class="sale-badge">FLASH SALE ⚡</span>
-          <h2 style="font-size:16px; font-weight:800;" id="saleTitle">სპეციალური ფასდაკლება</h2>
+          <h2 style="font-size:16px; font-weight:800;">სპეციალური ფასდაკლება</h2>
           <div class="timer-box">
-            ⏱️ <span id="timerPrefix">სრულდება:</span> 
-            <span class="timer-num" id="hrs">08</span>:<span class="timer-num" id="mins">42</span>:<span class="timer-num" id="secs">19</span>
+            ⏱️ სრულდება: 
+            <span class="timer-num">08</span>:<span class="timer-num">42</span>:<span class="timer-num">19</span>
           </div>
         </div>
         <div class="carousel-arrows">
@@ -235,7 +224,7 @@
     <!-- Popular Products -->
     <div class="carousel-container">
       <div class="section-header">
-        <h2 class="section-title" id="popTitle">Popular Products 🔥</h2>
+        <h2 class="section-title">Popular Products 🔥</h2>
         <div class="carousel-arrows">
           <button class="arrow-btn" onclick="scrollCarousel('popularTrack', -180)">❮</button>
           <button class="arrow-btn" onclick="scrollCarousel('popularTrack', 180)">❯</button>
@@ -247,7 +236,7 @@
     <!-- New Arrivals -->
     <div class="carousel-container">
       <div class="section-header">
-        <h2 class="section-title" id="newTitle">New Arrivals ✨</h2>
+        <h2 class="section-title">New Arrivals ✨</h2>
         <div class="carousel-arrows">
           <button class="arrow-btn" onclick="scrollCarousel('newTrack', -180)">❮</button>
           <button class="arrow-btn" onclick="scrollCarousel('newTrack', 180)">❯</button>
@@ -260,25 +249,25 @@
     <section class="features">
       <div class="feature-item">
         <div class="feature-icon">🚚</div>
-        <div class="feature-title" id="f1Title">უფასო მიწოდება</div>
-        <div class="feature-desc" id="f1Desc">50 ₾-ზე ზევით შეკვეთაზე</div>
+        <div class="feature-title">უფასო მიწოდება</div>
+        <div class="feature-desc">50 ₾-ზე ზევით შეკვეთაზე</div>
       </div>
       <div class="feature-item">
         <div class="feature-icon">🌿</div>
-        <div class="feature-title" id="f2Title">100% ნატურალური</div>
-        <div class="feature-desc" id="f2Desc">სერტიფიცირებული პროდუქცია</div>
+        <div class="feature-title">100% ნატურალური</div>
+        <div class="feature-desc">სერტიფიცირებული პროდუქცია</div>
       </div>
       <div class="feature-item">
         <div class="feature-icon">🔒</div>
-        <div class="feature-title" id="f3Title">უსაფრთხო გადახდა</div>
-        <div class="feature-desc" id="f3Desc">დაცული ტრანზაქციები</div>
+        <div class="feature-title">უსაფრთხო გადახდა</div>
+        <div class="feature-desc">დაცული ტრანზაქციები</div>
       </div>
     </section>
 
     <!-- Blog Section -->
     <div class="carousel-container" style="margin-top: 10px;">
       <div class="section-header">
-        <h2 class="section-title" id="blogTitle">ჯანმრთელობის ბლოგი 📖</h2>
+        <h2 class="section-title">ჯანმრთელობის ბლოგი 📖</h2>
         <div class="carousel-arrows">
           <button class="arrow-btn" onclick="scrollCarousel('blogTrack', -240)">❮</button>
           <button class="arrow-btn" onclick="scrollCarousel('blogTrack', 240)">❯</button>
@@ -356,8 +345,6 @@
         </div>
         <div class="form-group"><input type="text" id="newProdImg" class="form-control" placeholder="სურათის URL (ლინკი)"></div>
         <button class="btn-main" style="width:100%; margin-bottom:15px;" onclick="adminAddProduct()">დამატება</button>
-
-        <h4 style="font-size:12px; margin-bottom:8px; color:#1B4D2E;">არსებული პროდუქტები</h4>
         <div id="adminProductsList" style="max-height:180px; overflow-y:auto;"></div>
       </div>
 
@@ -365,19 +352,15 @@
       <div id="blogsTab" class="admin-section">
         <h4 style="font-size:12px; margin-bottom:8px; color:#1B4D2E;">ახალი ბლოგის დამატება</h4>
         <div class="form-group"><input type="text" id="newBlogTitle" class="form-control" placeholder="ბლოგის სათაური"></div>
-        <div class="form-group"><input type="text" id="newBlogTag" class="form-control" placeholder="თემა / ტეგი (მაგ: კანის მოვლა)"></div>
+        <div class="form-group"><input type="text" id="newBlogTag" class="form-control" placeholder="თემა / ტეგი"></div>
         <div class="form-group"><textarea id="newBlogSnippet" class="form-control" placeholder="მოკლე აღწერა..." style="height:50px;"></textarea></div>
-        <div class="form-group"><textarea id="newBlogFull" class="form-control" placeholder="სრული ტექსტი..." style="height:80px;"></textarea></div>
         <div class="form-group"><input type="text" id="newBlogImg" class="form-control" placeholder="სურათის URL (ლინკი)"></div>
         <button class="btn-main" style="width:100%; margin-bottom:15px;" onclick="adminAddBlog()">გამოქვეყნება</button>
-
-        <h4 style="font-size:12px; margin-bottom:8px; color:#1B4D2E;">არსებული ბლოგები</h4>
         <div id="adminBlogsList" style="max-height:150px; overflow-y:auto;"></div>
       </div>
 
       <!-- ORDERS ADMIN TAB -->
       <div id="ordersTab" class="admin-section">
-        <h4 style="font-size:12px; margin-bottom:8px; color:#1B4D2E;">შემოსული შეკვეთები</h4>
         <div id="adminOrdersList" style="max-height:250px; overflow-y:auto;"></div>
       </div>
 
@@ -385,7 +368,7 @@
   </div>
 
   <!-- Cart Modal -->
-  <div id="cartModal" class="modal cart-modal" onclick="if(event.target.id==='cartModal') toggleCart(false)">
+  <div id="cartModal" class="modal" onclick="if(event.target.id==='cartModal') toggleCart(false)">
     <div class="detail-card" style="margin-left:auto; height:100%; max-width:320px; display:flex; flex-direction:column; justify-content:space-between;">
       <div>
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 20px;">
@@ -413,7 +396,7 @@
       <form onsubmit="handleCheckoutSubmit(event)">
         <div class="form-group"><label>სახელი და გვარი</label><input type="text" class="form-control" id="custName" required></div>
         <div class="form-group"><label>ტელეფონის ნომერი</label><input type="tel" class="form-control" id="custPhone" required></div>
-        <div class="form-group"><label>ქალაქი / რეგიონი</label><select class="form-control" id="custCity"><option value="tbilisi">თბილისი</option><option value="batumi">ბათუმი</option><option value="kutaisi">ქუთაისი</option><option value="other">სხვა</option></select></div>
+        <div class="form-group"><label>ქალაქი</label><select class="form-control" id="custCity"><option value="tbilisi">თბილისი</option><option value="batumi">ბათუმი</option><option value="kutaisi">ქუთაისი</option><option value="other">სხვა</option></select></div>
         <div class="form-group"><label>მისამართი</label><input type="text" class="form-control" id="custAddress" required></div>
         <div style="background:#F4F6F4; padding:10px; border-radius:10px; margin: 15px 0; font-size:12px; display:flex; justify-content:space-between; font-weight:bold;">
           <span>გადასახდელი:</span>
@@ -451,9 +434,21 @@
         tag: { GE: 'კოლაგენი & კანის მოვლა', EN: 'Collagen & Skincare' },
         title: { GE: 'რატომ არის საზღვაო კოლაგენი საუკეთესო არჩევანი?', EN: 'Why Marine Collagen is Best?' },
         snippet: { GE: 'გაიგეთ როგორ ეხმარება ჰიდროლიზებული კოლაგენი კანის ელასტიურობას...', EN: 'Discover how hydrolyzed collagen peptides boost skin elasticity...' },
-        body: { GE: 'საზღვაო კოლაგენი ცნობილია თავისი მაღალი ბიოშეღწევადობით...', EN: 'Marine collagen is renowned for high bioavailability...' },
-        readTime: { GE: '3 წთ', EN: '3 min' },
         img: 'https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=500&q=80'
+      },
+      {
+        id: 2,
+        tag: { GE: 'ვიტამინები & იმუნიტეტი', EN: 'Vitamins & Immunity' },
+        title: { GE: 'ვიტამინ D3-ის როლი ორგანიზმის ენერგიასა და იმუნიტეტში', EN: 'The Role of Vitamin D3 in Energy & Immunity' },
+        snippet: { GE: 'როგორ ავიცილოთ თავიდან ვიტამინ D-ს დეფიციტი ზამთარ-ზაფხულ...', EN: 'How to prevent vitamin D deficiency effectively...' },
+        img: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=500&q=80'
+      },
+      {
+        id: 3,
+        tag: { GE: 'ჯანსაღი კუჭ-ნაწლავი', EN: 'Gut Health' },
+        title: { GE: 'პრობიოტიკები და მათი გავლენა საერთო ჯანმრთელობაზე', EN: 'Probiotics and Their Impact on General Health' },
+        snippet: { GE: 'აღმოაჩინეთ რატომ არის მიკრობიომი თქვენი იმუნური სისტემის ფუნდამენტი...', EN: 'Discover why microbiome is the foundation of immunity...' },
+        img: 'https://images.unsplash.com/photo-1576602976047-174e57a47881?auto=format&fit=crop&w=500&q=80'
       }
     ];
 
@@ -526,14 +521,18 @@
       const track = document.getElementById('blogTrack');
       track.innerHTML = '';
       blogPosts.forEach(post => {
+        const tagText = typeof post.tag === 'object' ? post.tag[currentLang] : post.tag;
+        const titleText = typeof post.title === 'object' ? post.title[currentLang] : post.title;
+        const snippetText = typeof post.snippet === 'object' ? post.snippet[currentLang] : post.snippet;
+        
         track.innerHTML += `
           <div class="blog-card">
             <div>
               <img src="${post.img}" class="blog-img" alt="">
               <div class="blog-content">
-                <div class="blog-tag">${typeof post.tag === 'object' ? post.tag[currentLang] : post.tag}</div>
-                <div class="blog-title">${typeof post.title === 'object' ? post.title[currentLang] : post.title}</div>
-                <div class="blog-snippet">${typeof post.snippet === 'object' ? post.snippet[currentLang] : post.snippet}</div>
+                <div class="blog-tag">${tagText}</div>
+                <div class="blog-title">${titleText}</div>
+                <div class="blog-snippet">${snippetText}</div>
               </div>
             </div>
           </div>
@@ -564,7 +563,7 @@
       const container = document.getElementById('wishlistItems');
       container.innerHTML = wishlist.length === 0 ? '<p style="text-align:center; color:#888; font-size:12px;">ცარიელია</p>' : '';
       popularProducts.filter(p => wishlist.includes(p.id)).forEach(p => {
-        container.innerHTML += `<div class="cart-item"><div><b>${p.name}</b><div>${p.price} ₾</div></div><button class="btn-main" onclick="addToCart('${p.name}', ${p.price})">🛒</button></div>`;
+        container.innerHTML += `<div class="cart-item" style="display:flex; justify-content:space-between; margin-bottom:8px; font-size:12px;"><div><b>${p.name}</b><div>${p.price} ₾</div></div><button class="btn-main" onclick="addToCart('${p.name}', ${p.price})">🛒</button></div>`;
       });
       document.getElementById('wishlistModal').classList.add('active');
     }
@@ -624,19 +623,16 @@
       closeCheckoutModal();
     }
 
-    /* ADMIN PANEL LOGIC */
+    /* ADMIN PANEL */
     function openAdminLoginModal() { document.getElementById('adminLoginModal').classList.add('active'); }
     function closeAdminLogin() { document.getElementById('adminLoginModal').classList.remove('active'); }
     
     function checkAdminLogin() {
-      const pass = document.getElementById('adminPassInput').value;
-      if(pass === 'admin123') {
+      if(document.getElementById('adminPassInput').value === 'admin123') {
         closeAdminLogin();
         document.getElementById('adminPassInput').value = '';
         openAdminDashboard();
-      } else {
-        alert('არასწორი პაროლი! (გამოიყენეთ: admin123)');
-      }
+      } else { alert('არასწორი პაროლი!'); }
     }
 
     function openAdminDashboard() {
@@ -659,32 +655,19 @@
       const price = parseFloat(document.getElementById('newProdPrice').value);
       const category = document.getElementById('newProdCategory').value;
       const img = document.getElementById('newProdImg').value || 'https://via.placeholder.com/300';
-
-      if(!name || isNaN(price)) return alert('შეავსეთ სახელი და ფასი სწორად!');
-
+      if(!name || isNaN(price)) return alert('შეავსეთ სწორად!');
       popularProducts.push({ id: Date.now(), name, price, category, img });
       localStorage.setItem('aion_products', JSON.stringify(popularProducts));
-      
-      document.getElementById('newProdName').value = '';
-      document.getElementById('newProdPrice').value = '';
       renderAdminProducts();
       renderAllCarousels();
-      alert('პროდუქტი დაემატა!');
+      alert('დაემატა!');
     }
 
     function renderAdminProducts() {
       const list = document.getElementById('adminProductsList');
       list.innerHTML = '';
       popularProducts.forEach(p => {
-        list.innerHTML += `
-          <div class="admin-item-row">
-            <span><b>${p.name}</b> - ${p.price} ₾</span>
-            <div>
-              <button onclick="adminChangePrice(${p.id})" style="background:#27ae60; color:white; border:none; padding:4px 6px; border-radius:4px; cursor:pointer; font-size:10px; margin-right:4px;">ფასის შეცვლა</button>
-              <button class="btn-danger" onclick="adminDeleteProduct(${p.id})">წაშლა</button>
-            </div>
-          </div>
-        `;
+        list.innerHTML += `<div class="admin-item-row"><span><b>${p.name}</b> - ${p.price} ₾</span><button class="btn-danger" onclick="adminDeleteProduct(${p.id})">წაშლა</button></div>`;
       });
     }
 
@@ -695,49 +678,25 @@
       renderAllCarousels();
     }
 
-    function adminChangePrice(id) {
-      const p = popularProducts.find(item => item.id === id);
-      const newPrice = prompt(`ახალი ფასი პროდუქტისთვის "${p.name}":`, p.price);
-      if(newPrice !== null && !isNaN(newPrice)) {
-        p.price = parseFloat(newPrice);
-        localStorage.setItem('aion_products', JSON.stringify(popularProducts));
-        renderAdminProducts();
-        renderAllCarousels();
-      }
-    }
-
     function adminAddBlog() {
       const title = document.getElementById('newBlogTitle').value;
       const tag = document.getElementById('newBlogTag').value;
       const snippet = document.getElementById('newBlogSnippet').value;
-      const body = document.getElementById('newBlogFull').value;
       const img = document.getElementById('newBlogImg').value || 'https://via.placeholder.com/500';
-
-      if(!title || !snippet) return alert('შეავსეთ ძირითადი ველები!');
-
-      blogPosts.unshift({ id: Date.now(), title, tag, snippet, body, img });
+      if(!title) return alert('შეავსეთ სათაური!');
+      blogPosts.unshift({ id: Date.now(), title, tag, snippet, img });
       localStorage.setItem('aion_blogs', JSON.stringify(blogPosts));
-
-      document.getElementById('newBlogTitle').value = '';
-      document.getElementById('newBlogTag').value = '';
-      document.getElementById('newBlogSnippet').value = '';
-      document.getElementById('newBlogFull').value = '';
       renderAdminBlogs();
       renderBlogCarousel();
-      alert('ბლოგი გამოქვეყნდა!');
+      alert('გამოქვეყნდა!');
     }
 
     function renderAdminBlogs() {
       const list = document.getElementById('adminBlogsList');
       list.innerHTML = '';
       blogPosts.forEach(b => {
-        const titleStr = typeof b.title === 'object' ? b.title.GE : b.title;
-        list.innerHTML += `
-          <div class="admin-item-row">
-            <span><b>${titleStr}</b></span>
-            <button class="btn-danger" onclick="adminDeleteBlog(${b.id})">წაშლა</button>
-          </div>
-        `;
+        const t = typeof b.title === 'object' ? b.title.GE : b.title;
+        list.innerHTML += `<div class="admin-item-row"><span><b>${t}</b></span><button class="btn-danger" onclick="adminDeleteBlog(${b.id})">წაშლა</button></div>`;
       });
     }
 
@@ -754,14 +713,7 @@
       list.innerHTML = orders.length === 0 ? '<p style="font-size:11px; color:#888;">შეკვეთები არ არის</p>' : '';
       orders.forEach(o => {
         let itemsStr = o.items.map(i => `${i.name} (x${i.quantity})`).join(', ');
-        list.innerHTML += `
-          <div style="background:#f9f9f9; padding:10px; border-radius:8px; margin-bottom:8px; font-size:11px;">
-            <div><b>მყიდველი:</b> ${o.name} (${o.phone})</div>
-            <div><b>მისამართი:</b> ${o.address}</div>
-            <div><b>ნივთები:</b> ${itemsStr}</div>
-            <div style="color:#27ae60; font-weight:bold; margin-top:4px;">სულ: ${o.total.toFixed(2)} ₾ (${o.date})</div>
-          </div>
-        `;
+        list.innerHTML += `<div style="background:#f9f9f9; padding:10px; border-radius:8px; margin-bottom:8px; font-size:11px;"><div><b>${o.name}</b> (${o.phone})</div><div>${o.address}</div><div>${itemsStr}</div><div style="color:#27ae60; font-weight:bold;">სულ: ${o.total.toFixed(2)} ₾</div></div>`;
       });
     }
 
