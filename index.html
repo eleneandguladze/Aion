@@ -36,11 +36,12 @@
     .badge { background: #E63946; color: white; border-radius: 50%; padding: 2px 6px; font-size: 10px; }
     .cart-count { background: #71B340; color: white; border-radius: 50%; padding: 2px 6px; font-size: 10px; }
 
-    /* Category Filter Tabs Carousel (Fixed) */
+    /* Category Filter Tabs Carousel (Improved) */
     .categories-container {
       width: 100%;
       overflow-x: auto;
       margin-bottom: 20px;
+      -webkit-overflow-scrolling: touch;
       scrollbar-width: none;
     }
     .categories-container::-webkit-scrollbar { display: none; }
@@ -48,13 +49,22 @@
     .categories-bar {
       display: inline-flex; 
       gap: 8px; 
-      padding-bottom: 5px; 
+      padding: 2px 4px 5px 4px; 
       white-space: nowrap;
     }
     .cat-chip {
-      background: white; border: 1px solid #D0DDD0; padding: 6px 14px; border-radius: 20px;
-      font-size: 12px; font-weight: 600; color: #1B4D2E; cursor: pointer; white-space: nowrap; transition: 0.2s;
-      flex-shrink: 0;
+      background: white; 
+      border: 1px solid #D0DDD0; 
+      padding: 8px 16px; 
+      border-radius: 20px;
+      font-size: 12px; 
+      font-weight: 600; 
+      color: #1B4D2E; 
+      cursor: pointer; 
+      white-space: nowrap; 
+      transition: 0.2s;
+      flex-shrink: 0; /* არ აპატარავებს და არ ჭყლეტს ღილაკებს */
+      box-shadow: 0 2px 5px rgba(0,0,0,0.02);
     }
     .cat-chip.active, .cat-chip:hover { background: #1B4D2E; color: white; border-color: #1B4D2E; }
 
@@ -94,7 +104,7 @@
     .arrow-btn:hover { background: #1B4D2E; color: white; border-color: #1B4D2E; }
 
     .carousel-container { margin-bottom: 30px; position: relative; }
-    .carousel-track { display: flex; gap: 15px; overflow-x: auto; scroll-behavior: smooth; scroll-snap-type: x mandatory; padding-bottom: 10px; scrollbar-width: none; }
+    .carousel-track { display: flex; gap: 15px; overflow-x: auto; scroll-behavior: smooth; scroll-snap-type: x mandatory; padding-bottom: 10px; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
     .carousel-track::-webkit-scrollbar { display: none; }
 
     /* Cards */
