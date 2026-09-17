@@ -43,23 +43,26 @@
 
     /* Category Filter Tabs Carousel for Mobile & Desktop */
     .categories-container {
-      position: relative;
+      width: 100%;
+      overflow: hidden;
       margin-bottom: 20px;
     }
     .categories-bar {
       display: flex; 
       gap: 8px; 
       overflow-x: auto; 
+      white-space: nowrap;
       padding-bottom: 8px; 
       scroll-behavior: smooth;
       scrollbar-width: none; 
       -webkit-overflow-scrolling: touch;
+      max-width: 100%;
     }
     .categories-bar::-webkit-scrollbar { display: none; }
     .cat-chip {
       background: white; border: 1px solid #D0DDD0; padding: 6px 14px; border-radius: 20px;
       font-size: 12px; font-weight: 600; color: #1B4D2E; cursor: pointer; white-space: nowrap; transition: 0.2s;
-      flex-shrink: 0;
+      flex: 0 0 auto;
     }
     .cat-chip.active, .cat-chip:hover { background: #1B4D2E; color: white; border-color: #1B4D2E; }
 
@@ -632,7 +635,7 @@
         document.getElementById('adminPassInput').value = '';
         openAdminDashboard();
       } else {
-        alert('არასწორი პაროლი! (გამოيყენეთ: admin123)');
+        alert('არასწორი პაროლი! (გამოიყენეთ: admin123)');
       }
     }
 
