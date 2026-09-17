@@ -36,7 +36,7 @@
     .badge { background: #E63946; color: white; border-radius: 50%; padding: 2px 6px; font-size: 10px; }
     .cart-count { background: #71B340; color: white; border-radius: 50%; padding: 2px 6px; font-size: 10px; }
 
-    /* Categories Carousel with Arrows on Right */
+    /* Categories Carousel */
     .categories-section { margin-bottom: 20px; position: relative; }
     .categories-header-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
     .categories-container {
@@ -193,10 +193,10 @@
   </header>
 
   <main>
-    <!-- Categories Carousel with Arrows on Right -->
+    <!-- Categories Carousel -->
     <div class="categories-section">
       <div class="categories-header-row">
-        <span style="font-size: 13px; font-weight: 700; color: #1B4D2E;">კატეგორიები</span>
+        <span style="font-size: 14px; font-weight: 700; color: #1B4D2E;">კატეგორიები</span>
         <div class="carousel-arrows">
           <button class="arrow-btn" onclick="scrollCarousel('categoriesContainer', -150)">❮</button>
           <button class="arrow-btn" onclick="scrollCarousel('categoriesContainer', 150)">❯</button>
@@ -213,7 +213,7 @@
       <button class="btn-main" id="heroBtn">SHOP NOW</button>
     </section>
 
-    <!-- Flash Sale -->
+    <!-- Flash Sale (Arrows on Right) -->
     <section class="sale-section">
       <div class="sale-header">
         <div class="sale-title-box">
@@ -560,7 +560,7 @@
       const newOrder = {
         name: document.getElementById('custName').value,
         phone: document.getElementById('custPhone').value,
-        address: document.getElementById('custAddress').value,
+        address: document.getElementById('custAddress' ).value,
         items: [...cart],
         total: cart.reduce((sum, i) => sum + (i.price * i.quantity), 0),
         date: new Date().toLocaleString()
