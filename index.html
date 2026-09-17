@@ -36,26 +36,28 @@
     .badge { background: #E63946; color: white; border-radius: 50%; padding: 2px 6px; font-size: 10px; }
     .cart-count { background: #71B340; color: white; border-radius: 50%; padding: 2px 6px; font-size: 10px; }
 
-    /* Category Filter Tabs Carousel (Improved) */
+    /* Category Filter Tabs Carousel (Fixed & Perfected) */
     .categories-container {
       width: 100%;
       overflow-x: auto;
+      overflow-y: hidden;
       margin-bottom: 20px;
       -webkit-overflow-scrolling: touch;
       scrollbar-width: none;
+      white-space: nowrap;
     }
     .categories-container::-webkit-scrollbar { display: none; }
     
     .categories-bar {
       display: inline-flex; 
-      gap: 8px; 
-      padding: 2px 4px 5px 4px; 
-      white-space: nowrap;
+      gap: 10px; 
+      padding: 4px; 
     }
     .cat-chip {
+      flex: 0 0 auto; /* არ აპატარავებს და არ ჭყლეტს ღილაკებს */
       background: white; 
       border: 1px solid #D0DDD0; 
-      padding: 8px 16px; 
+      padding: 8px 18px; 
       border-radius: 20px;
       font-size: 12px; 
       font-weight: 600; 
@@ -63,7 +65,6 @@
       cursor: pointer; 
       white-space: nowrap; 
       transition: 0.2s;
-      flex-shrink: 0; /* არ აპატარავებს და არ ჭყლეტს ღილაკებს */
       box-shadow: 0 2px 5px rgba(0,0,0,0.02);
     }
     .cat-chip.active, .cat-chip:hover { background: #1B4D2E; color: white; border-color: #1B4D2E; }
