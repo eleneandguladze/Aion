@@ -36,25 +36,27 @@
     .badge { background: #E63946; color: white; border-radius: 50%; padding: 2px 6px; font-size: 10px; }
     .cart-count { background: #71B340; color: white; border-radius: 50%; padding: 2px 6px; font-size: 10px; }
 
-    /* Category Filter Tabs Carousel (Fixed & Perfected) */
+    /* Categories Carousel with Arrows */
+    .categories-section { margin-bottom: 20px; position: relative; }
+    .categories-header-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
     .categories-container {
       width: 100%;
       overflow-x: auto;
       overflow-y: hidden;
-      margin-bottom: 20px;
       -webkit-overflow-scrolling: touch;
       scrollbar-width: none;
       white-space: nowrap;
+      scroll-behavior: smooth;
     }
     .categories-container::-webkit-scrollbar { display: none; }
     
     .categories-bar {
       display: inline-flex; 
       gap: 10px; 
-      padding: 4px; 
+      padding: 4px 2px; 
     }
     .cat-chip {
-      flex: 0 0 auto; /* არ აპატარავებს და არ ჭყლეტს ღილაკებს */
+      flex: 0 0 auto; 
       background: white; 
       border: 1px solid #D0DDD0; 
       padding: 8px 18px; 
@@ -191,9 +193,18 @@
   </header>
 
   <main>
-    <!-- Categories Carousel Bar -->
-    <div class="categories-container">
-      <div class="categories-bar" id="categoriesBar"></div>
+    <!-- Categories Carousel with Arrows -->
+    <div class="categories-section">
+      <div class="categories-header-row">
+        <span style="font-size: 13px; font-weight: 700; color: #1B4D2E;">კატეგორიები</span>
+        <div class="carousel-arrows">
+          <button class="arrow-btn" onclick="scrollCarousel('categoriesContainer', -150)">❮</button>
+          <button class="arrow-btn" onclick="scrollCarousel('categoriesContainer', 150)">❯</button>
+        </div>
+      </div>
+      <div class="categories-container" id="categoriesContainer">
+        <div class="categories-bar" id="categoriesBar"></div>
+      </div>
     </div>
 
     <section class="hero">
