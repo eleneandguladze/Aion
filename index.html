@@ -1246,11 +1246,11 @@
 
       .header-main {
         min-height: 65px;
-        gap: 8px;
+        gap: 6px;
       }
 
       .logo {
-        font-size: 21px;
+        font-size: 19px;
       }
 
       .logo small {
@@ -1259,22 +1259,34 @@
       }
 
       .header-actions {
-        gap: 5px;
+        gap: 4px;
       }
 
+      /* მობილურისთვის search-box-ის ჩვენება გაუმჯობესებული ზომით */
       .search-box {
-        display: none;
+        display: block;
+      }
+
+      .search-input {
+        width: 115px;
+        height: 34px;
+        padding: 0 28px 0 10px;
+        font-size: 10px;
+      }
+
+      .search-input:focus {
+        width: 145px;
       }
 
       .header-btn {
-        width: 36px;
-        height: 36px;
-        font-size: 14px;
+        width: 34px;
+        height: 34px;
+        font-size: 13px;
       }
 
       .lang-btn {
-        height: 34px;
-        padding: 0 9px;
+        height: 32px;
+        padding: 0 7px;
         font-size: 9px;
       }
 
@@ -1480,6 +1492,14 @@
 
     @media (max-width: 390px) {
 
+      .search-input {
+        width: 95px;
+      }
+
+      .search-input:focus {
+        width: 120px;
+      }
+
       .product-card {
         flex-basis: 155px;
       }
@@ -1523,7 +1543,7 @@
             id="searchInput"
             class="search-input"
             type="search"
-            placeholder="მოძებნე პროდუქტი..."
+            placeholder="მოძებნე..."
             oninput="handleSearch()"
           >
           <span class="search-icon">⌕</span>
@@ -2919,13 +2939,6 @@
     function submitCheckout(event) {
 
       event.preventDefault();
-
-      /*
-        FRONTEND DEMO ONLY.
-
-        აქ მომავალში backend/payment integration
-        დაემატება.
-      */
 
       const customerName =
         document.getElementById("customerName").value;
