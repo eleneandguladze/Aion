@@ -127,7 +127,8 @@
     .btn-add { background: #1B4D2E; color: white; border: none; padding: 8px; border-radius: 12px; font-size: 11px; font-weight: 600; width: 100%; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 5px; }
 
     /* Blog Card */
-    .blog-card { flex: 0 0 240px; scroll-snap-align: start; background: white; border-radius: 16px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.03); cursor: pointer; display: flex; flex-direction: column; justify-content: space-between; }
+    .blog-card { flex: 0 0 240px; scroll-snap-align: start; background: white; border-radius: 16px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.03); cursor: pointer; display: flex; flex-direction: column; justify-content: space-between; transition: transform 0.2s; }
+    .blog-card:hover { transform: translateY(-3px); }
     .blog-img { height: 110px; width: 100%; object-fit: cover; }
     .blog-content { padding: 12px; }
     .blog-tag { font-size: 9px; font-weight: 700; color: #71B340; text-transform: uppercase; margin-bottom: 4px; }
@@ -160,7 +161,7 @@
     .modal.active { display: flex; }
 
     .detail-card { background: white; border-radius: 20px; width: 100%; max-width: 480px; padding: 20px; position: relative; max-height: 90vh; overflow-y: auto; }
-    .detail-close-btn { position: absolute; top: 15px; right: 15px; background: #F4F6F4; border: none; width: 30px; height: 30px; border-radius: 50%; font-size: 16px; cursor: pointer; color: #1B4D2E; font-weight: bold; }
+    .detail-close-btn { position: absolute; top: 15px; right: 15px; background: #F4F6F4; border: none; width: 30px; height: 30px; border-radius: 50%; font-size: 16px; cursor: pointer; color: #1B4D2E; font-weight: bold; z-index: 10; }
     
     .form-group { margin-bottom: 12px; text-align: left; }
     .form-group label { display: block; font-size: 11px; font-weight: 700; color: #1B4D2E; margin-bottom: 4px; }
@@ -356,6 +357,14 @@
     </div>
   </div>
 
+  <!-- Blog Detail Modal -->
+  <div id="blogModal" class="modal" onclick="if(event.target.id==='blogModal') closeBlogModal()">
+    <div class="detail-card" style="max-width:500px;">
+      <button class="detail-close-btn" onclick="closeBlogModal()">✕</button>
+      <div id="blogModalContent"></div>
+    </div>
+  </div>
+
   <script>
     let currentLang = 'GE';
     let activeCategory = 'all';
@@ -374,6 +383,10 @@
         tag: { GE: 'კოლაგენი & კანის მოვლა', EN: 'Collagen & Skincare' },
         title: { GE: 'რატომ არის საზღვაო კოლაგენი საუკეთესო არჩევანი?', EN: 'Why Marine Collagen is Best?' },
         snippet: { GE: 'გაიგეთ როგორ ეხმარება ჰიდროლიზებული კოლაგენი კანის ელასტიურობას...', EN: 'Discover how hydrolyzed collagen peptides boost skin elasticity...' },
+        fullText: { 
+          GE: 'საზღვაო (marine) კოლაგენი მიიღება თევზის ქერქისა და ქსოვილებისგან. იგი გამოირჩევა მაღალი ათვისებადობით (I ტიპის კოლაგენი), რაც პირდაპირ აისახება კანის ელასტიურობაზე, ნაოჭების შემცირებასა და თმა-ფრჩხილის ჯანმრთელობაზე. რეგულარული მიღება ხელს უწყობს ორგანიზმში საკუთარი კოლაგენის სინთეზსაც.',
+          EN: 'Marine collagen is derived from fish skin and scales. It features high bioavailability (Type I collagen), directly improving skin elasticity, reducing fine lines, and supporting hair and nail health.'
+        },
         img: 'https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=500&q=80'
       },
       {
@@ -381,6 +394,10 @@
         tag: { GE: 'ვიტამინები & იმუნიტეტი', EN: 'Vitamins & Immunity' },
         title: { GE: 'ვიტამინ D3-ის როლი ორგანიზმის ენერგიასა და იმუნიტეტში', EN: 'The Role of Vitamin D3 in Energy & Immunity' },
         snippet: { GE: 'როგორ ავიცილოთ თავიდან ვიტამინ D-ს დეფიციტი ზამთარ-ზაფხულ...', EN: 'How to prevent vitamin D deficiency effectively...' },
+        fullText: {
+          GE: 'ვიტამინი D3 ფუნქციონირებს როგორც ჰორმონი ორგანიზმში. ის აუცილებელია კალციუმის ათვისებისთვის, ძვლოვანი სისტემის სიმტკიცისთვის და ძლიერი იმუნიტეტისთვის. ზამთრის პერიოდში განსაკუთრებით ხშირია მისი დეფიციტი, რაც იწვევს დაღლილობას და ენერგიის ნაკლებობას.',
+          EN: 'Vitamin D3 acts as a hormone in the body, essential for calcium absorption, bone strength, and a robust immune system. Deficiency during winter often leads to chronic fatigue and low energy.'
+        },
         img: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=500&q=80'
       },
       {
@@ -388,6 +405,10 @@
         tag: { GE: 'ჯანსაღი კუჭ-ნაწლავი', EN: 'Gut Health' },
         title: { GE: 'პრობიოტიკები და მათი გავლენა საერთო ჯანმრთელობაზე', EN: 'Probiotics and Their Impact on General Health' },
         snippet: { GE: 'აღმოაჩინეთ რატომ არის მიკრობიომი თქვენი იმუნური სისტემის ფუნდამენტი...', EN: 'Discover why microbiome is the foundation of immunity...' },
+        fullText: {
+          GE: 'კუჭ-ნაწლავის ტრაქტი შეიცავს მილიარდობით ბაქტერიას, რომლებსაც უდიდესი გავლენა აქვთ არა მხოლოდ მონელებაზე, არამედ განწყობაზე, მეტაბოლიზმსა და იმუნიტეტზე. ხარისხიანი პრობიოტიკები ეხმარებიან ბალანსის შენარჩუნებაში.',
+          EN: 'The gut microbiome houses billions of bacteria that impact digestion, mood, metabolism, and immunity. High-quality probiotics help maintain this delicate balance.'
+        },
         img: 'https://images.unsplash.com/photo-1576602976047-174e57a47881?auto=format&fit=crop&w=500&q=80'
       }
     ];
@@ -466,7 +487,7 @@
         const snippetText = typeof post.snippet === 'object' ? post.snippet[currentLang] : post.snippet;
         
         track.innerHTML += `
-          <div class="blog-card">
+          <div class="blog-card" onclick="openBlogModal(${post.id})">
             <div>
               <img src="${post.img}" class="blog-img" alt="">
               <div class="blog-content">
@@ -478,6 +499,26 @@
           </div>
         `;
       });
+    }
+
+    function openBlogModal(id) {
+      const post = blogPosts.find(p => p.id === id);
+      if(!post) return;
+      const tagText = typeof post.tag === 'object' ? post.tag[currentLang] : post.tag;
+      const titleText = typeof post.title === 'object' ? post.title[currentLang] : post.title;
+      const fullText = typeof post.fullText === 'object' ? post.fullText[currentLang] : post.fullText;
+
+      document.getElementById('blogModalContent').innerHTML = `
+        <img src="${post.img}" style="width:100%; height:160px; object-fit:cover; border-radius:12px; margin-bottom:12px;">
+        <div style="font-size:10px; font-weight:700; color:#71B340; text-transform:uppercase; margin-bottom:4px;">${tagText}</div>
+        <h3 style="color:#1B4D2E; margin-bottom:10px; font-size:16px;">${titleText}</h3>
+        <p style="font-size:12px; color:#444; line-height:1.6;">${fullText}</p>
+      `;
+      document.getElementById('blogModal').classList.add('active');
+    }
+
+    function closeBlogModal() {
+      document.getElementById('blogModal').classList.remove('active');
     }
 
     function renderAllCarousels() {
