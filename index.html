@@ -8,6 +8,9 @@
 
   <meta name="description" content="Aion Food Supplements — ხარისხიანი საკვები დანამატები ყოველდღიური ჯანმრთელობისა და კეთილდღეობისთვის.">
 
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
   <style>
     /* =========================================================
        AION FOOD SUPPLEMENTS
@@ -293,6 +296,7 @@
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
+      margin-bottom: 20px;
     }
 
     .btn-primary {
@@ -319,6 +323,35 @@
       color: var(--green);
       font-size: 11px;
       font-weight: 750;
+    }
+
+    /* Social Icons Base */
+    .social-links {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .social-icon-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: white;
+      color: var(--green);
+      border: 1px solid var(--sage-dark);
+      font-size: 15px;
+      transition: all 0.25s ease;
+      text-decoration: none;
+    }
+
+    .social-icon-btn:hover {
+      background: var(--green);
+      color: white;
+      border-color: var(--green);
+      transform: translateY(-2px);
     }
 
     .hero-visual {
@@ -822,6 +855,23 @@
 
     .footer a:hover {
       color: white;
+    }
+
+    /* Footer Socials */
+    .footer-socials {
+      margin-top: 15px;
+    }
+
+    .footer-socials .social-icon-btn {
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .footer-socials .social-icon-btn:hover {
+      background: white;
+      color: var(--green);
+      border-color: white;
     }
 
     .footer-bottom {
@@ -1610,6 +1660,19 @@
             </button>
           </div>
 
+          <!-- Social Links in Hero -->
+          <div class="social-links">
+            <a href="https://www.facebook.com/share/1GTdGwXJD3/" target="_blank" class="social-icon-btn" aria-label="Facebook">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://www.instagram.com/aion0910?stkn=MXJ6OGxjYzc3azc2OQ==" target="_blank" class="social-icon-btn" aria-label="Instagram">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://www.tiktok.com/@aion202619?_r=1&_t=ZS-99q57YoRQtI" target="_blank" class="social-icon-btn" aria-label="TikTok">
+              <i class="fab fa-tiktok"></i>
+            </a>
+          </div>
+
         </div>
 
         <div class="hero-visual">
@@ -1890,6 +1953,19 @@
             <li>📞 +995 32 2 00 00 00</li>
             <li>📍 თბილისი, საქართველო</li>
           </ul>
+
+          <!-- Social Links in Footer -->
+          <div class="social-links footer-socials">
+            <a href="https://www.facebook.com/share/1GTdGwXJD3/" target="_blank" class="social-icon-btn" aria-label="Facebook">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://www.instagram.com/aion0910?stkn=MXJ6OGxjYzc3azc2OQ==" target="_blank" class="social-icon-btn" aria-label="Instagram">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://www.tiktok.com/@aion202619?_r=1&_t=ZS-99q57YoRQtI" target="_blank" class="social-icon-btn" aria-label="TikTok">
+              <i class="fab fa-tiktok"></i>
+            </a>
+          </div>
         </div>
 
       </div>
