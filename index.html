@@ -2,7 +2,7 @@
 <html lang="ka">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
 <title>Aion — Food Supplements</title>
 
@@ -1161,6 +1161,22 @@ border-color: var(--sage-dark);
 background: white;
 }
 
+.field-error {
+display: none;
+margin-top: 4px;
+color: var(--sale);
+font-size: 9px;
+font-weight: 700;
+}
+
+.form-control.invalid {
+border-color: var(--sale);
+}
+
+.form-control.invalid + .field-error {
+display: block;
+}
+
 /* Wishlist */
 
 .wishlist-grid {
@@ -1352,7 +1368,7 @@ Aion 🌿
 <a href="#home" data-i18n="home">მთავარი</a>
 <a href="#products" data-i18n="products">პროდუქცია</a>
 <a href="#blog" data-i18n="blog">ბლოგი</a>
-<a href="#faq">FAQ</a>
+<a href="#faq" data-i18n="faqNav">FAQ</a>
 </nav>
 
 <div class="header-actions">
@@ -1435,8 +1451,8 @@ CATEGORIES
 <div class="container">
 <div class="section-heading">
 <div>
-<h2>კატეგორიები</h2>
-<p>იპოვე შენთვის სასურველი პროდუქტი</p>
+<h2 data-i18n="categoriesTitle">კატეგორიები</h2>
+<p data-i18n="categoriesSub">იპოვე შენთვის სასურველი პროდუქტი</p>
 </div>
 </div>
 <div class="category-scroll">
@@ -1452,11 +1468,11 @@ FLASH SALE
 <div class="sale-section">
 <div class="sale-top">
 <div class="sale-title">
-<span class="sale-pill">FLASH SALE</span>
-<h2>სპეციალური შეთავაზებები ⚡</h2>
+<span class="sale-pill" data-i18n="flashSale">FLASH SALE</span>
+<h2 data-i18n="saleTitle">სპეციალური შეთავაზებები ⚡</h2>
 </div>
 <div class="countdown">
-სრულდება
+<span data-i18n="endsIn">სრულდება</span>
 <span id="hours" class="time-box">08</span> :
 <span id="minutes" class="time-box">42</span> :
 <span id="seconds" class="time-box">19</span>
@@ -1473,8 +1489,8 @@ PRODUCTS
 <div class="container">
 <div class="section-heading">
 <div>
-<h2>პოპულარული პროდუქტები 🔥</h2>
-<p>ყველაზე მოთხოვნადი არჩევანი</p>
+<h2 data-i18n="popularTitle">პოპულარული პროდუქტები 🔥</h2>
+<p data-i18n="popularSub">ყველაზე მოთხოვნადი არჩევანი</p>
 </div>
 </div>
 <div id="popularProducts" class="products-track"></div>
@@ -1485,8 +1501,8 @@ PRODUCTS
 <div class="container">
 <div class="section-heading">
 <div>
-<h2>ახალი პროდუქტები ✨</h2>
-<p>აღმოაჩინე ახალი დამატებები</p>
+<h2 data-i18n="newTitle">ახალი პროდუქტები ✨</h2>
+<p data-i18n="newSub">აღმოაჩინე ახალი დამატებები</p>
 </div>
 </div>
 <div id="newProducts" class="products-track"></div>
@@ -1501,22 +1517,22 @@ FEATURES
 <div class="feature">
 <div class="feature-icon">🚚</div>
 <div>
-<h3>მარტივი მიწოდება</h3>
-<p>შეკვეთა მარტივად და მოსახერხებლად.</p>
+<h3 data-i18n="feat1Title">მარტივი მიწოდება</h3>
+<p data-i18n="feat1Text">შეკვეთა მარტივად და მოსახერხებლად.</p>
 </div>
 </div>
 <div class="feature">
 <div class="feature-icon">🌿</div>
 <div>
-<h3>ხარისხზე ორიენტირებული</h3>
-<p>შერჩეული პროდუქტები სანდო ბრენდებიდან.</p>
+<h3 data-i18n="feat2Title">ხარისხზე ორიენტირებული</h3>
+<p data-i18n="feat2Text">შერჩეული პროდუქტები სანდო ბრენდებიდან.</p>
 </div>
 </div>
 <div class="feature">
 <div class="feature-icon">🔒</div>
 <div>
-<h3>უსაფრთხო გამოცდილება</h3>
-<p>შენი მონაცემების დაცვა ჩვენი პრიორიტეტია.</p>
+<h3 data-i18n="feat3Title">უსაფრთხო გამოცდილება</h3>
+<p data-i18n="feat3Text">შენი მონაცემების დაცვა ჩვენი პრიორიტეტია.</p>
 </div>
 </div>
 </div>
@@ -1529,8 +1545,8 @@ BLOG
 <div class="container">
 <div class="section-heading">
 <div>
-<h2>ჯანმრთელობის ბლოგი 📖</h2>
-<p>მარტივი ინფორმაცია ჯანმრთელობაზე</p>
+<h2 data-i18n="blogTitle">ჯანმრთელობის ბლოგი 📖</h2>
+<p data-i18n="blogSub">მარტივი ინფორმაცია ჯანმრთელობაზე</p>
 </div>
 </div>
 <div id="blogProducts" class="blog-track"></div>
@@ -1544,28 +1560,11 @@ FAQ
 <div class="container">
 <div class="section-heading">
 <div>
-<h2>ხშირად დასმული კითხვები</h2>
-<p>ყველაფერი, რაც შეკვეთამდე უნდა იცოდე</p>
+<h2 data-i18n="faqTitle">ხშირად დასმული კითხვები</h2>
+<p data-i18n="faqSub">ყველაფერი, რაც შეკვეთამდე უნდა იცოდე</p>
 </div>
 </div>
-<div class="faq-list">
-<div class="faq-item">
-<button class="faq-question" onclick="toggleFaq(this)">როგორ შევუკვეთო პროდუქტი? <span>+</span></button>
-<div class="faq-answer">აირჩიე სასურველი პროდუქტი, დაამატე კალათაში და შემდეგ შეავსე შეკვეთის ფორმა.</div>
-</div>
-<div class="faq-item">
-<button class="faq-question" onclick="toggleFaq(this)">რამდენ ხანში მივიღებ შეკვეთას? <span>+</span></button>
-<div class="faq-answer">მიწოდების ზუსტი პირობები და ვადები დამოკიდებულია მისამართსა და მიწოდების მეთოდზე.</div>
-</div>
-<div class="faq-item">
-<button class="faq-question" onclick="toggleFaq(this)">შესაძლებელია პროდუქტის დაბრუნება? <span>+</span></button>
-<div class="faq-answer">დაბრუნების პირობები დეტალურად იქნება აღწერილი Aion-ის საბოლოო წესებსა და პირობებში.</div>
-</div>
-<div class="faq-item">
-<button class="faq-question" onclick="toggleFaq(this)">საკვები დანამატი ცვლის ექიმის დანიშნულ მკურნალობას? <span>+</span></button>
-<div class="faq-answer">საკვები დანამატები არ არის განკუთვნილი ექიმის მიერ დანიშნული მკურნალობის ჩასანაცვლებლად. კონკრეტული პროდუქტის გამოყენების წინ საჭიროების შემთხვევაში გაიარე კონსულტაცია ექიმთან ან ფარმაცევტთან.</div>
-</div>
-</div>
+<div class="faq-list" id="faqList"></div>
 </div>
 </section>
 
@@ -1579,32 +1578,32 @@ FOOTER
 <div class="footer-grid">
 <div>
 <h3>Aion 🌿</h3>
-<p>თანამედროვე საკვები დანამატების ონლაინ სივრცე, სადაც ხარისხი და მარტივი მომხმარებლის გამოცდილება ერთიანდება.</p>
+<p data-i18n="footerAbout">თანამედროვე საკვები დანამატების ონლაინ სივრცე, სადაც ხარისხი და მარტივი მომხმარებლის გამოცდილება ერთიანდება.</p>
 </div>
 <div>
-<h4>ნავიგაცია</h4>
+<h4 data-i18n="footerNav">ნავიგაცია</h4>
 <ul>
-<li><a href="#home">მთავარი</a></li>
-<li><a href="#products">პროდუქცია</a></li>
-<li><a href="#blog">ბლოგი</a></li>
-<li><a href="#faq">FAQ</a></li>
+<li><a href="#home" data-i18n="home">მთავარი</a></li>
+<li><a href="#products" data-i18n="products">პროდუქცია</a></li>
+<li><a href="#blog" data-i18n="blog">ბლოგი</a></li>
+<li><a href="#faq" data-i18n="faqNav">FAQ</a></li>
 </ul>
 </div>
 <div>
-<h4>ინფორმაცია</h4>
+<h4 data-i18n="footerInfo">ინფორმაცია</h4>
 <ul>
-<li><a href="#">ჩვენ შესახებ</a></li>
-<li><a href="#">მიწოდება</a></li>
-<li><a href="#">დაბრუნება</a></li>
-<li><a href="#">კონფიდენციალურობა</a></li>
+<li><a href="#" data-i18n="footerAboutUs">ჩვენ შესახებ</a></li>
+<li><a href="#" data-i18n="footerDelivery">მიწოდება</a></li>
+<li><a href="#" data-i18n="footerReturns">დაბრუნება</a></li>
+<li><a href="#" data-i18n="footerPrivacy">კონფიდენციალურობა</a></li>
 </ul>
 </div>
 <div>
-<h4>კონტაქტი</h4>
+<h4 data-i18n="footerContact">კონტაქტი</h4>
 <ul>
 <li>📧 info@aion.ge</li>
 <li>📞 +995 32 2 00 00 00</li>
-<li>📍 თბილისი, საქართველო</li>
+<li>📍 <span data-i18n="footerCity">თბილისი, საქართველო</span></li>
 </ul>
 <div class="social-links footer-socials">
 <a href="https://www.facebook.com/share/1GTdGwXJD3/" target="_blank" class="social-icon-btn" aria-label="Facebook">
@@ -1619,7 +1618,7 @@ FOOTER
 </div>
 </div>
 </div>
-<div class="footer-bottom">
+<div class="footer-bottom" data-i18n="footerRights">
 © 2026 Aion Food Supplements. ყველა უფლება დაცულია.
 </div>
 </div>
@@ -1631,11 +1630,11 @@ MOBILE NAV
 <nav class="mobile-nav">
 <button class="active" onclick="window.scrollTo({top:0,behavior:'smooth'})">
 🏠
-<small>მთავარი</small>
+<small data-i18n="home">მთავარი</small>
 </button>
 <button onclick="document.getElementById('products').scrollIntoView()">
 🛍️
-<small>პროდუქცია</small>
+<small data-i18n="products">პროდუქცია</small>
 </button>
 <button onclick="openWishlist()">
 ♡
@@ -1643,7 +1642,7 @@ MOBILE NAV
 </button>
 <button onclick="openCart()">
 🛒
-<small>კალათა</small>
+<small data-i18n="cartNav">კალათა</small>
 </button>
 </nav>
 
@@ -1660,24 +1659,24 @@ MODALS
 <div id="cartModal" class="modal side-modal" onclick="closeModalOutside(event, 'cartModal')">
 <div class="modal-card cart-card">
 <div class="modal-title-row">
-<h2>შენი კალათა 🛒</h2>
+<h2 data-i18n="yourCart">შენი კალათა 🛒</h2>
 <button class="modal-close" style="position:static;" onclick="closeCart()">✕</button>
 </div>
 <div id="cartItems" class="cart-items"></div>
 <div class="cart-summary">
 <div class="summary-row">
-<span>ქვეჯამი</span>
+<span data-i18n="subtotal">ქვეჯამი</span>
 <strong id="cartSubtotal">0.00 ₾</strong>
 </div>
 <div class="summary-row">
-<span>მიწოდება</span>
+<span data-i18n="delivery">მიწოდება</span>
 <strong id="cartDelivery">5.00 ₾</strong>
 </div>
 <div class="summary-total">
-<span>სულ</span>
+<span data-i18n="total">სულ</span>
 <span id="cartTotal">0.00 ₾</span>
 </div>
-<button class="btn-primary" style="width:100%;" onclick="openCheckout()">შეკვეთის გაფორმება</button>
+<button class="btn-primary" style="width:100%;" onclick="openCheckout()" data-i18n="checkoutBtn">შეკვეთის გაფორმება</button>
 </div>
 </div>
 </div>
@@ -1685,35 +1684,38 @@ MODALS
 <div id="checkoutModal" class="modal" onclick="closeModalOutside(event, 'checkoutModal')">
 <div class="modal-card checkout-card">
 <button class="modal-close" onclick="closeCheckout()">✕</button>
-<h2 style="color:var(--green); margin-bottom:5px;">შეკვეთის გაფორმება</h2>
-<p style="font-size:11px; color:var(--muted); margin-bottom:20px;">შეავსე ინფორმაცია შეკვეთისთვის.</p>
-<form onsubmit="submitCheckout(event)">
+<h2 style="color:var(--green); margin-bottom:5px;" data-i18n="checkoutTitle">შეკვეთის გაფორმება</h2>
+<p style="font-size:11px; color:var(--muted); margin-bottom:20px;" data-i18n="checkoutSub">შეავსე ინფორმაცია შეკვეთისთვის.</p>
+<form id="checkoutForm" onsubmit="submitCheckout(event)" novalidate>
 <div class="form-group">
-<label>სახელი და გვარი</label>
-<input id="customerName" class="form-control" required>
+<label data-i18n="fullName">სახელი და გვარი</label>
+<input id="customerName" class="form-control" required minlength="2">
+<div class="field-error" data-i18n="errName">გთხოვ, მიუთითე სახელი და გვარი (მინ. 2 სიმბოლო).</div>
 </div>
 <div class="form-group">
-<label>ტელეფონი</label>
-<input id="customerPhone" class="form-control" type="tel" required>
+<label data-i18n="phone">ტელეფონი</label>
+<input id="customerPhone" class="form-control" type="tel" placeholder="5XXXXXXXX" required>
+<div class="field-error" data-i18n="errPhone">გთხოვ, მიუთითე ვალიდური ტელეფონის ნომერი.</div>
 </div>
 <div class="form-group">
-<label>ქალაქი</label>
+<label data-i18n="city">ქალაქი</label>
 <select id="customerCity" class="form-control">
-<option>თბილისი</option>
-<option>ბათუმი</option>
-<option>ქუთაისი</option>
-<option>სხვა</option>
+<option data-i18n="cityTbilisi">თბილისი</option>
+<option data-i18n="cityBatumi">ბათუმი</option>
+<option data-i18n="cityKutaisi">ქუთაისი</option>
+<option data-i18n="cityOther">სხვა</option>
 </select>
 </div>
 <div class="form-group">
-<label>მისამართი</label>
-<input id="customerAddress" class="form-control" required>
+<label data-i18n="address">მისამართი</label>
+<input id="customerAddress" class="form-control" required minlength="4">
+<div class="field-error" data-i18n="errAddress">გთხოვ, მიუთითე მისამართი (მინ. 4 სიმბოლო).</div>
 </div>
 <div style="display:flex; justify-content:space-between; padding:14px; margin:15px 0; border-radius:12px; background:var(--sage); color:var(--green); font-size:13px; font-weight:800;">
-<span>გადასახდელი</span>
+<span data-i18n="toPay">გადასახდელი</span>
 <span id="checkoutTotal">0.00 ₾</span>
 </div>
-<button type="submit" class="btn-primary" style="width:100%;">შეკვეთის დადასტურება</button>
+<button type="submit" class="btn-primary" style="width:100%;" data-i18n="confirmOrder">შეკვეთის დადასტურება</button>
 </form>
 </div>
 </div>
@@ -1722,7 +1724,7 @@ MODALS
 <div class="modal-card">
 <button class="modal-close" onclick="closeWishlist()">✕</button>
 <div style="padding:25px 25px 5px;">
-<h2 style="color:var(--green); font-size:20px;">შენახული პროდუქტები ♡</h2>
+<h2 style="color:var(--green); font-size:20px;" data-i18n="savedProducts">შენახული პროდუქტები ♡</h2>
 </div>
 <div id="wishlistItems" class="wishlist-grid"></div>
 </div>
@@ -1905,11 +1907,73 @@ image: "https://images.unsplash.com/photo-1576602976047-174e57a47881?auto=format
 }
 ];
 
+const faqData = [
+{ q: "როგორ შევუკვეთო პროდუქტი?", a: "აირჩიე სასურველი პროდუქტი, დაამატე კალათაში და შემდეგ შეავსე შეკვეთის ფორმა.", qEn: "How do I place an order?", aEn: "Choose the product you want, add it to the cart, then fill in the order form." },
+{ q: "რამდენ ხანში მივიღებ შეკვეთას?", a: "მიწოდების ზუსტი პირობები და ვადები დამოკიდებულია მისამართსა და მიწოდების მეთოდზე.", qEn: "How long until I receive my order?", aEn: "Exact delivery terms depend on your address and the delivery method." },
+{ q: "შესაძლებელია პროდუქტის დაბრუნება?", a: "დაბრუნების პირობები დეტალურად იქნება აღწერილი Aion-ის საბოლოო წესებსა და პირობებში.", qEn: "Can I return a product?", aEn: "Return terms will be detailed in Aion's final terms and conditions." },
+{ q: "საკვები დანამატი ცვლის ექიმის დანიშნულ მკურნალობას?", a: "საკვები დანამატები არ არის განკუთვნილი ექიმის მიერ დანიშნული მკურნალობის ჩასანაცვლებლად. კონკრეტული პროდუქტის გამოყენების წინ საჭიროების შემთხვევაში გაიარე კონსულტაცია ექიმთან ან ფარმაცევტთან.", qEn: "Do supplements replace doctor-prescribed treatment?", aEn: "Food supplements are not intended to replace treatment prescribed by a doctor. Consult a doctor or pharmacist before use if needed." }
+];
+
 let currentLanguage = "GE";
 let activeCategory = "all";
 let cart = [];
 let wishlist = [];
-let countdownSeconds = 8 * 60 * 60 + 42 * 60 + 19;
+
+// Fixed real countdown target instead of an infinitely-looping fake timer.
+// Set to a real end date/time for the sale.
+const SALE_END_TIME = (function () {
+const stored = Number(localStorage.getItem("aion_sale_end"));
+if (stored && stored > Date.now()) return stored;
+const end = Date.now() + (8 * 60 * 60 + 42 * 60 + 19) * 1000;
+try { localStorage.setItem("aion_sale_end", String(end)); } catch (e) {}
+return end;
+})();
+
+// --- Escape helper to prevent HTML/script injection from any dynamic data (Supabase or otherwise) ---
+function escapeHtml(value) {
+return String(value ?? "").replace(/[&<>"']/g, (char) => ({
+"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+}[char]));
+}
+
+// --- Safe localStorage helpers (never let storage errors break the page) ---
+function safeGet(key, fallback) {
+try {
+const raw = localStorage.getItem(key);
+return raw ? JSON.parse(raw) : fallback;
+} catch (e) {
+return fallback;
+}
+}
+function safeSet(key, value) {
+try {
+localStorage.setItem(key, JSON.stringify(value));
+} catch (e) {
+console.warn("Could not persist", key, e);
+}
+}
+
+cart = safeGet("aion_cart", []);
+wishlist = safeGet("aion_wishlist", []);
+
+// --- Normalize a product coming from Supabase (snake_case) or fallback data (camelCase) ---
+function normalizeProduct(raw) {
+return {
+id: raw.id,
+name: raw.name ?? "",
+category: raw.category ?? "",
+categoryGe: raw.categoryGe ?? raw.category_ge ?? raw.category ?? "",
+price: Number(raw.price ?? 0),
+oldPrice: raw.oldPrice ?? raw.old_price ?? null,
+discount: Number(raw.discount ?? 0),
+rating: raw.rating ?? 0,
+reviews: raw.reviews ?? 0,
+image: raw.image ?? raw.image_url ?? "",
+popular: Boolean(raw.popular ?? raw.is_popular ?? false),
+sale: Boolean(raw.sale ?? raw.is_sale ?? false),
+description: raw.description ?? ""
+};
+}
 
 // --- LOAD PRODUCTS FROM SUPABASE ---
 async function fetchProductsFromSupabase() {
@@ -1920,7 +1984,7 @@ console.warn("Supabase fetch warning/error (using fallback):", error.message);
 return;
 }
 if (data && data.length > 0) {
-products = data;
+products = data.map(normalizeProduct);
 renderProducts();
 }
 } catch (err) {
@@ -1946,7 +2010,7 @@ function renderCategories() {
 const container = document.getElementById("categoryList");
 container.innerHTML = categories.map(category => {
 const name = currentLanguage === "GE" ? category.ge : category.en;
-return `<button class="category-btn ${activeCategory === category.id ? "active" : ""}" onclick="setCategory('${category.id}')">${name}</button>`;
+return `<button class="category-btn ${activeCategory === category.id ? "active" : ""}" onclick="setCategory('${category.id}')">${escapeHtml(name)}</button>`;
 }).join("");
 }
 
@@ -1975,21 +2039,23 @@ document.getElementById("products").scrollIntoView({ behavior: "smooth", block: 
 
 function productCard(product) {
 const wished = wishlist.includes(product.id);
+const name = escapeHtml(product.name);
+const categoryLabel = escapeHtml(product.categoryGe || product.category);
 return `
 <article class="product-card">
 <div class="product-image" onclick="openProduct(${product.id})" style="cursor:pointer;">
 ${product.discount > 0 ? `<div class="product-badge">-${product.discount}%</div>` : ""}
 <button class="product-wishlist" onclick="toggleWishlist(${product.id}, event)">${wished ? "❤️" : "♡"}</button>
-<img src="${product.image}" loading="lazy" alt="${product.name}">
+<img src="${escapeHtml(product.image)}" loading="lazy" alt="${name}">
 </div>
-<div class="product-category">${product.categoryGe || product.category}</div>
-<div class="product-name" onclick="openProduct(${product.id})" style="cursor:pointer;">${product.name}</div>
-<div class="product-rating">★★★★★ <span>${product.rating} (${product.reviews})</span></div>
+<div class="product-category">${categoryLabel}</div>
+<div class="product-name" onclick="openProduct(${product.id})" style="cursor:pointer;">${name}</div>
+<div class="product-rating">★★★★★ <span>${escapeHtml(product.rating)} (${escapeHtml(product.reviews)})</span></div>
 <div class="product-price">
 <span class="current-price">${formatPrice(product.price)}</span>
 ${product.oldPrice ? `<span class="old-price">${formatPrice(product.oldPrice)}</span>` : ""}
 </div>
-<button class="add-btn" onclick="addToCart(${product.id})">🛒 კალათაში</button>
+<button class="add-btn" onclick="addToCart(${product.id})">🛒 ${currentLanguage === "GE" ? "კალათაში" : "Add to cart"}</button>
 </article>
 `;
 }
@@ -1999,10 +2065,13 @@ const filtered = getFilteredProducts();
 const popular = filtered.filter(p => p.popular);
 const newest = filtered.filter(p => !p.popular);
 const sale = filtered.filter(p => p.sale);
+const emptyText = currentLanguage === "GE" ? "პროდუქტი ვერ მოიძებნა." : "No products found.";
+const emptyNew = currentLanguage === "GE" ? "ახალი პროდუქტი ვერ მოიძებნა." : "No new products found.";
+const emptySale = currentLanguage === "GE" ? "ამ კატეგორიაში შეთავაზება არ არის." : "No offers in this category.";
 
-document.getElementById("popularProducts").innerHTML = popular.length ? popular.map(productCard).join("") : `<div class="empty-products">პროდუქტი ვერ მოიძებნა.</div>`;
-document.getElementById("newProducts").innerHTML = newest.length ? newest.map(productCard).join("") : `<div class="empty-products">ახალი პროდუქტი ვერ მოიძებნა.</div>`;
-document.getElementById("saleProducts").innerHTML = sale.length ? sale.map(productCard).join("") : `<div class="empty-products">ამ კატეგორიაში შეთავაზება არ არის.</div>`;
+document.getElementById("popularProducts").innerHTML = popular.length ? popular.map(productCard).join("") : `<div class="empty-products">${emptyText}</div>`;
+document.getElementById("newProducts").innerHTML = newest.length ? newest.map(productCard).join("") : `<div class="empty-products">${emptyNew}</div>`;
+document.getElementById("saleProducts").innerHTML = sale.length ? sale.map(productCard).join("") : `<div class="empty-products">${emptySale}</div>`;
 }
 
 function openProduct(productId) {
@@ -2010,20 +2079,21 @@ const product = products.find(p => p.id == productId);
 if (!product) return;
 
 const content = document.getElementById("productDetailContent");
+const name = escapeHtml(product.name);
 content.innerHTML = `
 <div class="product-detail">
 <div class="detail-image">
-<img src="${product.image}" alt="${product.name}">
+<img src="${escapeHtml(product.image)}" alt="${name}">
 </div>
 <div class="detail-info">
-<div class="detail-category">${product.categoryGe || product.category}</div>
-<h2 class="detail-title">${product.name}</h2>
-<div class="detail-rating">★★★★★ <span style="color:var(--muted);">${product.rating} · ${product.reviews} შეფასება</span></div>
+<div class="detail-category">${escapeHtml(product.categoryGe || product.category)}</div>
+<h2 class="detail-title">${name}</h2>
+<div class="detail-rating">★★★★★ <span style="color:var(--muted);">${escapeHtml(product.rating)} · ${escapeHtml(product.reviews)} შეფასება</span></div>
 <div class="detail-price">
 <strong>${formatPrice(product.price)}</strong>
 ${product.oldPrice ? `<del>${formatPrice(product.oldPrice)}</del>` : ""}
 </div>
-<p class="detail-description">${product.description}</p>
+<p class="detail-description">${escapeHtml(product.description)}</p>
 <div style="padding:13px; margin-bottom:18px; border-radius:12px; background:var(--sage); color:var(--green); font-size:11px; line-height:1.6;">
 ℹ️ გამოყენებამდე ყურადღებით გაეცანი პროდუქტის ეტიკეტსა და გამოყენების ინსტრუქციას.
 </div>
@@ -2064,10 +2134,11 @@ cart.push({ id: productId, quantity });
 }
 
 updateCart();
-showToast("პროდუქტი დაემატა კალათაში 🛒");
+showToast(currentLanguage === "GE" ? "პროდუქტი დაემატა კალათაში 🛒" : "Added to cart 🛒");
 }
 
 function updateCart() {
+safeSet("aion_cart", cart);
 const container = document.getElementById("cartItems");
 const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
 document.getElementById("cartCount").textContent = totalItems;
@@ -2076,7 +2147,7 @@ if (!cart.length) {
 container.innerHTML = `
 <div style="padding:50px 15px; text-align:center; color:var(--muted); font-size:12px;">
 <div style="font-size:35px; margin-bottom:10px;">🛒</div>
-კალათა ჯერ ცარიელია.
+${currentLanguage === "GE" ? "კალათა ჯერ ცარიელია." : "Your cart is empty."}
 </div>
 `;
 } else {
@@ -2092,7 +2163,7 @@ const delivery = subtotal === 0 ? 0 : subtotal >= 100 ? 0 : 5;
 const total = subtotal + delivery;
 
 document.getElementById("cartSubtotal").textContent = formatPrice(subtotal);
-document.getElementById("cartDelivery").textContent = delivery === 0 ? "უფასო" : formatPrice(delivery);
+document.getElementById("cartDelivery").textContent = delivery === 0 ? (currentLanguage === "GE" ? "უფასო" : "Free") : formatPrice(delivery);
 document.getElementById("cartTotal").textContent = formatPrice(total);
 document.getElementById("checkoutTotal").textContent = formatPrice(total);
 }
@@ -2101,11 +2172,12 @@ function cartItemHTML(item) {
 const product = products.find(p => p.id == item.id);
 if (!product) return "";
 
+const name = escapeHtml(product.name);
 return `
 <div class="cart-item">
-<img class="cart-item-image" src="${product.image}" alt="${product.name}">
+<img class="cart-item-image" src="${escapeHtml(product.image)}" alt="${name}">
 <div>
-<div class="cart-item-name">${product.name}</div>
+<div class="cart-item-name">${name}</div>
 <div class="cart-item-price">${formatPrice(product.price)}</div>
 <div class="cart-controls">
 <button onclick="changeCartQuantity(${product.id}, -1)">−</button>
@@ -2133,7 +2205,7 @@ updateCart();
 function removeFromCart(productId) {
 cart = cart.filter(i => i.id != productId);
 updateCart();
-showToast("პროდუქტი წაიშალა კალათიდან");
+showToast(currentLanguage === "GE" ? "პროდუქტი წაიშალა კალათიდან" : "Removed from cart");
 }
 
 function openCart() {
@@ -2147,7 +2219,7 @@ closeModal("cartModal");
 
 function openCheckout() {
 if (!cart.length) {
-showToast("კალათა ცარიელია");
+showToast(currentLanguage === "GE" ? "კალათა ცარიელია" : "Your cart is empty");
 return;
 }
 updateCart();
@@ -2159,12 +2231,54 @@ function closeCheckout() {
 closeModal("checkoutModal");
 }
 
+// --- Basic Georgian mobile phone validation (5XXXXXXXX, optionally with +995) ---
+function isValidPhone(value) {
+const digits = value.replace(/[\s\-()]/g, "");
+return /^(\+?995)?5\d{8}$/.test(digits);
+}
+
+function validateCheckoutForm() {
+let valid = true;
+const name = document.getElementById("customerName");
+const phone = document.getElementById("customerPhone");
+const address = document.getElementById("customerAddress");
+
+[name, phone, address].forEach(field => field.classList.remove("invalid"));
+
+if (name.value.trim().length < 2) { name.classList.add("invalid"); valid = false; }
+if (!isValidPhone(phone.value.trim())) { phone.classList.add("invalid"); valid = false; }
+if (address.value.trim().length < 4) { address.classList.add("invalid"); valid = false; }
+
+return valid;
+}
+
 async function submitCheckout(event) {
 event.preventDefault();
-const customerName = document.getElementById("customerName").value;
-const customerPhone = document.getElementById("customerPhone").value;
+
+if (!validateCheckoutForm()) {
+showToast(currentLanguage === "GE" ? "გთხოვ, გადაამოწმე შეყვანილი მონაცემები" : "Please check the fields");
+return;
+}
+
+const customerName = document.getElementById("customerName").value.trim();
+const customerPhone = document.getElementById("customerPhone").value.trim();
 const customerCity = document.getElementById("customerCity").value;
-const customerAddress = document.getElementById("customerAddress").value;
+const customerAddress = document.getElementById("customerAddress").value.trim();
+
+// Snapshot product name/price/quantity at order time so history stays accurate
+// even if prices change later.
+const orderItems = cart.map(item => {
+const product = products.find(p => p.id == item.id);
+return {
+product_id: item.id,
+name: product ? product.name : null,
+price: product ? product.price : null,
+quantity: item.quantity,
+line_total: product ? Number((product.price * item.quantity).toFixed(2)) : null
+};
+});
+const subtotal = orderItems.reduce((sum, i) => sum + (i.line_total || 0), 0);
+const delivery = subtotal === 0 ? 0 : subtotal >= 100 ? 0 : 5;
 
 // Optional: save order to Supabase if 'orders' table exists
 try {
@@ -2174,7 +2288,10 @@ customer_name: customerName,
 phone: customerPhone,
 city: customerCity,
 address: customerAddress,
-items: cart
+items: orderItems,
+subtotal: subtotal,
+delivery: delivery,
+total: subtotal + delivery
 }
 ]);
 } catch (err) {
@@ -2185,7 +2302,7 @@ cart = [];
 updateCart();
 closeCheckout();
 event.target.reset();
-showToast(`მადლობა, ${customerName}! შეკვეთა მიღებულია.`);
+showToast((currentLanguage === "GE" ? `მადლობა, ${customerName}! შეკვეთა მიღებულია.` : `Thank you, ${customerName}! Your order has been received.`));
 }
 
 function toggleWishlist(productId, event) {
@@ -2193,12 +2310,13 @@ if (event) event.stopPropagation();
 
 if (wishlist.includes(productId)) {
 wishlist = wishlist.filter(id => id != productId);
-showToast("Wishlist-იდან წაიშალა");
+showToast(currentLanguage === "GE" ? "Wishlist-იდან წაიშალა" : "Removed from wishlist");
 } else {
 wishlist.push(productId);
-showToast("Wishlist-ში დაემატა ❤️");
+showToast(currentLanguage === "GE" ? "Wishlist-ში დაემატა ❤️" : "Added to wishlist ❤️");
 }
 
+safeSet("aion_wishlist", wishlist);
 document.getElementById("wishlistCount").textContent = wishlist.length;
 renderProducts();
 }
@@ -2213,16 +2331,16 @@ const container = document.getElementById("wishlistItems");
 const items = products.filter(product => wishlist.includes(product.id));
 
 if (!items.length) {
-container.innerHTML = `<div style="grid-column:1/-1; padding:45px 10px; text-align:center; color:var(--muted); font-size:12px;"> ❤️ <br><br> Wishlist ჯერ ცარიელია. </div>`;
+container.innerHTML = `<div style="grid-column:1/-1; padding:45px 10px; text-align:center; color:var(--muted); font-size:12px;"> ❤️ <br><br> ${currentLanguage === "GE" ? "Wishlist ჯერ ცარიელია." : "Your wishlist is empty."} </div>`;
 return;
 }
 
 container.innerHTML = items.map(product => `
 <div class="wishlist-mini">
-<img src="${product.image}" alt="${product.name}">
-<strong>${product.name}</strong>
+<img src="${escapeHtml(product.image)}" alt="${escapeHtml(product.name)}">
+<strong>${escapeHtml(product.name)}</strong>
 <span>${formatPrice(product.price)}</span>
-<button class="add-btn" onclick="addToCart(${product.id})">🛒 კალათაში</button>
+<button class="add-btn" onclick="addToCart(${product.id})">🛒 ${currentLanguage === "GE" ? "კალათაში" : "Add to cart"}</button>
 </div>
 `).join("");
 }
@@ -2235,11 +2353,11 @@ function renderBlog() {
 const container = document.getElementById("blogProducts");
 container.innerHTML = blogPosts.map(post => `
 <article class="blog-card" onclick="openBlog(${post.id})">
-<img class="blog-image" src="${post.image}" loading="lazy" alt="${post.title}">
+<img class="blog-image" src="${escapeHtml(post.image)}" loading="lazy" alt="${escapeHtml(post.title)}">
 <div class="blog-content">
-<div class="blog-tag">${post.tag}</div>
-<div class="blog-title">${post.title}</div>
-<div class="blog-snippet">${post.text.substring(0, 120)}...</div>
+<div class="blog-tag">${escapeHtml(post.tag)}</div>
+<div class="blog-title">${escapeHtml(post.title)}</div>
+<div class="blog-snippet">${escapeHtml(post.text.substring(0, 120))}...</div>
 </div>
 </article>
 `).join("");
@@ -2251,10 +2369,10 @@ if (!post) return;
 
 document.getElementById("blogDetailContent").innerHTML = `
 <div class="blog-detail">
-<img src="${post.image}" alt="${post.title}">
-<div class="blog-tag">${post.tag}</div>
-<h2>${post.title}</h2>
-<p>${post.text}</p>
+<img src="${escapeHtml(post.image)}" alt="${escapeHtml(post.title)}">
+<div class="blog-tag">${escapeHtml(post.tag)}</div>
+<h2>${escapeHtml(post.title)}</h2>
+<p>${escapeHtml(post.text)}</p>
 </div>
 `;
 openModal("blogModal");
@@ -2262,6 +2380,20 @@ openModal("blogModal");
 
 function closeBlog() {
 closeModal("blogModal");
+}
+
+function renderFaq() {
+const container = document.getElementById("faqList");
+container.innerHTML = faqData.map((item, index) => {
+const q = currentLanguage === "GE" ? item.q : item.qEn;
+const a = currentLanguage === "GE" ? item.a : item.aEn;
+return `
+<div class="faq-item">
+<button class="faq-question" onclick="toggleFaq(this)">${escapeHtml(q)} <span>+</span></button>
+<div class="faq-answer">${escapeHtml(a)}</div>
+</div>
+`;
+}).join("");
 }
 
 function toggleFaq(button) {
@@ -2293,22 +2425,58 @@ closeModal("productModal");
 
 const translations = {
 GE: {
-home: "მთავარი",
-products: "პროდუქცია",
-blog: "ბლოგი",
+home: "მთავარი", products: "პროდუქცია", blog: "ბლოგი", faqNav: "FAQ",
 heroTitle: "ჯანმრთელობა, რომელსაც ყოველდღე ირჩევ.",
 heroText: "ხარისხიანი საკვები დანამატები ყოველდღიური ჯანმრთელობისა და კეთილდღეობისთვის — მარტივად, უსაფრთხოდ და შენთვის.",
-shopNow: "პროდუქტების ნახვა",
-explore: "კატეგორიები"
+shopNow: "პროდუქტების ნახვა", explore: "კატეგორიები",
+categoriesTitle: "კატეგორიები", categoriesSub: "იპოვე შენთვის სასურველი პროდუქტი",
+flashSale: "FLASH SALE", saleTitle: "სპეციალური შეთავაზებები ⚡", endsIn: "სრულდება",
+popularTitle: "პოპულარული პროდუქტები 🔥", popularSub: "ყველაზე მოთხოვნადი არჩევანი",
+newTitle: "ახალი პროდუქტები ✨", newSub: "აღმოაჩინე ახალი დამატებები",
+feat1Title: "მარტივი მიწოდება", feat1Text: "შეკვეთა მარტივად და მოსახერხებლად.",
+feat2Title: "ხარისხზე ორიენტირებული", feat2Text: "შერჩეული პროდუქტები სანდო ბრენდებიდან.",
+feat3Title: "უსაფრთხო გამოცდილება", feat3Text: "შენი მონაცემების დაცვა ჩვენი პრიორიტეტია.",
+blogTitle: "ჯანმრთელობის ბლოგი 📖", blogSub: "მარტივი ინფორმაცია ჯანმრთელობაზე",
+faqTitle: "ხშირად დასმული კითხვები", faqSub: "ყველაფერი, რაც შეკვეთამდე უნდა იცოდე",
+footerAbout: "თანამედროვე საკვები დანამატების ონლაინ სივრცე, სადაც ხარისხი და მარტივი მომხმარებლის გამოცდილება ერთიანდება.",
+footerNav: "ნავიგაცია", footerInfo: "ინფორმაცია", footerContact: "კონტაქტი",
+footerAboutUs: "ჩვენ შესახებ", footerDelivery: "მიწოდება", footerReturns: "დაბრუნება", footerPrivacy: "კონფიდენციალურობა",
+footerCity: "თბილისი, საქართველო", footerRights: "© 2026 Aion Food Supplements. ყველა უფლება დაცულია.",
+cartNav: "კალათა", yourCart: "შენი კალათა 🛒", subtotal: "ქვეჯამი", delivery: "მიწოდება", total: "სულ",
+checkoutBtn: "შეკვეთის გაფორმება", checkoutTitle: "შეკვეთის გაფორმება", checkoutSub: "შეავსე ინფორმაცია შეკვეთისთვის.",
+fullName: "სახელი და გვარი", phone: "ტელეფონი", city: "ქალაქი", address: "მისამართი",
+cityTbilisi: "თბილისი", cityBatumi: "ბათუმი", cityKutaisi: "ქუთაისი", cityOther: "სხვა",
+toPay: "გადასახდელი", confirmOrder: "შეკვეთის დადასტურება", savedProducts: "შენახული პროდუქტები ♡",
+errName: "გთხოვ, მიუთითე სახელი და გვარი (მინ. 2 სიმბოლო).",
+errPhone: "გთხოვ, მიუთითე ვალიდური ტელეფონის ნომერი.",
+errAddress: "გთხოვ, მიუთითე მისამართი (მინ. 4 სიმბოლო)."
 },
 EN: {
-home: "Home",
-products: "Products",
-blog: "Blog",
+home: "Home", products: "Products", blog: "Blog", faqNav: "FAQ",
 heroTitle: "Choose your everyday wellness.",
 heroText: "Quality food supplements for your everyday wellness — simple, thoughtful and made for you.",
-shopNow: "Shop products",
-explore: "Explore categories"
+shopNow: "Shop products", explore: "Explore categories",
+categoriesTitle: "Categories", categoriesSub: "Find the product you're looking for",
+flashSale: "FLASH SALE", saleTitle: "Special offers ⚡", endsIn: "Ends in",
+popularTitle: "Popular products 🔥", popularSub: "Our most requested picks",
+newTitle: "New products ✨", newSub: "Discover our newest additions",
+feat1Title: "Easy delivery", feat1Text: "Order simply and conveniently.",
+feat2Title: "Quality-focused", feat2Text: "Curated products from trusted brands.",
+feat3Title: "Secure experience", feat3Text: "Protecting your data is our priority.",
+blogTitle: "Wellness blog 📖", blogSub: "Simple information about your health",
+faqTitle: "Frequently asked questions", faqSub: "Everything you should know before ordering",
+footerAbout: "A modern online space for food supplements, where quality meets a simple customer experience.",
+footerNav: "Navigation", footerInfo: "Information", footerContact: "Contact",
+footerAboutUs: "About us", footerDelivery: "Delivery", footerReturns: "Returns", footerPrivacy: "Privacy",
+footerCity: "Tbilisi, Georgia", footerRights: "© 2026 Aion Food Supplements. All rights reserved.",
+cartNav: "Cart", yourCart: "Your cart 🛒", subtotal: "Subtotal", delivery: "Delivery", total: "Total",
+checkoutBtn: "Checkout", checkoutTitle: "Checkout", checkoutSub: "Fill in your details for the order.",
+fullName: "Full name", phone: "Phone", city: "City", address: "Address",
+cityTbilisi: "Tbilisi", cityBatumi: "Batumi", cityKutaisi: "Kutaisi", cityOther: "Other",
+toPay: "Total due", confirmOrder: "Confirm order", savedProducts: "Saved products ♡",
+errName: "Please enter your full name (min. 2 characters).",
+errPhone: "Please enter a valid phone number.",
+errAddress: "Please enter an address (min. 4 characters)."
 }
 };
 
@@ -2325,29 +2493,35 @@ element.textContent = translations[currentLanguage][key];
 
 renderCategories();
 renderProducts();
+renderFaq();
 }
 
 function updateCountdown() {
-if (countdownSeconds <= 0) {
-countdownSeconds = 24 * 60 * 60;
+const remainingMs = SALE_END_TIME - Date.now();
+const countdownEl = document.querySelector(".countdown");
+if (remainingMs <= 0) {
+if (countdownEl) countdownEl.style.display = "none";
+clearInterval(window.countdownTimer);
+return;
 }
-const hours = Math.floor(countdownSeconds / 3600);
-const minutes = Math.floor((countdownSeconds % 3600) / 60);
-const seconds = countdownSeconds % 60;
+const totalSeconds = Math.floor(remainingMs / 1000);
+const hours = Math.floor(totalSeconds / 3600);
+const minutes = Math.floor((totalSeconds % 3600) / 60);
+const seconds = totalSeconds % 60;
 
 document.getElementById("hours").textContent = String(hours).padStart(2, "0");
 document.getElementById("minutes").textContent = String(minutes).padStart(2, "0");
 document.getElementById("seconds").textContent = String(seconds).padStart(2, "0");
-countdownSeconds--;
 }
 
 // Initial renders and data fetching
 renderCategories();
 renderProducts();
 renderBlog();
+renderFaq();
 updateCart();
 updateCountdown();
-setInterval(updateCountdown, 1000);
+window.countdownTimer = setInterval(updateCountdown, 1000);
 
 // Fetch live items from Supabase database on load
 fetchProductsFromSupabase();
