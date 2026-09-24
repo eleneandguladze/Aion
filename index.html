@@ -940,12 +940,16 @@ height: 420px;
 overflow: hidden;
 border-radius: 18px;
 background: #F4F6F3;
+display: flex;
+align-items: center;
+justify-content: center;
+padding: 10px;
 }
 
 .detail-image img {
 width: 100%;
 height: 100%;
-object-fit: cover;
+object-fit: contain; /* იცავს სურათს გაჭიმვისგან და აჩვენებს სრულად მაღალ ხარისხში */
 }
 
 .detail-info {
@@ -1332,7 +1336,7 @@ box-shadow: 0 10px 30px rgba(0,0,0,.13);
 .mobile-nav button.active { color: var(--green); }
 .mobile-nav small { display: block; margin-top: 2px; font-size: 7px; }
 .product-detail { grid-template-columns: 1fr; padding: 17px; gap: 10px; }
-.detail-image { height: 300px; }
+.detail-image { height: 260px; }
 .detail-title { font-size: 23px; }
 .cart-card { width: 100%; border-radius: 22px 22px 0 0; height: 92%; margin-top: auto; }
 .side-modal { align-items: flex-end; }
@@ -1919,7 +1923,6 @@ let activeCategory = "all";
 let cart = [];
 let wishlist = [];
 
-// Fixed real countdown target instead of an infinitely-looping fake timer.
 const SALE_END_TIME = (function () {
 const stored = Number(localStorage.getItem("aion_sale_end"));
 if (stored && stored > Date.now()) return stored;
@@ -1928,14 +1931,12 @@ try { localStorage.setItem("aion_sale_end", String(end)); } catch (e) {}
 return end;
 })();
 
-// --- Escape helper to prevent HTML/script injection ---
 function escapeHtml(value) {
 return String(value ?? "").replace(/[&<>"']/g, (char) => ({
 "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
 }[char]));
 }
 
-// --- Safe localStorage helpers ---
 function safeGet(key, fallback) {
 try {
 const raw = localStorage.getItem(key);
@@ -1955,26 +1956,29 @@ console.warn("Could not persist", key, e);
 cart = safeGet("aion_cart", []);
 wishlist = safeGet("aion_wishlist", []);
 
-// --- Normalize a product coming from Supabase or fallback data ---
 function normalizeProduct(raw) {
+let desc = raw.description ?? "";
+if (!desc || desc.length < 3 || desc.includes("უბდე") || /^[აბგდევზთიკლმნოპჟრსტუფქღყშჩცძწჭხჯჰ\s\d]+$/.test(desc) === false && desc.length > 5 && desc.replace(/[^\w\s]/gi, '').length < 3) {
+    desc = "ხარისხიანი საკვები დანამატი ყოველდღიური ჯანმრთელობისა და კეთილდღეობის მხარდასაჭერად. რეკომენდებულია ინსტრუქციის გაცნობა.";
+}
+
 return {
 id: raw.id,
 title: raw.title ?? raw.name ?? "",
-category: raw.category ?? "",
-categoryGe: raw.categoryGe ?? raw.category_ge ?? raw.category ?? "",
+category: raw.category ?? "vitamins",
+categoryGe: raw.categoryGe ?? raw.category_ge ?? "ვიტამინები",
 price: Number(raw.price ?? 0),
 oldPrice: raw.oldPrice ?? raw.old_price ?? null,
 discount: Number(raw.discount ?? 0),
-rating: raw.rating ?? 0,
-reviews: raw.reviews ?? 0,
+rating: raw.rating ?? 4.8,
+reviews: raw.reviews ?? 15,
 image: raw.image ?? raw.image_url ?? "",
-popular: Boolean(raw.popular ?? raw.is_popular ?? false),
+popular: Boolean(raw.popular ?? raw.is_popular ?? true),
 sale: Boolean(raw.sale ?? raw.is_sale ?? false),
-description: raw.description ?? ""
+description: desc
 };
 }
 
-// --- LOAD PRODUCTS FROM SUPABASE ---
 async function fetchProductsFromSupabase() {
 try {
 const { data, error } = await supabaseClient.from('products').select('*');
