@@ -1763,7 +1763,7 @@ const categories = [
 let products = [
 {
 id: 1,
-name: "CollagenUP Peptides",
+title: "CollagenUP Peptides",
 category: "collagen",
 categoryGe: "კოლაგენი",
 price: 85,
@@ -1778,7 +1778,7 @@ description: "ჰიდროლიზებული კოლაგენი�
 },
 {
 id: 2,
-name: "Vitamin D3 5000 IU",
+title: "Vitamin D3 5000 IU",
 category: "vitamins",
 categoryGe: "ვიტამინები",
 price: 35,
@@ -1793,7 +1793,7 @@ description: "ვიტამინი D3 ყოველდღიური რ�
 },
 {
 id: 3,
-name: "LactoBif Probiotics",
+title: "LactoBif Probiotics",
 category: "probiotics",
 categoryGe: "პრობიოტიკები",
 price: 65,
@@ -1808,7 +1808,7 @@ description: "პრობიოტიკური კულტურები�
 },
 {
 id: 4,
-name: "Magnesium Complex",
+title: "Magnesium Complex",
 category: "minerals",
 categoryGe: "მინერალები",
 price: 49,
@@ -1823,7 +1823,7 @@ description: "მაგნიუმის კომპლექსი ყოვ�
 },
 {
 id: 5,
-name: "Vitamin C 1000",
+title: "Vitamin C 1000",
 category: "vitamins",
 categoryGe: "ვიტამინები",
 price: 32,
@@ -1838,7 +1838,7 @@ description: "ვიტამინი C საკვები დანამ�
 },
 {
 id: 6,
-name: "Daily Wellness Complex",
+title: "Daily Wellness Complex",
 category: "wellness",
 categoryGe: "Wellness",
 price: 72,
@@ -1853,7 +1853,7 @@ description: "ყოველდღიური wellness რუტინის �
 },
 {
 id: 7,
-name: "Zinc Balance",
+title: "Zinc Balance",
 category: "minerals",
 categoryGe: "მინერალები",
 price: 39,
@@ -1868,7 +1868,7 @@ description: "თუთიის შემცველი საკვები 
 },
 {
 id: 8,
-name: "Beauty Support",
+title: "Beauty Support",
 category: "collagen",
 categoryGe: "კოლაგენი",
 price: 91,
@@ -1920,7 +1920,6 @@ let cart = [];
 let wishlist = [];
 
 // Fixed real countdown target instead of an infinitely-looping fake timer.
-// Set to a real end date/time for the sale.
 const SALE_END_TIME = (function () {
 const stored = Number(localStorage.getItem("aion_sale_end"));
 if (stored && stored > Date.now()) return stored;
@@ -1929,14 +1928,14 @@ try { localStorage.setItem("aion_sale_end", String(end)); } catch (e) {}
 return end;
 })();
 
-// --- Escape helper to prevent HTML/script injection from any dynamic data (Supabase or otherwise) ---
+// --- Escape helper to prevent HTML/script injection ---
 function escapeHtml(value) {
 return String(value ?? "").replace(/[&<>"']/g, (char) => ({
 "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
 }[char]));
 }
 
-// --- Safe localStorage helpers (never let storage errors break the page) ---
+// --- Safe localStorage helpers ---
 function safeGet(key, fallback) {
 try {
 const raw = localStorage.getItem(key);
@@ -1956,11 +1955,11 @@ console.warn("Could not persist", key, e);
 cart = safeGet("aion_cart", []);
 wishlist = safeGet("aion_wishlist", []);
 
-// --- Normalize a product coming from Supabase (snake_case) or fallback data (camelCase) ---
+// --- Normalize a product coming from Supabase or fallback data ---
 function normalizeProduct(raw) {
 return {
 id: raw.id,
-name: raw.name ?? "",
+title: raw.title ?? raw.name ?? "",
 category: raw.category ?? "",
 categoryGe: raw.categoryGe ?? raw.category_ge ?? raw.category ?? "",
 price: Number(raw.price ?? 0),
@@ -2027,7 +2026,7 @@ list = list.filter(product => product.category === activeCategory);
 }
 const query = document.getElementById("searchInput").value.trim().toLowerCase();
 if (query) {
-list = list.filter(product => product.name.toLowerCase().includes(query));
+list = list.filter(product => product.title.toLowerCase().includes(query));
 }
 return list;
 }
@@ -2039,17 +2038,17 @@ document.getElementById("products").scrollIntoView({ behavior: "smooth", block: 
 
 function productCard(product) {
 const wished = wishlist.includes(product.id);
-const name = escapeHtml(product.name);
+const title = escapeHtml(product.title);
 const categoryLabel = escapeHtml(product.categoryGe || product.category);
 return `
 <article class="product-card">
 <div class="product-image" onclick="openProduct(${product.id})" style="cursor:pointer;">
 ${product.discount > 0 ? `<div class="product-badge">-${product.discount}%</div>` : ""}
 <button class="product-wishlist" onclick="toggleWishlist(${product.id}, event)">${wished ? "❤️" : "♡"}</button>
-<img src="${escapeHtml(product.image)}" loading="lazy" alt="${name}">
+<img src="${escapeHtml(product.image)}" loading="lazy" alt="${title}">
 </div>
 <div class="product-category">${categoryLabel}</div>
-<div class="product-name" onclick="openProduct(${product.id})" style="cursor:pointer;">${name}</div>
+<div class="product-name" onclick="openProduct(${product.id})" style="cursor:pointer;">${title}</div>
 <div class="product-rating">★★★★★ <span>${escapeHtml(product.rating)} (${escapeHtml(product.reviews)})</span></div>
 <div class="product-price">
 <span class="current-price">${formatPrice(product.price)}</span>
@@ -2079,15 +2078,15 @@ const product = products.find(p => p.id == productId);
 if (!product) return;
 
 const content = document.getElementById("productDetailContent");
-const name = escapeHtml(product.name);
+const title = escapeHtml(product.title);
 content.innerHTML = `
 <div class="product-detail">
 <div class="detail-image">
-<img src="${escapeHtml(product.image)}" alt="${name}">
+<img src="${escapeHtml(product.image)}" alt="${title}">
 </div>
 <div class="detail-info">
 <div class="detail-category">${escapeHtml(product.categoryGe || product.category)}</div>
-<h2 class="detail-title">${name}</h2>
+<h2 class="detail-title">${title}</h2>
 <div class="detail-rating">★★★★★ <span style="color:var(--muted);">${escapeHtml(product.rating)} · ${escapeHtml(product.reviews)} შეფასება</span></div>
 <div class="detail-price">
 <strong>${formatPrice(product.price)}</strong>
@@ -2172,12 +2171,12 @@ function cartItemHTML(item) {
 const product = products.find(p => p.id == item.id);
 if (!product) return "";
 
-const name = escapeHtml(product.name);
+const title = escapeHtml(product.title);
 return `
 <div class="cart-item">
-<img class="cart-item-image" src="${escapeHtml(product.image)}" alt="${name}">
+<img class="cart-item-image" src="${escapeHtml(product.image)}" alt="${title}">
 <div>
-<div class="cart-item-name">${name}</div>
+<div class="cart-item-name">${title}</div>
 <div class="cart-item-price">${formatPrice(product.price)}</div>
 <div class="cart-controls">
 <button onclick="changeCartQuantity(${product.id}, -1)">−</button>
@@ -2231,7 +2230,6 @@ function closeCheckout() {
 closeModal("checkoutModal");
 }
 
-// --- Basic Georgian mobile phone validation (5XXXXXXXX, optionally with +995) ---
 function isValidPhone(value) {
 const digits = value.replace(/[\s\-()]/g, "");
 return /^(\+?995)?5\d{8}$/.test(digits);
@@ -2265,13 +2263,11 @@ const customerPhone = document.getElementById("customerPhone").value.trim();
 const customerCity = document.getElementById("customerCity").value;
 const customerAddress = document.getElementById("customerAddress").value.trim();
 
-// Snapshot product name/price/quantity at order time so history stays accurate
-// even if prices change later.
 const orderItems = cart.map(item => {
 const product = products.find(p => p.id == item.id);
 return {
 product_id: item.id,
-name: product ? product.name : null,
+title: product ? product.title : null,
 price: product ? product.price : null,
 quantity: item.quantity,
 line_total: product ? Number((product.price * item.quantity).toFixed(2)) : null
@@ -2280,7 +2276,6 @@ line_total: product ? Number((product.price * item.quantity).toFixed(2)) : null
 const subtotal = orderItems.reduce((sum, i) => sum + (i.line_total || 0), 0);
 const delivery = subtotal === 0 ? 0 : subtotal >= 100 ? 0 : 5;
 
-// Optional: save order to Supabase if 'orders' table exists
 try {
 await supabaseClient.from('orders').insert([
 {
@@ -2337,8 +2332,8 @@ return;
 
 container.innerHTML = items.map(product => `
 <div class="wishlist-mini">
-<img src="${escapeHtml(product.image)}" alt="${escapeHtml(product.name)}">
-<strong>${escapeHtml(product.name)}</strong>
+<img src="${escapeHtml(product.image)}" alt="${escapeHtml(product.title)}">
+<strong>${escapeHtml(product.title)}</strong>
 <span>${formatPrice(product.price)}</span>
 <button class="add-btn" onclick="addToCart(${product.id})">🛒 ${currentLanguage === "GE" ? "კალათაში" : "Add to cart"}</button>
 </div>
@@ -2514,7 +2509,6 @@ document.getElementById("minutes").textContent = String(minutes).padStart(2, "0"
 document.getElementById("seconds").textContent = String(seconds).padStart(2, "0");
 }
 
-// Initial renders and data fetching
 renderCategories();
 renderProducts();
 renderBlog();
@@ -2523,7 +2517,6 @@ updateCart();
 updateCountdown();
 window.countdownTimer = setInterval(updateCountdown, 1000);
 
-// Fetch live items from Supabase database on load
 fetchProductsFromSupabase();
 
 document.addEventListener("keydown", event => {
