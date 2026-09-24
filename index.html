@@ -657,6 +657,1847 @@ transition: .2s;
 background: var(--green-dark);
 }
 
+.empty-products {
+grid-column: 1 / -1;
+padding: 45px 20px;
+border-radius: 18px;
+background: white;
+color: var(--muted);
+text-align: center;
+font-size: 13px;
+}
+
+/* =========================================================
+FEATURES
+========================================================= */
+
+.features {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 15px;
+margin-bottom: 50px;
+}
+
+.feature {
+padding: 22px;
+border: 1px solid var(--border);
+border-radius: 18px;
+background: white;
+text-align: center;
+}
+
+.feature-icon {
+width: 45px;
+height: 45px;
+margin: 0 auto 12px;
+border-radius: 50%;
+background: var(--sage);
+display: grid;
+place-items: center;
+font-size: 20px;
+}
+
+.feature h3 {
+color: var(--green);
+font-size: 13px;
+margin-bottom: 5px;
+}
+
+.feature p {
+color: var(--muted);
+font-size: 10px;
+}
+
+/* =========================================================
+BLOG
+========================================================= */
+
+.blog-track {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 16px;
+}
+
+.blog-card {
+overflow: hidden;
+border-radius: 19px;
+background: white;
+box-shadow: 0 5px 18px rgba(0,0,0,.035);
+cursor: pointer;
+transition: .25s;
+}
+
+.blog-card:hover {
+transform: translateY(-4px);
+}
+
+.blog-image {
+width: 100%;
+height: 190px;
+object-fit: cover;
+}
+
+.blog-content {
+padding: 18px;
+}
+
+.blog-tag {
+color: var(--green-light);
+font-size: 9px;
+font-weight: 850;
+text-transform: uppercase;
+margin-bottom: 6px;
+}
+
+.blog-title {
+color: var(--green);
+font-size: 15px;
+font-weight: 750;
+line-height: 1.3;
+margin-bottom: 8px;
+}
+
+.blog-snippet {
+color: var(--muted);
+font-size: 11px;
+line-height: 1.55;
+}
+
+/* =========================================================
+FAQ
+========================================================= */
+
+.faq-section {
+margin: 55px 0;
+}
+
+.faq-list {
+max-width: 800px;
+margin: auto;
+}
+
+.faq-item {
+border-bottom: 1px solid var(--border);
+background: white;
+}
+
+.faq-question {
+width: 100%;
+padding: 17px 20px;
+border: none;
+background: white;
+color: var(--green);
+display: flex;
+justify-content: space-between;
+text-align: left;
+font-size: 13px;
+font-weight: 750;
+}
+
+.faq-answer {
+display: none;
+padding: 0 20px 18px;
+color: var(--muted);
+font-size: 11px;
+line-height: 1.7;
+}
+
+.faq-item.open .faq-answer {
+display: block;
+}
+
+/* =========================================================
+FOOTER
+========================================================= */
+
+.footer {
+margin-top: 70px;
+padding: 50px 0 20px;
+background: var(--green);
+color: white;
+}
+
+.footer-grid {
+display: grid;
+grid-template-columns: 1.4fr 1fr 1fr 1fr;
+gap: 35px;
+margin-bottom: 40px;
+}
+
+.footer h3,
+.footer h4 {
+margin-bottom: 12px;
+}
+
+.footer h3 {
+font-size: 22px;
+}
+
+.footer h4 {
+color: #A3D991;
+font-size: 12px;
+}
+
+.footer p,
+.footer li,
+.footer a {
+color: rgba(255,255,255,.7);
+font-size: 10px;
+line-height: 1.7;
+}
+
+.footer ul {
+list-style: none;
+}
+
+.footer li {
+margin-bottom: 4px;
+}
+
+.footer a:hover {
+color: white;
+}
+
+.footer-socials {
+margin-top: 15px;
+}
+
+.footer-socials .social-icon-btn {
+background: rgba(255, 255, 255, 0.1);
+color: white;
+border-color: rgba(255, 255, 255, 0.2);
+}
+
+.footer-socials .social-icon-btn:hover {
+background: white;
+color: var(--green);
+border-color: white;
+}
+
+.footer-bottom {
+padding-top: 18px;
+border-top: 1px solid rgba(255,255,255,.12);
+color: rgba(255,255,255,.5);
+text-align: center;
+font-size: 9px;
+}
+
+/* =========================================================
+MODAL
+========================================================= */
+
+.modal {
+position: fixed;
+inset: 0;
+z-index: 2000;
+padding: 18px;
+background: rgba(10,25,17,.58);
+backdrop-filter: blur(5px);
+display: none;
+align-items: center;
+justify-content: center;
+}
+
+.modal.active {
+display: flex;
+}
+
+.modal-card {
+position: relative;
+width: min(100%, 850px);
+max-height: 92vh;
+overflow-y: auto;
+border-radius: 24px;
+background: white;
+box-shadow: 0 25px 70px rgba(0,0,0,.2);
+}
+
+.modal-close {
+position: absolute;
+z-index: 5;
+top: 14px;
+right: 14px;
+width: 35px;
+height: 35px;
+border: none;
+border-radius: 50%;
+background: rgba(255,255,255,.92);
+color: var(--green);
+font-size: 17px;
+}
+
+/* Product detail */
+
+.product-detail {
+display: grid;
+grid-template-columns: .9fr 1.1fr;
+gap: 28px;
+padding: 28px;
+}
+
+.detail-image {
+height: 420px;
+overflow: hidden;
+border-radius: 18px;
+background: #F4F6F3;
+}
+
+.detail-image img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+}
+
+.detail-info {
+padding: 10px 5px;
+}
+
+.detail-category {
+color: var(--green-light);
+font-size: 10px;
+font-weight: 800;
+text-transform: uppercase;
+}
+
+.detail-title {
+margin: 8px 0;
+color: var(--green);
+font-size: 28px;
+line-height: 1.15;
+}
+
+.detail-rating {
+color: var(--gold);
+font-size: 12px;
+margin-bottom: 18px;
+}
+
+.detail-price {
+display: flex;
+align-items: center;
+gap: 10px;
+margin-bottom: 18px;
+}
+
+.detail-price strong {
+color: var(--green);
+font-size: 24px;
+}
+
+.detail-price del {
+color: #999;
+font-size: 13px;
+}
+
+.detail-description {
+color: #647169;
+font-size: 12px;
+line-height: 1.8;
+margin-bottom: 22px;
+}
+
+.quantity {
+display: flex;
+align-items: center;
+gap: 10px;
+margin-bottom: 15px;
+}
+
+.quantity button {
+width: 35px;
+height: 35px;
+border: 1px solid var(--border);
+border-radius: 10px;
+background: white;
+color: var(--green);
+font-weight: 800;
+}
+
+.quantity span {
+min-width: 30px;
+text-align: center;
+font-weight: 750;
+}
+
+/* Cart */
+
+.side-modal {
+justify-content: flex-end;
+padding: 0;
+}
+
+.cart-card {
+width: min(100%, 440px);
+height: 100%;
+max-height: 100%;
+border-radius: 24px 0 0 24px;
+padding: 25px;
+display: flex;
+flex-direction: column;
+}
+
+.modal-title-row {
+display: flex;
+align-items: center;
+justify-content: space-between;
+margin-bottom: 20px;
+}
+
+.modal-title-row h2 {
+color: var(--green);
+font-size: 20px;
+}
+
+.cart-items {
+flex: 1;
+overflow-y: auto;
+}
+
+.cart-item {
+display: grid;
+grid-template-columns: 65px 1fr auto;
+gap: 10px;
+align-items: center;
+padding: 10px 0;
+border-bottom: 1px solid var(--border);
+}
+
+.cart-item-image {
+width: 65px;
+height: 65px;
+border-radius: 11px;
+object-fit: cover;
+background: #F4F6F3;
+}
+
+.cart-item-name {
+color: var(--green);
+font-size: 11px;
+font-weight: 750;
+margin-bottom: 4px;
+}
+
+.cart-item-price {
+color: var(--muted);
+font-size: 10px;
+}
+
+.cart-controls {
+display: flex;
+align-items: center;
+gap: 5px;
+margin-top: 6px;
+}
+
+.cart-controls button {
+width: 23px;
+height: 23px;
+border: 1px solid var(--border);
+border-radius: 6px;
+background: white;
+color: var(--green);
+font-size: 11px;
+}
+
+.remove-cart {
+border: none !important;
+color: var(--sale) !important;
+}
+
+.cart-summary {
+padding-top: 18px;
+border-top: 1px solid var(--border);
+}
+
+.summary-row {
+display: flex;
+justify-content: space-between;
+margin-bottom: 8px;
+color: var(--muted);
+font-size: 11px;
+}
+
+.summary-total {
+display: flex;
+justify-content: space-between;
+margin: 15px 0;
+color: var(--green);
+font-size: 17px;
+font-weight: 850;
+}
+
+/* Checkout */
+
+.checkout-card {
+width: min(100%, 520px);
+padding: 28px;
+}
+
+.form-group {
+margin-bottom: 13px;
+}
+
+.form-group label {
+display: block;
+margin-bottom: 5px;
+color: var(--green);
+font-size: 10px;
+font-weight: 750;
+}
+
+.form-control {
+width: 100%;
+padding: 11px 12px;
+border: 1px solid var(--border);
+border-radius: 10px;
+outline: none;
+background: var(--cream);
+color: var(--text);
+font-size: 12px;
+}
+
+.form-control:focus {
+border-color: var(--sage-dark);
+background: white;
+}
+
+.field-error {
+display: none;
+margin-top: 4px;
+color: var(--sale);
+font-size: 9px;
+font-weight: 700;
+}
+
+.form-control.invalid {
+border-color: var(--sale);
+}
+
+.form-control.invalid + .field-error {
+display: block;
+}
+
+/* Wishlist */
+
+.wishlist-grid {
+padding: 25px;
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 12px;
+}
+
+.wishlist-mini {
+padding: 10px;
+border: 1px solid var(--border);
+border-radius: 14px;
+background: white;
+}
+
+.wishlist-mini img {
+width: 100%;
+height: 120px;
+border-radius: 10px;
+object-fit: cover;
+margin-bottom: 8px;
+}
+
+.wishlist-mini strong {
+display: block;
+color: var(--green);
+font-size: 11px;
+margin-bottom: 5px;
+}
+
+.wishlist-mini span {
+display: block;
+color: var(--muted);
+font-size: 10px;
+margin-bottom: 8px;
+}
+
+/* Blog modal */
+
+.blog-detail {
+padding: 25px;
+}
+
+.blog-detail img {
+width: 100%;
+height: 280px;
+object-fit: cover;
+border-radius: 15px;
+margin-bottom: 18px;
+}
+
+.blog-detail h2 {
+color: var(--green);
+font-size: 25px;
+line-height: 1.2;
+margin-bottom: 12px;
+}
+
+.blog-detail p {
+color: #5F6D65;
+font-size: 13px;
+line-height: 1.8;
+}
+
+/* Toast */
+
+.toast {
+position: fixed;
+z-index: 5000;
+right: 20px;
+bottom: 20px;
+padding: 12px 17px;
+border-radius: 12px;
+background: var(--green);
+color: white;
+box-shadow: var(--shadow);
+font-size: 11px;
+font-weight: 700;
+transform: translateY(100px);
+opacity: 0;
+pointer-events: none;
+transition: .3s;
+}
+
+.toast.show {
+transform: translateY(0);
+opacity: 1;
+}
+
+.mobile-nav {
+display: none;
+}
+
+/* =========================================================
+RESPONSIVE
+========================================================= */
+
+@media (max-width: 1000px) {
+.desktop-nav { display: none; }
+.hero-grid { grid-template-columns: 1fr; }
+.hero-visual { min-height: 240px; }
+.products-track { grid-template-columns: repeat(3, 1fr); }
+.footer-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 700px) {
+body { padding-bottom: 68px; }
+.container { width: min(100% - 22px, var(--container)); }
+.header-main { min-height: 65px; gap: 6px; }
+.logo { font-size: 19px; }
+.logo small { font-size: 5px; letter-spacing: 2px; }
+.header-actions { gap: 4px; }
+.search-box { display: block; }
+.search-input { width: 115px; height: 34px; padding: 0 28px 0 10px; font-size: 10px; }
+.search-input:focus { width: 145px; }
+.header-btn { width: 34px; height: 34px; font-size: 13px; }
+.lang-btn { height: 32px; padding: 0 7px; font-size: 9px; }
+.hero { padding-top: 15px; }
+.hero-grid { min-height: 0; }
+.hero-content { min-height: 260px; padding: 20px 18px; border-radius: 18px; }
+.hero h1 { font-size: 28px; letter-spacing: -1.2px; }
+.hero p { font-size: 12px; }
+.hero-visual { display: none; }
+.section-heading h2 { font-size: 18px; }
+.section-heading p { display: none; }
+.sale-section { padding: 20px 16px; border-radius: 22px; }
+.sale-top { align-items: flex-start; flex-direction: column; }
+.sale-title h2 { font-size: 18px; }
+.countdown { align-self: stretch; justify-content: center; }
+.products-track { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 11px; padding-bottom: 5px; scrollbar-width: none; }
+.products-track::-webkit-scrollbar { display: none; }
+.product-card { flex: 0 0 165px; scroll-snap-align: start; padding: 10px; }
+.product-image { height: 165px; }
+.product-name { font-size: 12px; }
+.current-price { font-size: 14px; }
+.blog-track { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; }
+.blog-card { flex: 0 0 270px; scroll-snap-align: start; }
+.features { grid-template-columns: 1fr; }
+.feature { display: flex; align-items: center; text-align: left; gap: 12px; }
+.feature-icon { flex-shrink: 0; margin: 0; }
+.footer { padding-bottom: 25px; }
+.footer-grid { grid-template-columns: 1fr 1fr; gap: 25px 15px; }
+.footer-grid > div:first-child { grid-column: 1 / -1; }
+.mobile-nav {
+position: fixed; z-index: 1000; left: 10px; right: 10px; bottom: 10px; height: 57px;
+display: flex; align-items: center; justify-content: space-around;
+border: 1px solid rgba(27,77,46,.1); border-radius: 19px;
+background: rgba(255,255,255,.95); backdrop-filter: blur(14px);
+box-shadow: 0 10px 30px rgba(0,0,0,.13);
+}
+.mobile-nav button { position: relative; border: none; background: none; color: #718078; font-size: 17px; }
+.mobile-nav button.active { color: var(--green); }
+.mobile-nav small { display: block; margin-top: 2px; font-size: 7px; }
+.product-detail { grid-template-columns: 1fr; padding: 17px; gap: 10px; }
+.detail-image { height: 300px; }
+.detail-title { font-size: 23px; }
+.cart-card { width: 100%; border-radius: 22px 22px 0 0; height: 92%; margin-top: auto; }
+.side-modal { align-items: flex-end; }
+.wishlist-grid { grid-template-columns: repeat(2, 1fr); padding: 17px; }
+.blog-detail { padding: 17px; }
+.blog-detail img { height: 200px; }
+}
+
+@media (max-width: 390px) {
+.search-input { width: 95px; }
+.search-input:focus { width: 120px; }
+.product-card { flex-basis: 155px; }
+.product-image { height: 150px; }
+.hero h1 { font-size: 24px; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- =======================================================
+HEADER
+======================================================= -->
+<header class="header">
+<div class="container header-main">
+
+<a href="#home" class="logo">
+Aion 🌿
+<small>FOOD SUPPLEMENTS</small>
+</a>
+
+<nav class="desktop-nav">
+<a href="#home" data-i18n="home">მთავარი</a>
+<a href="#products" data-i18n="products">პროდუქცია</a>
+<a href="#blog" data-i18n="blog">ბლოგი</a>
+<a href="#faq" data-i18n="faqNav">FAQ</a>
+</nav>
+
+<div class="header-actions">
+<div class="search-box">
+<input id="searchInput" class="search-input" type="search" placeholder="მოძებნე..." oninput="handleSearch()">
+<span class="search-icon">⌕</span>
+</div>
+
+<button class="header-btn" onclick="openWishlist()" aria-label="Wishlist">
+♡
+<span id="wishlistCount" class="header-badge">0</span>
+</button>
+
+<button class="lang-btn" onclick="toggleLanguage()">
+<span id="languageButton">EN</span>
+</button>
+
+<button class="header-btn cart-header-btn" onclick="openCart()" aria-label="Cart">
+🛒
+<span id="cartCount" class="header-badge">0</span>
+</button>
+</div>
+
+</div>
+</header>
+
+<main id="home">
+
+<!-- =====================================================
+HERO
+===================================================== -->
+<section class="hero">
+<div class="container hero-grid">
+<div class="hero-content">
+<div class="hero-label">AION FOOD SUPPLEMENTS</div>
+
+<h1 data-i18n="heroTitle">ჯანმრთელობა, რომელსაც ყოველდღე ირჩევ.</h1>
+
+<p data-i18n="heroText">
+ხარისხიანი საკვები დანამატები ყოველდღიური ჯანმრთელობისა
+და კეთილდღეობისთვის — მარტივად, უსაფრთხოდ და შენთვის.
+</p>
+
+<div class="hero-buttons">
+<button class="btn-primary" onclick="document.getElementById('products').scrollIntoView()" data-i18n="shopNow">
+პროდუქტების ნახვა
+</button>
+<button class="btn-secondary" onclick="document.getElementById('categories').scrollIntoView()" data-i18n="explore">
+კატეგორიები
+</button>
+</div>
+
+<div class="social-links">
+<a href="https://www.facebook.com/share/1GTdGwXJD3/" target="_blank" class="social-icon-btn" aria-label="Facebook">
+<i class="fab fa-facebook-f"></i>
+</a>
+<a href="https://www.instagram.com/aion0910?stkn=MXJ6OGxjYzc3azc2OQ==" target="_blank" class="social-icon-btn" aria-label="Instagram">
+<i class="fab fa-instagram"></i>
+</a>
+<a href="https://www.tiktok.com/@aion202619?_r=1&_t=ZS-99q57YoRQtI" target="_blank" class="social-icon-btn" aria-label="TikTok">
+<i class="fab fa-tiktok"></i>
+</a>
+</div>
+
+</div>
+
+<div class="hero-visual">
+<div class="hero-card">
+<div class="hero-card-title">ხარისხი ყოველდღე 🌿</div>
+<div class="hero-card-text">შეარჩიე შენთვის საჭირო პროდუქტი Aion-ის კოლექციიდან.</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- =====================================================
+CATEGORIES
+===================================================== -->
+<section id="categories" class="category-section">
+<div class="container">
+<div class="section-heading">
+<div>
+<h2 data-i18n="categoriesTitle">კატეგორიები</h2>
+<p data-i18n="categoriesSub">იპოვე შენთვის სასურველი პროდუქტი</p>
+</div>
+</div>
+<div class="category-scroll">
+<div id="categoryList" class="category-list"></div>
+</div>
+</div>
+</section>
+
+<!-- =====================================================
+FLASH SALE
+===================================================== -->
+<section class="container">
+<div class="sale-section">
+<div class="sale-top">
+<div class="sale-title">
+<span class="sale-pill" data-i18n="flashSale">FLASH SALE</span>
+<h2 data-i18n="saleTitle">სპეციალური შეთავაზებები ⚡</h2>
+</div>
+<div class="countdown">
+<span data-i18n="endsIn">სრულდება</span>
+<span id="hours" class="time-box">08</span> :
+<span id="minutes" class="time-box">42</span> :
+<span id="seconds" class="time-box">19</span>
+</div>
+</div>
+<div id="saleProducts" class="products-track"></div>
+</div>
+</section>
+
+<!-- =====================================================
+PRODUCTS
+===================================================== -->
+<section id="products" class="products-section">
+<div class="container">
+<div class="section-heading">
+<div>
+<h2 data-i18n="popularTitle">პოპულარული პროდუქტები 🔥</h2>
+<p data-i18n="popularSub">ყველაზე მოთხოვნადი არჩევანი</p>
+</div>
+</div>
+<div id="popularProducts" class="products-track"></div>
+</div>
+</section>
+
+<section class="products-section">
+<div class="container">
+<div class="section-heading">
+<div>
+<h2 data-i18n="newTitle">ახალი პროდუქტები ✨</h2>
+<p data-i18n="newSub">აღმოაჩინე ახალი დამატებები</p>
+</div>
+</div>
+<div id="newProducts" class="products-track"></div>
+</div>
+</section>
+
+<!-- =====================================================
+FEATURES
+===================================================== -->
+<section class="container">
+<div class="features">
+<div class="feature">
+<div class="feature-icon">🚚</div>
+<div>
+<h3 data-i18n="feat1Title">მარტივი მიწოდება</h3>
+<p data-i18n="feat1Text">შეკვეთა მარტივად და მოსახერხებლად.</p>
+</div>
+</div>
+<div class="feature">
+<div class="feature-icon">🌿</div>
+<div>
+<h3 data-i18n="feat2Title">ხარისხზე ორიენტირებული</h3>
+<p data-i18n="feat2Text">შერჩეული პროდუქტები სანდო ბრენდებიდან.</p>
+</div>
+</div>
+<div class="feature">
+<div class="feature-icon">🔒</div>
+<div>
+<h3 data-i18n="feat3Title">უსაფრთხო გამოცდილება</h3>
+<p data-i18n="feat3Text">შენი მონაცემების დაცვა ჩვენი პრიორიტეტია.</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- =====================================================
+BLOG
+===================================================== -->
+<section id="blog" class="products-section">
+<div class="container">
+<div class="section-heading">
+<div>
+<h2 data-i18n="blogTitle">ჯანმრთელობის ბლოგი 📖</h2>
+<p data-i18n="blogSub">მარტივი ინფორმაცია ჯანმრთელობაზე</p>
+</div>
+</div>
+<div id="blogProducts" class="blog-track"></div>
+</div>
+</section>
+
+<!-- =====================================================
+FAQ
+===================================================== -->
+<section id="faq" class="faq-section">
+<div class="container">
+<div class="section-heading">
+<div>
+<h2 data-i18n="faqTitle">ხშირად დასმული კითხვები</h2>
+<p data-i18n="faqSub">ყველაფერი, რაც შეკვეთამდე უნდა იცოდე</p>
+</div>
+</div>
+<div class="faq-list" id="faqList"></div>
+</div>
+</section>
+
+</main>
+
+<!-- =======================================================
+FOOTER
+======================================================= -->
+<footer class="footer">
+<div class="container">
+<div class="footer-grid">
+<div>
+<h3>Aion 🌿</h3>
+<p data-i18n="footerAbout">თანამედროვე საკვები დანამატების ონლაინ სივრცე, სადაც ხარისხი და მარტივი მომხმარებლის გამოცდილება ერთიანდება.</p>
+</div>
+<div>
+<h4 data-i18n="footerNav">ნავიგაცია</h4>
+<ul>
+<li><a href="#home" data-i18n="home">მთავარი</a></li>
+<li><a href="#products" data-i18n="products">პროდუქცია</a></li>
+<li><a href="#blog" data-i18n="blog">ბლოგი</a></li>
+<li><a href="#faq" data-i18n="faqNav">FAQ</a></li>
+</ul>
+</div>
+<div>
+<h4 data-i18n="footerInfo">ინფორმაცია</h4>
+<ul>
+<li><a href="#" data-i18n="footerAboutUs">ჩვენ შესახებ</a></li>
+<li><a href="#" data-i18n="footerDelivery">მიწოდება</a></li>
+<li><a href="#" data-i18n="footerReturns">დაბრუნება</a></li>
+<li><a href="#" data-i18n="footerPrivacy">კონფიდენციალურობა</a></li>
+</ul>
+</div>
+<div>
+<h4 data-i18n="footerContact">კონტაქტი</h4>
+<ul>
+<li>📧 info@aion.ge</li>
+<li>📞 +995 32 2 00 00 00</li>
+<li>📍 <span data-i18n="footerCity">თბილისი, საქართველო</span></li>
+</ul>
+<div class="social-links footer-socials">
+<a href="https://www.facebook.com/share/1GTdGwXJD3/" target="_blank" class="social-icon-btn" aria-label="Facebook">
+<i class="fab fa-facebook-f"></i>
+</a>
+<a href="https://www.instagram.com/aion0910?stkn=MXJ6OGxjYzc3azc2OQ==" target="_blank" class="social-icon-btn" aria-label="Instagram">
+<i class="fab fa-instagram"></i>
+</a>
+<a href="https://www.tiktok.com/@aion202619?_r=1&_t=ZS-99q57YoRQtI" target="_blank" class="social-icon-btn" aria-label="TikTok">
+<i class="fab fa-tiktok"></i>
+</a>
+</div>
+</div>
+</div>
+<div class="footer-bottom" data-i18n="footerRights">
+© 2026 Aion Food Supplements. ყველა უფლება დაცულია.
+</div>
+</div>
+</footer>
+
+<!-- =======================================================
+MOBILE NAV
+======================================================= -->
+<nav class="mobile-nav">
+<button class="active" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+🏠
+<small data-i18n="home">მთავარი</small>
+</button>
+<button onclick="document.getElementById('products').scrollIntoView()">
+🛍️
+<small data-i18n="products">პროდუქცია</small>
+</button>
+<button onclick="openWishlist()">
+♡
+<small>Wishlist</small>
+</button>
+<button onclick="openCart()">
+🛒
+<small data-i18n="cartNav">კალათა</small>
+</button>
+</nav>
+
+<!-- =======================================================
+MODALS
+======================================================= -->
+<div id="productModal" class="modal" onclick="closeModalOutside(event, 'productModal')">
+<div class="modal-card">
+<button class="modal-close" onclick="closeProductModal()">✕</button>
+<div id="productDetailContent"></div>
+</div>
+</div>
+
+<div id="cartModal" class="modal side-modal" onclick="closeModalOutside(event, 'cartModal')">
+<div class="modal-card cart-card">
+<div class="modal-title-row">
+<h2 data-i18n="yourCart">შენი კალათა 🛒</h2>
+<button class="modal-close" style="position:static;" onclick="closeCart()">✕</button>
+</div>
+<div id="cartItems" class="cart-items"></div>
+<div class="cart-summary">
+<div class="summary-row">
+<span data-i18n="subtotal">ქვეჯამი</span>
+<strong id="cartSubtotal">0.00 ₾</strong>
+</div>
+<div class="summary-row">
+<span data-i18n="delivery">მიწოდება</span>
+<strong id="cartDelivery">5.00 ₾</strong>
+</div>
+<div class="summary-total">
+<span data-i18n="total">სულ</span>
+<span id="cartTotal">0.00 ₾</span>
+</div>
+<button class="btn-primary" style="width:100%;" onclick="openCheckout()" data-i18n="checkoutBtn">შეკვეთის გაფორმება</button>
+</div>
+</div>
+</div>
+
+<div id="checkoutModal" class="modal" onclick="closeModalOutside(event, 'checkoutModal')">
+<div class="modal-card checkout-card">
+<button class="modal-close" onclick="closeCheckout()">✕</button>
+<h2 style="color:var(--green); margin-bottom:5px;" data-i18n="checkoutTitle">შეკვეთის გაფორმება</h2>
+<p style="font-size:11px; color:var(--muted); margin-bottom:20px;" data-i18n="checkoutSub">შეავსე ინფორმაცია შეკვეთისთვის.</p>
+<form id="checkoutForm" onsubmit="submitCheckout(event)" novalidate>
+<div class="form-group">
+<label data-i18n="fullName">სახელი და გვარი</label>
+<input id="customerName" class="form-control" required minlength="2">
+<div class="field-error" data-i18n="errName">გთხოვ, მიუთითე სახელი და გვარი (მინ. 2 სიმბოლო).</div>
+</div>
+<div class="form-group">
+<label data-i18n="phone">ტელეფონი</label>
+<input id="customerPhone" class="form-control" type="tel" placeholder="5XXXXXXXX" required>
+<div class="field-error" data-i18n="errPhone">გთხოვ, მიუთითე ვალიდური ტელეფონის ნომერი.</div>
+</div>
+<div class="form-group">
+<label data-i18n="city">ქალაქი</label>
+<select id="customerCity" class="form-control">
+<option data-i18n="cityTbilisi">თბილისი</option>
+<option data-i18n="cityBatumi">ბათუმი</option>
+<option data-i18n="cityKutaisi">ქუთაისი</option>
+<option data-i18n="cityOther">სხვა</option>
+</select>
+</div>
+<div class="form-group">
+<label data-i18n="address">მისამართი</label>
+<input id="customerAddress" class="form-control" required minlength="4">
+<div class="field-error" data-i18n="errAddress">გთხოვ, მიუთითე მისამართი (მინ. 4 სიმბოლო).</div>
+</div>
+<div style="display:flex; justify-content:space-between; padding:14px; margin:15px 0; border-radius:12px; background:var(--sage); color:var(--green); font-size:13px; font-weight:800;">
+<span data-i18n="toPay">გადასახდელი</span>
+<span id="checkoutTotal">0.00 ₾</span>
+</div>
+<button type="submit" class="btn-primary" style="width:100%;" data-i18n="confirmOrder">შეკვეთის დადასტურება</button>
+</form>
+</div>
+</div>
+
+<div id="wishlistModal" class="modal" onclick="closeModalOutside(event, 'wishlistModal')">
+<div class="modal-card">
+<button class="modal-close" onclick="closeWishlist()">✕</button>
+<div style="padding:25px 25px 5px;">
+<h2 style="color:var(--green); font-size:20px;" data-i18n="savedProducts">შენახული პროდუქტები ♡</h2>
+</div>
+<div id="wishlistItems" class="wishlist-grid"></div>
+</div>
+</div>
+
+<div id="blogModal" class="modal" onclick="closeModalOutside(event, 'blogModal')">
+<div class="modal-card">
+<button class="modal-close" onclick="closeBlog()">✕</button>
+<div id="blogDetailContent"></div>
+</div>
+</div>
+
+<div id="toast" class="toast"></div>
+
+<!-- =======================================================
+JAVASCRIPT & SUPABASE INTEGRATION
+======================================================= -->
+<script>
+// --- SUPABASE CONFIGURATION ---
+const SUPABASE_URL = 'https://psuitrjbsdnbqonjotax.supabase.co';
+const SUPABASE_ANON_KEY = 'sb_publishable_ES56Aa8Rt_HByTkUSHj6iA_CqRwO4I8';
+
+// Initialize Supabase Client
+const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+const categories = [
+{ id: "all", ge: "ყველა", en: "All" },
+{ id: "vitamins", ge: "ვიტამინები", en: "Vitamins" },
+{ id: "collagen", ge: "კოლაგენი", en: "Collagen" },
+{ id: "probiotics", ge: "პრობიოტიკები", en: "Probiotics" },
+{ id: "minerals", ge: "მინერალები", en: "Minerals" },
+{ id: "wellness", ge: "Wellness", en: "Wellness" }
+];
+
+// Fallback static products in case database is empty or offline
+let products = [
+{
+id: 1,
+name: "CollagenUP Peptides",
+category: "collagen",
+categoryGe: "კოლაგენი",
+price: 85,
+oldPrice: 105,
+discount: 19,
+rating: 4.9,
+reviews: 124,
+image: "https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=700&q=85",
+popular: true,
+sale: true,
+description: "ჰიდროლიზებული კოლაგენის პეპტიდების პროდუქტი, რომელიც შექმნილია ყოველდღიური კვების რაციონის დასამატებლად."
+},
+{
+id: 2,
+name: "Vitamin D3 5000 IU",
+category: "vitamins",
+categoryGe: "ვიტამინები",
+price: 35,
+oldPrice: 45,
+discount: 22,
+rating: 4.8,
+reviews: 89,
+image: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=700&q=85",
+popular: true,
+sale: true,
+description: "ვიტამინი D3 ყოველდღიური რაციონის შესავსებად. გამოყენებამდე გაეცანი პროდუქტის ეტიკეტს და რეკომენდებულ დოზირებას."
+},
+{
+id: 3,
+name: "LactoBif Probiotics",
+category: "probiotics",
+categoryGe: "პრობიოტიკები",
+price: 65,
+oldPrice: 75,
+discount: 13,
+rating: 4.7,
+reviews: 67,
+image: "https://images.unsplash.com/photo-1576602976047-174e57a47881?auto=format&fit=crop&w=700&q=85",
+popular: true,
+sale: false,
+description: "პრობიოტიკური კულტურების შემცველი საკვები დანამატი ყოველდღიური კვების რაციონისთვის."
+},
+{
+id: 4,
+name: "Magnesium Complex",
+category: "minerals",
+categoryGe: "მინერალები",
+price: 49,
+oldPrice: 59,
+discount: 17,
+rating: 4.9,
+reviews: 102,
+image: "https://images.unsplash.com/photo-1616671276441-2f8f0ae1f9a4?auto=format&fit=crop&w=700&q=85",
+popular: true,
+sale: false,
+description: "მაგნიუმის კომპლექსი ყოველდღიური კვების რაციონის შესავსებად."
+},
+{
+id: 5,
+name: "Vitamin C 1000",
+category: "vitamins",
+categoryGe: "ვიტამინები",
+price: 32,
+oldPrice: 40,
+discount: 20,
+rating: 4.8,
+reviews: 76,
+image: "https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=700&q=85",
+popular: false,
+sale: true,
+description: "ვიტამინი C საკვები დანამატის სახით ყოველდღიური რაციონისთვის."
+},
+{
+id: 6,
+name: "Daily Wellness Complex",
+category: "wellness",
+categoryGe: "Wellness",
+price: 72,
+oldPrice: null,
+discount: 0,
+rating: 4.6,
+reviews: 31,
+image: "https://images.unsplash.com/photo-1471864190281-a93a3070b6de?auto=format&fit=crop&w=700&q=85",
+popular: false,
+sale: false,
+description: "ყოველდღიური wellness რუტინის მხარდასაჭერად შექმნილი კომპლექსი."
+},
+{
+id: 7,
+name: "Zinc Balance",
+category: "minerals",
+categoryGe: "მინერალები",
+price: 39,
+oldPrice: 49,
+discount: 20,
+rating: 4.8,
+reviews: 44,
+image: "https://images.unsplash.com/photo-1550572017-edd951b55104?auto=format&fit=crop&w=700&q=85",
+popular: false,
+sale: false,
+description: "თუთიის შემცველი საკვები დანამატი ყოველდღიური კვების რაციონის შესავსებად."
+},
+{
+id: 8,
+name: "Beauty Support",
+category: "collagen",
+categoryGe: "კოლაგენი",
+price: 91,
+oldPrice: 110,
+discount: 17,
+rating: 4.7,
+reviews: 58,
+image: "https://images.unsplash.com/photo-1556228578-8c89e6adf883?auto=format&fit=crop&w=700&q=85",
+popular: false,
+sale: false,
+description: "Beauty-focused საკვები დანამატი ყოველდღიური wellness რუტინისთვის."
+}
+];
+
+const blogPosts = [
+{
+id: 1,
+tag: "კოლაგენი",
+title: "რა უნდა ვიცოდეთ კოლაგენის შესახებ?",
+text: "კოლაგენი ორგანიზმში ბუნებრივად არსებული ცილაა. საკვები დანამატების არჩევისას მნიშვნელოვანია პროდუქტის შემადგენლობისა და გამოყენების ინსტრუქციის ყურადღებით წაკითხვა.",
+image: "https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=900&q=85"
+},
+{
+id: 2,
+tag: "ვიტამინები",
+title: "ვიტამინი D — რატომ არის მნიშვნელოვანი?",
+text: "ვიტამინი D მონაწილეობს ორგანიზმში სხვადასხვა მნიშვნელოვან პროცესში. მისი მიღების საჭიროება ინდივიდუალურია და დეფიციტის შემთხვევაში სასურველია ექიმთან კონსულტაცია.",
+image: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=900&q=85"
+},
+{
+id: 3,
+tag: "Gut Health",
+title: "რა არის მიკრობიომი?",
+text: "ნაწლავის მიკრობიომი მრავალი მიკროორგანიზმის ერთობლიობაა, რომელიც დაკავშირებულია საჭმლის მონელებასთან და ორგანიზმის სხვადასხვა ფუნქციასთან.",
+image: "https://images.unsplash.com/photo-1576602976047-174e57a47881?auto=format&fit=crop&w=900&q=85"
+}
+];
+
+const faqData = [
+{ q: "როგორ შევუკვეთო პროდუქტი?", a: "აირჩიე სასურველი პროდუქტი, დაამატე კალათაში და შემდეგ შეავსე შეკვეთის ფორმა.", qEn: "How do I place an order?", aEn: "Choose the product you want, add it to the cart, then fill in the order form." },
+{ q: "რამდენ ხანში მივიღებ შეკვეთას?", a: "მიწოდების ზუსტი პირობები და ვადები დამოკიდებულია მისამართსა და მიწოდების მეთოდზე.", qEn: "How long until I receive my order?", aEn: "Exact delivery terms depend on your address and the delivery method." },
+{ q: "შესაძლებელია პროდუქტის დაბრუნება?", a: "დაბრუნების პირობები დეტალურად იქნება აღწერილი Aion-ის საბოლოო წესებსა და პირობებში.", qEn: "Can I return a product?", aEn: "Return terms will be detailed in Aion's final terms and conditions." },
+{ q: "საკვები დანამატი ცვლის ექიმის დანიშნულ მკურნალობას?", a: "საკვები დანამატები არ არის განკუთვნილი ექიმის მიერ დანიშნული მკურნალობის ჩასანაცვლებლად. კონკრეტული პროდუქტის გამოყენების წინ საჭიროების შემთხვევაში გაიარე კონსულტაცია ექიმთან ან ფარმაცევტთან.", qEn: "Do supplements replace doctor-prescribed treatment?", aEn: "Food supplements are not intended to replace treatment prescribed by a doctor. Consult a doctor or pharmacist before use if needed." }
+];
+
+let currentLanguage = "GE";
+let activeCategory = "all";
+let cart = [];
+let wishlist = [];
+
+// Fixed real countdown target instead of an infinitely-looping fake timer.
+// Set to a real end date/time for the sale.
+const SALE_END_TIME = (function () {
+const stored = Number(localStorage.getItem("aion_sale_end"));
+if (stored && stored > Date.now()) return stored;
+const end = Date.now() + (8 * 60 * 60 + 42 * 60 + 19) * 1000;
+try { localStorage.setItem("aion_sale_end", String(end)); } catch (e) {}
+return end;
+})();
+
+// --- Escape helper to prevent HTML/script injection from any dynamic data (Supabase or otherwise) ---
+function escapeHtml(value) {
+return String(value ?? "").replace(/[&<>"']/g, (char) => ({
+"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+}[char]));
+}
+
+// --- Safe localStorage helpers (never let storage errors break the page) ---
+function safeGet(key, fallback) {
+try {
+const raw = localStorage.getItem(key);
+return raw ? JSON.parse(raw) : fallback;
+} catch (e) {
+return fallback;
+}
+}
+function safeSet(key, value) {
+try {
+localStorage.setItem(key, JSON.stringify(value));
+} catch (e) {
+console.warn("Could not persist", key, e);
+}
+}
+
+cart = safeGet("aion_cart", []);
+wishlist = safeGet("aion_wishlist", []);
+
+// --- Normalize a product coming from Supabase (snake_case) or fallback data (camelCase) ---
+function normalizeProduct(raw) {
+return {
+id: raw.id,
+name: raw.name ?? "",
+category: raw.category ?? "",
+categoryGe: raw.categoryGe ?? raw.category_ge ?? raw.category ?? "",
+price: Number(raw.price ?? 0),
+oldPrice: raw.oldPrice ?? raw.old_price ?? null,
+discount: Number(raw.discount ?? 0),
+rating: raw.rating ?? 0,
+reviews: raw.reviews ?? 0,
+image: raw.image ?? raw.image_url ?? "",
+popular: Boolean(raw.popular ?? raw.is_popular ?? false),
+sale: Boolean(raw.sale ?? raw.is_sale ?? false),
+description: raw.description ?? ""
+};
+}
+
+// --- LOAD PRODUCTS FROM SUPABASE ---
+async function fetchProductsFromSupabase() {
+try {
+const { data, error } = await supabaseClient.from('products').select('*');
+if (error) {
+console.warn("Supabase fetch warning/error (using fallback):", error.message);
+return;
+}
+if (data && data.length > 0) {
+products = data.map(normalizeProduct);
+renderProducts();
+}
+} catch (err) {
+console.error("Could not connect to Supabase, using local defaults.", err);
+}
+}
+
+function formatPrice(value) {
+return Number(value).toFixed(2) + " ₾";
+}
+
+function showToast(message) {
+const toast = document.getElementById("toast");
+toast.textContent = message;
+toast.classList.add("show");
+clearTimeout(window.toastTimer);
+window.toastTimer = setTimeout(() => {
+toast.classList.remove("show");
+}, 2200);
+}
+
+function renderCategories() {
+const container = document.getElementById("categoryList");
+container.innerHTML = categories.map(category => {
+const name = currentLanguage === "GE" ? category.ge : category.en;
+return `<button class="category-btn ${activeCategory === category.id ? "active" : ""}" onclick="setCategory('${category.id}')">${escapeHtml(name)}</button>`;
+}).join("");
+}
+
+function setCategory(categoryId) {
+activeCategory = categoryId;
+renderCategories();
+renderProducts();
+}
+
+function getFilteredProducts() {
+let list = [...products];
+if (activeCategory !== "all") {
+list = list.filter(product => product.category === activeCategory);
+}
+const query = document.getElementById("searchInput").value.trim().toLowerCase();
+if (query) {
+list = list.filter(product => product.name.toLowerCase().includes(query));
+}
+return list;
+}
+
+function handleSearch() {
+renderProducts();
+document.getElementById("products").scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+function productCard(product) {
+const wished = wishlist.includes(product.id);
+const name = escapeHtml(product.name);
+const categoryLabel = escapeHtml(product.categoryGe || product.category);
+return `
+<article class="product-card">
+<div class="product-image" onclick="openProduct(${product.id})" style="cursor:pointer;">
+${product.discount > 0 ? `<div class="product-badge">-${product.discount}%</div>` : ""}
+<button class="product-wishlist" onclick="toggleWishlist(${product.id}, event)">${wished ? "❤️" : "♡"}</button>
+<img src="${escapeHtml(product.image)}" loading="lazy" alt="${name}">
+</div>
+<div class="product-category">${categoryLabel}</div>
+<div class="product-name" onclick="openProduct(${product.id})" style="cursor:pointer;">${name}</div>
+<div class="product-rating">★★★★★ <span>${escapeHtml(product.rating)} (${escapeHtml(product.reviews)})</span></div>
+<div class="product-price">
+<span class="current-price">${formatPrice(product.price)}</span>
+${product.oldPrice ? `<span class="old-price">${formatPrice(product.oldPrice)}</span>` : ""}
+</div>
+<button class="add-btn" onclick="addToCart(${product.id})">🛒 ${currentLanguage === "GE" ? "კალათაში" : "Add to cart"}</button>
+</article>
+`;
+}
+
+function renderProducts() {
+const filtered = getFilteredProducts();
+const popular = filtered.filter(p => p.popular);
+const newest = filtered.filter(p => !p.popular);
+const sale = filtered.filter(p => p.sale);
+const emptyText = currentLanguage === "GE" ? "პროდუქტი ვერ მოიძებნა." : "No products found.";
+const emptyNew = currentLanguage === "GE" ? "ახალი პროდუქტი ვერ მოიძებნა." : "No new products found.";
+const emptySale = currentLanguage === "GE" ? "ამ კატეგორიაში შეთავაზება არ არის." : "No offers in this category.";
+
+document.getElementById("popularProducts").innerHTML = popular.length ? popular.map(productCard).join("") : `<div class="empty-products">${emptyText}</div>`;
+document.getElementById("newProducts").innerHTML = newest.length ? newest.map(productCard).join("") : `<div class="empty-products">${emptyNew}</div>`;
+document.getElementById("saleProducts").innerHTML = sale.length ? sale.map(productCard).join("") : `<div class="empty-products">${emptySale}</div>`;
+}
+
+function openProduct(productId) {
+const product = products.find(p => p.id == productId);
+if (!product) return;
+
+const content = document.getElementById("productDetailContent");
+const name = escapeHtml(product.name);
+content.innerHTML = `
+<div class="product-detail">
+<div class="detail-image">
+<img src="${escapeHtml(product.image)}" alt="${name}">
+</div>
+<div class="detail-info">
+<div class="detail-category">${escapeHtml(product.categoryGe || product.category)}</div>
+<h2 class="detail-title">${name}</h2>
+<div class="detail-rating">★★★★★ <span style="color:var(--muted);">${escapeHtml(product.rating)} · ${escapeHtml(product.reviews)} შეფასება</span></div>
+<div class="detail-price">
+<strong>${formatPrice(product.price)}</strong>
+${product.oldPrice ? `<del>${formatPrice(product.oldPrice)}</del>` : ""}
+</div>
+<p class="detail-description">${escapeHtml(product.description)}</p>
+<div style="padding:13px; margin-bottom:18px; border-radius:12px; background:var(--sage); color:var(--green); font-size:11px; line-height:1.6;">
+ℹ️ გამოყენებამდე ყურადღებით გაეცანი პროდუქტის ეტიკეტსა და გამოყენების ინსტრუქციას.
+</div>
+<div class="quantity">
+<button onclick="changeDetailQuantity(-1)">−</button>
+<span id="detailQuantity">1</span>
+<button onclick="changeDetailQuantity(1)">+</button>
+</div>
+<button class="btn-primary" style="width:100%;" onclick="addDetailToCart(${product.id})">🛒 კალათაში დამატება</button>
+</div>
+</div>
+`;
+
+window.detailQuantity = 1;
+window.detailProductId = productId;
+openModal("productModal");
+}
+
+function changeDetailQuantity(amount) {
+window.detailQuantity = Math.max(1, (window.detailQuantity || 1) + amount);
+document.getElementById("detailQuantity").textContent = window.detailQuantity;
+}
+
+function addDetailToCart(productId) {
+addToCart(productId, window.detailQuantity || 1);
+closeProductModal();
+}
+
+function addToCart(productId, quantity = 1) {
+const product = products.find(p => p.id == productId);
+if (!product) return;
+
+const existing = cart.find(item => item.id == productId);
+if (existing) {
+existing.quantity += quantity;
+} else {
+cart.push({ id: productId, quantity });
+}
+
+updateCart();
+showToast(currentLanguage === "GE" ? "პროდუქტი დაემატა კალათაში 🛒" : "Added to cart 🛒");
+}
+
+function updateCart() {
+safeSet("aion_cart", cart);
+const container = document.getElementById("cartItems");
+const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+document.getElementById("cartCount").textContent = totalItems;
+
+if (!cart.length) {
+container.innerHTML = `
+<div style="padding:50px 15px; text-align:center; color:var(--muted); font-size:12px;">
+<div style="font-size:35px; margin-bottom:10px;">🛒</div>
+${currentLanguage === "GE" ? "კალათა ჯერ ცარიელია." : "Your cart is empty."}
+</div>
+`;
+} else {
+container.innerHTML = cart.map(cartItemHTML).join("");
+}
+
+const subtotal = cart.reduce((sum, item) => {
+const product = products.find(p => p.id == item.id);
+return sum + (product ? (product.price * item.quantity) : 0);
+}, 0);
+
+const delivery = subtotal === 0 ? 0 : subtotal >= 100 ? 0 : 5;
+const total = subtotal + delivery;
+
+document.getElementById("cartSubtotal").textContent = formatPrice(subtotal);
+document.getElementById("cartDelivery").textContent = delivery === 0 ? (currentLanguage === "GE" ? "უფასო" : "Free") : formatPrice(delivery);
+document.getElementById("cartTotal").textContent = formatPrice(total);
+document.getElementById("checkoutTotal").textContent = formatPrice(total);
+}
+
+function cartItemHTML(item) {
+const product = products.find(p => p.id == item.id);
+if (!product) return "";
+
+const name = escapeHtml(product.name);
+return `
+<div class="cart-item">
+<img class="cart-item-image" src="${escapeHtml(product.image)}" alt="${name}">
+<div>
+<div class="cart-item-name">${name}</div>
+<div class="cart-item-price">${formatPrice(product.price)}</div>
+<div class="cart-controls">
+<button onclick="changeCartQuantity(${product.id}, -1)">−</button>
+<span style="font-size:10px;">${item.quantity}</span>
+<button onclick="changeCartQuantity(${product.id}, 1)">+</button>
+<button class="remove-cart" onclick="removeFromCart(${product.id})">🗑</button>
+</div>
+</div>
+<strong style="color:var(--green); font-size:11px;">${formatPrice(product.price * item.quantity)}</strong>
+</div>
+`;
+}
+
+function changeCartQuantity(productId, amount) {
+const item = cart.find(i => i.id == productId);
+if (!item) return;
+
+item.quantity += amount;
+if (item.quantity <= 0) {
+cart = cart.filter(i => i.id != productId);
+}
+updateCart();
+}
+
+function removeFromCart(productId) {
+cart = cart.filter(i => i.id != productId);
+updateCart();
+showToast(currentLanguage === "GE" ? "პროდუქტი წაიშალა კალათიდან" : "Removed from cart");
+}
+
+function openCart() {
+updateCart();
+openModal("cartModal");
+}
+
+function closeCart() {
+closeModal("cartModal");
+}
+
+function openCheckout() {
+if (!cart.length) {
+showToast(currentLanguage === "GE" ? "კალათა ცარიელია" : "Your cart is empty");
+return;
+}
+updateCart();
+closeCart();
+openModal("checkoutModal");
+}
+
+function closeCheckout() {
+closeModal("checkoutModal");
+}
+
+// --- Basic Georgian mobile phone validation (5XXXXXXXX, optionally with +995) ---
+function isValidPhone(value) {
+const digits = value.replace(/[\s\-()]/g, "");
+return /^(\+?995)?5\d{8}$/.test(digits);
+}
+
+function validateCheckoutForm() {
+let valid = true;
+const name = document.getElementById("customerName");
+const phone = document.getElementById("customerPhone");
+const address = document.getElementById("customerAddress");
+
+[name, phone, address].forEach(field => field.classList.remove("invalid"));
+
+if (name.value.trim().length < 2) { name.classList.add("invalid"); valid = false; }
+if (!isValidPhone(phone.value.trim())) { phone.classList.add("invalid"); valid = false; }
+if (address.value.trim().length < 4) { address.classList.add("invalid"); valid = false; }
+
+return valid;
+}
+
+async function submitCheckout(event) {
+event.preventDefault();
+
+if (!validateCheckoutForm()) {
+showToast(currentLanguage === "GE" ? "გთხოვ, გადაამოწმე შეყვანილი მონაცემები" : "Please check the fields");
+return;
+}
+
+const customerName = document.getElementById("customerName").value.trim();
+const customerPhone = document.getElementById("customerPhone").value.trim();
+const customerCity = document.getElementById("customerCity").value;
+const customerAddress = document.getElementById("customerAddress").value.trim();
+
+// Snapshot product name/price/quantity at order time so history stays accurate
+// even if prices change later.
+const orderItems = cart.map(item => {
+const product = products.find(p => p.id == item.id);
+return {
+product_id: item.id,
+name: product ? product.name : null,
+price: product ? product.price : null,
+quantity: item.quantity,
+line_total: product ? Number((product.price * item.quantity).toFixed(2)) : null
+};
+});
+const subtotal = orderItems.reduce((sum, i) => sum + (i.line_total || 0), 0);
+const delivery = subtotal === 0 ? 0 : subtotal >= 100 ? 0 : 5;
+
+// Optional: save order to Supabase if 'orders' table exists
+try {
+await supabaseClient.from('orders').insert([
+{
+customer_name: customerName,
+phone: customerPhone,
+city: customerCity,
+address: customerAddress,
+items: orderItems,
+subtotal: subtotal,
+delivery: delivery,
+total: subtotal + delivery
+}
+]);
+} catch (err) {
+console.log("Order saved locally (Supabase table orders might not exist yet).");
+}
+
+cart = [];
+updateCart();
+closeCheckout();
+event.target.reset();
+showToast((currentLanguage === "GE" ? `მადლობა, ${customerName}! შეკვეთა მიღებულია.` : `Thank you, ${customerName}! Your order has been received.`));
+}
+
+function toggleWishlist(productId, event) {
+if (event) event.stopPropagation();
+
+if (wishlist.includes(productId)) {
+wishlist = wishlist.filter(id => id != productId);
+showToast(currentLanguage === "GE" ? "Wishlist-იდან წაიშალა" : "Removed from wishlist");
+} else {
+wishlist.push(productId);
+showToast(currentLanguage === "GE" ? "Wishlist-ში დაემატა ❤️" : "Added to wishlist ❤️");
+}
+
+safeSet("aion_wishlist", wishlist);
+document.getElementById("wishlistCount").textContent = wishlist.length;
+renderProducts();
+}
+
+function openWishlist() {
+renderWishlist();
+openModal("wishlistModal");
+}
+
+function renderWishlist() {
+const container = document.getElementById("wishlistItems");
+const items = products.filter(product => wishlist.includes(product.id));
+
+if (!items.length) {
+container.innerHTML = `<div style="grid-column:1/-1; padding:45px 10px; text-align:center; color:var(--muted); font-size:12px;"> ❤️ <br><br> ${currentLanguage === "GE" ? "Wishlist ჯერ ცარიელია." : "Your wishlist is empty."} </div>`;
+return;
+}
+
+container.innerHTML = items.map(product => `
+<div class="wishlist-mini">
+<img src="${escapeHtml(product.image)}" alt="${escapeHtml(product.name)}">
+<strong>${escapeHtml(product.name)}</strong>
+<span>${formatPrice(product.price)}</span>
+<button class="add-btn" onclick="addToCart(${product.id})">🛒 ${currentLanguage === "GE" ? "კალათაში" : "Add to cart"}</button>
+</div>
+`).join("");
+}
+
+function closeWishlist() {
+closeModal("wishlistModal");
+}
+
+function renderBlog() {
+const container = document.getElementById("blogProducts");
+container.innerHTML = blogPosts.map(post => `
+<article class="blog-card" onclick="openBlog(${post.id})">
+<img class="blog-image" src="${escapeHtml(post.image)}" loading="lazy" alt="${escapeHtml(post.title)}">
+<div class="blog-content">
+<div class="blog-tag">${escapeHtml(post.tag)}</div>
+<div class="blog-title">${escapeHtml(post.title)}</div>
+<div class="blog-snippet">${escapeHtml(post.text.substring(0, 120))}...</div>
+</div>
+</article>
+`).join("");
+}
+
+function openBlog(blogId) {
+const post = blogPosts.find(p => p.id === blogId);
+if (!post) return;
+
+document.getElementById("blogDetailContent").innerHTML = `
+<div class="blog-detail">
+<img src="${escapeHtml(post.image)}" alt="${escapeHtml(post.title)}">
+<div class="blog-tag">${escapeHtml(post.tag)}</div>
+<h2>${escapeHtml(post.title)}</h2>
+<p>${escapeHtml(post.text)}</p>
+</div>
+`;
+openModal("blogModal");
+}
+
+function closeBlog() {
+closeModal("blogModal");
+}
+
+function renderFaq() {
+const container = document.getElementById("faqList");
+container.innerHTML = faqData.map((item, index) => {
+const q = currentLanguage === "GE" ? item.q : item.qEn;
+const a = currentLanguage === "GE" ? item.a : item.aEn;
+return `
+<div class="faq-item">
+<button class="faq-question" onclick="toggleFaq(this)">${escapeHtml(q)} <span>+</span></button>
+<div class="faq-answer">${escapeHtml(a)}</div>
+</div>
+`;
+}).join("");
+}
+
+function toggleFaq(button) {
+const item = button.parentElement;
+const wasOpen = item.classList.contains("open");
+document.querySelectorAll(".faq-item").forEach(element => element.classList.remove("open"));
+if (!wasOpen) item.classList.add("open");
+}
+
+function openModal(id) {
+document.getElementById(id).classList.add("active");
+document.body.classList.add("modal-open");
+}
+
+function closeModal(id) {
+document.getElementById(id).classList.remove("active");
+if (!document.querySelector(".modal.active")) {
+document.body.classList.remove("modal-open");
+}
+}
+
+function closeModalOutside(event, id) {
+if (event.target.id === id) closeModal(id);
+}
+
+function closeProductModal() {
+closeModal("productModal");
+}
+
+const translations = {
+GE: {
+home: "მთავარი", products: "პროდუქცია", blog: "ბლოგი", faqNav: "FAQ",
+heroTitle: "ჯანმრთელობა, რომელსაც ყოველდღე ირჩევ.",
+heroText: "ხარისხიანი საკვები დანამატები ყოველდღიური ჯანმრთელობისა და კეთილდღეობისთვის — მარტივად, უსაფრთხოდ და შენთვის.",
+shopNow: "პროდუქტების ნახვა", explore: "კატეგორიები",
+categoriesTitle: "კატეგორიები", categoriesSub: "იპოვე შენთვის სასურველი პროდუქტი",
+flashSale: "FLASH SALE", saleTitle: "სპეციალური შეთავაზებები ⚡", endsIn: "სრულდება",
+popularTitle: "პოპულარული პროდუქტები 🔥", popularSub: "ყველაზე მოთხოვნადი არჩევანი",
+newTitle: "ახალი პროდუქტები ✨", newSub: "აღმოაჩინე ახალი დამატებები",
+feat1Title: "მარტივი მიწოდება", feat1Text: "შეკვეთა მარტივად და მოსახერხებლად.",
+feat2Title: "ხარისხზე ორიენტირებული", feat2Text: "შერჩეული პროდუქტები სანდო ბრენდებიდან.",
+feat3Title: "უსაფრთხო გამოცდილება", feat3Text: "შენი მონაცემების დაცვა ჩვენი პრიორიტეტია.",
+blogTitle: "ჯანმრთელობის ბლოგი 📖", blogSub: "მარტივი ინფორმაცია ჯანმრთელობაზე",
+faqTitle: "ხშირად დასმული კითხვები", faqSub: "ყველაფერი, რაც შეკვეთამდე უნდა იცოდე",
+footerAbout: "თანამედროვე საკვები დანამატების ონლაინ სივრცე, სადაც ხარისხი და მარტივი მომხმარებლის გამოცდილება ერთიანდება.",
+footerNav: "ნავიგაცია", footerInfo: "ინფორმაცია", footerContact: "კონტაქტი",
+footerAboutUs: "ჩვენ შესახებ", footerDelivery: "მიწოდება", footerReturns: "დაბრუნება", footerPrivacy: "კონფიდენციალურობა",
+footerCity: "თბილისი, საქართველო", footerRights: "© 2026 Aion Food Supplements. ყველა უფლება დაცულია.",
+cartNav: "კალათა", yourCart: "შენი კალათა 🛒", subtotal: "ქვეჯამი", delivery: "მიწოდება", total: "სულ",
+checkoutBtn: "შეკვეთის გაფორმება", checkoutTitle: "შეკვეთის გაფორმება", checkoutSub: "შეავსე ინფორმაცია შეკვეთისთვის.",
+fullName: "სახელი და გვარი", phone: "ტელეფონი", city: "ქალაქი", address: "მისამართი",
+cityTbilisi: "თბილისი", cityBatumi: "ბათუმი", cityKutaisi: "ქუთაისი", cityOther: "სხვა",
+toPay: "გადასახდელი", confirmOrder: "შეკვეთის დადასტურება", savedProducts: "შენახული პროდუქტები ♡",
+errName: "გთხოვ, მიუთითე სახელი და გვარი (მინ. 2 სიმბოლო).",
+errPhone: "გთხოვ, მიუთითე ვალიდური ტელეფონის ნომერი.",
+errAddress: "გთხოვ, მიუთითე მისამართი (მინ. 4 სიმბოლო)."
+},
+EN: {
+home: "Home", products: "Products", blog: "Blog", faqNav: "FAQ",
+heroTitle: "Choose your everyday wellness.",
+heroText: "Quality food supplements for your everyday wellness — simple, thoughtful and made for you.",
+shopNow: "Shop products", explore: "Explore categories",
+categoriesTitle: "Categories", categoriesSub: "Find the product you're looking for",
+flashSale: "FLASH SALE", saleTitle: "Special offers ⚡", endsIn: "Ends in",
+popularTitle: "Popular products 🔥", popularSub: "Our most requested picks",
+newTitle: "New products ✨", newSub: "Discover our newest additions",
+feat1Title: "Easy delivery", feat1Text: "Order simply and conveniently.",
+feat2Title: "Quality-focused", feat2Text: "Curated products from trusted brands.",
+feat3Title: "Secure experience", feat3Text: "Protecting your data is our priority.",
+blogTitle: "Wellness blog 📖", blogSub: "Simple information about your health",
+faqTitle: "Frequently asked questions", faqSub: "Everything you should know before ordering",
+footerAbout: "A modern online space for food supplements, where quality meets a simple customer experience.",
+footerNav: "Navigation", footerInfo: "Information", footerContact: "Contact",
+footerAboutUs: "About us", footerDelivery: "Delivery", footerReturns: "Returns", footerPrivacy: "Privacy",
+footerCity: "Tbilisi, Georgia", footerRights: "© 2026 Aion Food Supplements. All rights reserved.",
+cartNav: "Cart", yourCart: "Your cart 🛒", subtotal: "Subtotal", delivery: "Delivery", total: "Total",
+checkoutBtn: "Checkout", checkoutTitle: "Checkout", checkoutSub: "Fill in your details for the order.",
+fullName: "Full name", phone: "Phone", city: "City", address: "Address",
+cityTbilisi: "Tbilisi", cityBatumi: "Batumi", cityKutaisi: "Kutaisi", cityOther: "Other",
+toPay: "Total due", confirmOrder: "Confirm order", savedProducts: "Saved products ♡",
+errName: "Please enter your full name (min. 2 characters).",
+errPhone: "Please enter a valid phone number.",
+errAddress: "Please enter an address (min. 4 characters)."
+}
+};
+
+function toggleLanguage() {
+currentLanguage = currentLanguage === "GE" ? "EN" : "GE";
+document.getElementById("languageButton").textContent = currentLanguage === "GE" ? "EN" : "GE";
+
+document.querySelectorAll("[data-i18n]").forEach(element => {
+const key = element.dataset.i18n;
+if (translations[currentLanguage][key]) {
+element.textContent = translations[currentLanguage][key];
+}
+});
+
+renderCategories();
+renderProducts();
+renderFaq();
+}
+
+function updateCountdown() {
+const remainingMs = SALE_END_TIME - Date.now();
 const countdownEl = document.querySelector(".countdown");
 if (remainingMs <= 0) {
 if (countdownEl) countdownEl.style.display = "none";
